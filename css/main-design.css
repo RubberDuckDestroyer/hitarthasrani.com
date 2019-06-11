@@ -88,3 +88,13 @@ footer{
 .icon-bar > a {
   padding: 5vh 5vw;
 }
+
+#skydiveImg{
+  width: 32rem;
+  height: 32rem;
+  align-self: center;
+}
+
+#homeTopRow{
+  padding: 2rem;
+}
