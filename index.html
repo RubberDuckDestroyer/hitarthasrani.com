@@ -52,21 +52,6 @@
 		</div>
 		
 	<div class="container container-fluid"> 
-		<!-- Carousel for main page landing (Home) -->
-		<!-- <div class="row home-carousel" id="home">
-			<div id="main-carousel" class="carousel-slide">
-				<div class="carousel-inner">
-						<div class="carousel-item active" id="carouselItem1">
-							<img src=".\Img\skydive.JPG" class="d-block w-100" id="carousel-one-img" alt="A photo of my skydive">
-							<div class="carousel-caption d-none d-md-block">
-								<h5>Hi, I'm Hit!</h5>
-								<p>An aspiring AI Software Developer and a first yeat computer science student.</p>
-							</div>
-						</div>
-				</div>
-
-			</div>
-		</div> -->
 
 		<div class="jumbotron" id="home">
 			<div class="row" id="homeTopRow">
@@ -131,41 +116,41 @@
 			
 			<!--FORM-->
 			<div class="col-sm-6">
-			<h6>Or fill a contact form (feature to be added)</h6>
-			<form class="form-horizontal">
+			<h6>Or fill a contact form</h6>
+			<form class="form-horizontal" id="contact-form">
   				
 				<div class="form-group">
-					<label class="col-sm-2 control-label">Name</label>
+					<label class="col-sm-4 control-label" for="formName">Name</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" placeholder="Your Name">
+						<input type="text" class="form-control" id="formName" placeholder="Your Name">
 					</div>
 				</div>
 		  
 				<div class="form-group">
-					<label class="col-sm-2 control-label">Contact Number</label>
+					<label class="col-sm-4 control-label" for="formSubject">Subject</label>
 				    <div class="col-sm-10">
-						<input type="text" class="form-control" placeholder="Contact Number">
+						<input type="text" class="form-control" id="formSubject" placeholder="Subject">
 					</div>
 				</div>
 				
 				<div class="form-group">
-					<label class="col-sm-2 control-label" for="exampleInputEmail1">Email address</label>
+					<label class="col-sm-4 control-label" for="formEmailInput">Email address</label>
 					<div class="col-sm-offset-2 col-sm-10">
-					<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+					<input type="email" class="form-control" id="formEmailInput" aria-describedby="emailHelp" placeholder="Enter email">
 					<small id="emailHelp" class="form-text text-muted">I'll never share your email with anyone else.</small>
 					</div>					
 				</div>
 
 				<div class="form-group">
-					<label class="col-sm-2 control-label">Messsage(Optional)</label>
+					<label class="col-sm-4 control-label" for="formMessage">Messsage(Optional)</label>
 					<div class="col-sm-10">
-						<input type="textarea" class="form-control" placeholder="Your Message">
+						<input type="textarea" class="form-control" id="formMessage" placeholder="Your Message">
 					</div>
 				</div>
 				
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
-					<button type="submit" class="btn btn-default">Submit Details</button>
+					<button type="submit" class="btn btn-primary" id="formSubmitButton">Submit Details</button>
 					</div>
 				</div>
 			</form>
@@ -179,6 +164,8 @@
 		</footer>
 	</div>
 
+	<!--My Js-->
+	<script src="./app.js"></script>
 	<!-- Bootstrap JS -->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
