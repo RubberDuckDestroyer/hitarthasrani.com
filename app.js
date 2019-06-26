@@ -30,30 +30,25 @@ function sendDataToLambda() {
 
     //API Endpoint
     const endpoint = "https://168lcpey6h.execute-api.us-east-1.amazonaws.com/default/contaactForm1-1";
+
+    //creating a form object
+    var body = {
+        email: formEmailVal,
+        subject: formSubjectVal,
+        message: formMesssage
+    }
+    console.log("Preparing data : "+ body.subject);
+    console.log("Email: "+ body.email);
+    //Instantiate the lambda request with endpoint and body
+    var lambdaRequest = new Request(endpoint, {
+        credentials: 'include',
+        method: 'POST',
+        mode: 'cors',
+        body: JSON.stringify(body)
+    });
+    // Call the Fetch API to make our request
+    fetch(lambdaRequest);
+    console.log("sent");
+    window.alert("Message sent!");
     
-    if(blankFormField == 0)
-    {
-        //creating a form object
-        var body = {
-            email: formEmailVal,
-            subject: formSubjectVal,
-            message: formMesssage
-        }
-        console.log("Preparing data : "+ body.subject);
-        console.log("Email: "+ body.email);
-        //Instantiate the lambda request with endpoint and body
-        var lambdaRequest = new Request(endpoint, {
-            credentials: 'include',
-            method: 'POST',
-            mode: 'cors',
-            body: JSON.stringify(body)
-        });
-        // Call the Fetch API to make our request
-        fetch(lambdaRequest);
-        console.log("sent");
-        window.alert("Message sent!");
-    }
-    else{
-        window.alert("Please make sure to fill all fields of the form!!");
-    }
 }
