@@ -56,7 +56,8 @@ function sendDataToLambda() {
             subject: formSubjectVal,
             message: formMesssage
         }
-
+        console.log("Preparing data : "+ body.subject);
+        console.log("Email: "+ body.email);
         //Instantiate the lambda request with endpoint and body
         var lambdaRequest = new Request(endpoint, {
             credentials: 'include',
@@ -65,10 +66,9 @@ function sendDataToLambda() {
             body: JSON.stringify(body)
         });
         // Call the Fetch API to make our request
-        var functionResponse = fetch(lambdaRequest);
-        window.alert(functionResponse.statusCode);
-        
-        //window.alert("Message sent!");
+        fetch(lambdaRequest);
+        console.log("sent")
+        window.alert("Message sent!");
     }
     else{
         window.alert("Pleas make sure to fill all fields of the form!!");
