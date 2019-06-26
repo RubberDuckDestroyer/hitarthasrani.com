@@ -31,7 +31,7 @@ function sendDataToLambda() {
     var blankFormField = 0;
 
     //API Endpoint
-    const endpoint = "https://gx2e7uf676.execute-api.us-east-1.amazonaws.com/prod";
+    const endpoint = "https://168lcpey6h.execute-api.us-east-1.amazonaws.com/default";
 
     // Check for blank Input
     if(formNameVal == "" || formEmailVal == "" || formSubjectVal =="")
@@ -61,11 +61,12 @@ function sendDataToLambda() {
         var lambdaRequest = new Request(endpoint, {
             credentials: 'include',
             method: 'POST',
+            mode: 'cors',
             body: JSON.stringify(body)
         });
         // Call the Fetch API to make our request
         var functionResponse = fetch(lambdaRequest);
-        console.log(functionResponse);
+        window.alert(functionResponse.statusCode);
         
         //window.alert("Message sent!");
     }
