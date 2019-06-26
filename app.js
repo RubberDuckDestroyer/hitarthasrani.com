@@ -23,7 +23,7 @@ function sendDataToLambda() {
     var formEmailVal = "";
     if(formEmail)
     {
-        formEmailVal = formEmail.value;
+        formEmailVal = formName.value;
     }
     
     var formMesssage = document.getElementById('formMessage');
