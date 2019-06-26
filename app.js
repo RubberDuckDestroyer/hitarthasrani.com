@@ -27,6 +27,11 @@ function sendDataToLambda() {
     }
     
     var formMesssage = document.getElementById('formMessage');
+    var formMessageVal =""
+    if(formMesssage)
+    {
+        formMessageVal = formMesssage.value;
+    }
 
     var blankFormField = 0;
 
@@ -39,13 +44,13 @@ function sendDataToLambda() {
         blankFormField = 1;
     }
 
-    if(formMesssage.value == "" && blankFormField == 0)
+    if(formMesssageVal == "" && blankFormField == 0)
     {
         formMesssage = formNameVal + " wants to contact you. Please revert to the email.";
     }
-    else if (blankFormField == 0  && formMesssage.value != "")
+    else if (blankFormField == 0  && formMesssageVal != "")
     {
-        formMesssage = formNameVal + " has a message for you:\n" + formMesssage;
+        formMesssageVal = formNameVal + " has a message for you:\n" + formMesssageVal;
     }
     
     if(blankFormField == 0)
@@ -54,7 +59,7 @@ function sendDataToLambda() {
         var body = {
             email: formEmailVal,
             subject: formSubjectVal,
-            message: formMesssage
+            message: formMesssageVal
         }
         console.log("Preparing data : "+ body.subject);
         console.log("Email: "+ body.email);
@@ -71,6 +76,6 @@ function sendDataToLambda() {
         window.alert("Message sent!");
     }
     else{
-        window.alert("Pleas make sure to fill all fields of the form!!");
+        window.alert("Please make sure to fill all fields of the form!!");
     }
 }
