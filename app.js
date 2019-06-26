@@ -64,8 +64,10 @@ function sendDataToLambda() {
             body: JSON.stringify(body)
         });
         // Call the Fetch API to make our request
-        fetch(lambdaRequest)
-        window.alert("Message sent!");
+        var functionResponse = fetch(lambdaRequest);
+        console.log(functionResponse);
+        
+        //window.alert("Message sent!");
     }
     else{
         window.alert("Pleas make sure to fill all fields of the form!!");
