@@ -39,11 +39,11 @@ function sendDataToLambda() {
         blankFormField = 1;
     }
 
-    if(formMesssage == "" && blankFormField == 0)
+    if(formMesssage.value == "" && blankFormField == 0)
     {
         formMesssage = formNameVal + " wants to contact you. Please revert to the email.";
     }
-    else if (blankFormField == 0  && formMesssage != "")
+    else if (blankFormField == 0  && formMesssage.value != "")
     {
         formMesssage = formNameVal + " has a message for you:\n" + formMesssage;
     }
