@@ -23,15 +23,10 @@ function sendDataToLambda() {
     var formEmailVal = "";
     if(formEmail)
     {
-        formEmailVal = formName.value;
+        formEmailVal = formEmail.value;
     }
     
     var formMesssage = document.getElementById('formMessage');
-    var formMessageVal =""
-    if(formMesssage)
-    {
-        formMessageVal = formMesssage.value;
-    }
 
     var blankFormField = 0;
 
@@ -44,13 +39,13 @@ function sendDataToLambda() {
         blankFormField = 1;
     }
 
-    if(formMesssageVal == "" && blankFormField == 0)
+    if(formMesssage == "" && blankFormField == 0)
     {
         formMesssage = formNameVal + " wants to contact you. Please revert to the email.";
     }
-    else if (blankFormField == 0  && formMesssageVal != "")
+    else if (blankFormField == 0  && formMesssage != "")
     {
-        formMesssageVal = formNameVal + " has a message for you:\n" + formMesssageVal;
+        formMesssage = formNameVal + " has a message for you:\n" + formMesssage.value;
     }
     
     if(blankFormField == 0)
@@ -59,7 +54,7 @@ function sendDataToLambda() {
         var body = {
             email: formEmailVal,
             subject: formSubjectVal,
-            message: formMesssageVal
+            message: formMesssage
         }
         console.log("Preparing data : "+ body.subject);
         console.log("Email: "+ body.email);
@@ -72,7 +67,7 @@ function sendDataToLambda() {
         });
         // Call the Fetch API to make our request
         fetch(lambdaRequest);
-        console.log("sent")
+        console.log("sent");
         window.alert("Message sent!");
     }
     else{
