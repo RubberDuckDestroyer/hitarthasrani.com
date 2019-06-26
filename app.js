@@ -26,27 +26,10 @@ function sendDataToLambda() {
         formEmailVal = formEmail.value;
     }
     
-    var formMesssage = document.getElementById('formMessage');
-
-    var blankFormField = 0;
+    var formMesssage = formNameVal + " wants to contact you. Please revert to the email.";
 
     //API Endpoint
     const endpoint = "https://168lcpey6h.execute-api.us-east-1.amazonaws.com/default/contaactForm1-1";
-
-    // Check for blank Input
-    if(formNameVal == "" || formEmailVal == "" || formSubjectVal =="")
-    {
-        blankFormField = 1;
-    }
-
-    if(formMesssage == "" && blankFormField == 0)
-    {
-        formMesssage = formNameVal + " wants to contact you. Please revert to the email.";
-    }
-    else if (blankFormField == 0  && formMesssage != "")
-    {
-        formMesssage = formNameVal + " has a message for you:\n" + formMesssage.value;
-    }
     
     if(blankFormField == 0)
     {
