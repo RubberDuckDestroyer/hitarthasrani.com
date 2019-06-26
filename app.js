@@ -6,10 +6,28 @@ function sendDataToLambda(e) {
     e.preventDefault();
 
     //Get details from the form
-    var formName = document.querySelector('.formName').value;
-    var formSubject = document.querySelector('.formSubject').value;
-    var formEmail = document.querySelector('.formEmailInput').value;
-    var formMesssage = document.querySelector('.formMessage').value;
+    var formName = document.getElementById('formName');
+    var formNameVal = "";
+    if(formName)
+    {
+        formNameVal = formName.value;
+    }
+    
+    var formSubject = document.getElementById('formSubject');
+    var formSubjectVal = "";
+    if(formSubject)
+    {
+        formSubjectVal = formSubject.value;
+    }
+
+    var formEmail = document.getElementById('formEmailInput');
+    var formEmailVal = "";
+    if(formEmail)
+    {
+        formEmailVal = formName.value;
+    }
+    
+    var formMesssage = document.getElementById('formMessage');
 
     var blankFormField = 0;
 
@@ -17,27 +35,27 @@ function sendDataToLambda(e) {
     const endpoint = "https://gx2e7uf676.execute-api.us-east-1.amazonaws.com/prod";
 
     // Check for blank Input
-    if(formName == "" || formEmail == "" || formSubject =="")
+    if(formNameVal == "" || formEmailVal == "" || formSubjectVal =="")
     {
         blankFormField = 1;
     }
 
     if(formMesssage == "" && blankFormField == 0)
     {
-        formMesssage = formName + " wants to contact you. Please revert to the email.";
+        formMesssage = formNameVal + " wants to contact you. Please revert to the email.";
     }
-    else if (blankFormField==0  && formMesssage!="")
+    else if (blankFormField == 0  && formMesssage != "")
     {
-        formMesssage = formName + " has a message for you:\n" + formMesssage;
+        formMesssage = formNameVal + " has a message for you:\n" + formMesssage;
     }
     
     if(blankFormField == 0)
     {
         //creating a form object
         var body = {
-            email: formEmail,
-            subject: formSubject,
-            messae: formMesssage
+            email: formEmailVal,
+            subject: formSubjectVal,
+            message: formMesssage
         }
 
         //Instantiate the lambda request with endpoint and body
