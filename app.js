@@ -2,8 +2,7 @@
 document.getElementById("contact-form").addEventListener('submit', sendDataToLambda);
 
 // Function that sends data to the lambda function
-function sendDataToLambda(e) {
-    e.preventDefault();
+function sendDataToLambda() {
 
     //Get details from the form
     var formName = document.getElementById('formName');
@@ -60,6 +59,7 @@ function sendDataToLambda(e) {
 
         //Instantiate the lambda request with endpoint and body
         var lambdaRequest = new Request(endpoint, {
+            credentials: 'include',
             method: 'POST',
             body: JSON.stringify(body)
         });
