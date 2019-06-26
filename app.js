@@ -31,7 +31,7 @@ function sendDataToLambda() {
     var blankFormField = 0;
 
     //API Endpoint
-    const endpoint = "https://168lcpey6h.execute-api.us-east-1.amazonaws.com/default";
+    const endpoint = "https://168lcpey6h.execute-api.us-east-1.amazonaws.com/default/contaactForm1-1";
 
     // Check for blank Input
     if(formNameVal == "" || formEmailVal == "" || formSubjectVal =="")
