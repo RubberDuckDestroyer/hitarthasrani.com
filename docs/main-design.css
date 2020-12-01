@@ -80,8 +80,8 @@ nav a {
 
 footer{
   text-align: center;
-  background-color: rgb(136, 86, 255);
-  color: aliceblue;
+  background-color: rgb(247, 247, 247);
+  color: rgb(000, 000, 000);
 }
 
 .icon-bar > a {
