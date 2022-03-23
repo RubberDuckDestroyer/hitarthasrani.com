@@ -4,12 +4,13 @@ date: "2019-09-04"
 description: "An introduction to RDD and my blog."
 ---
 
-Welcome to RubberDuckDestroyer, a blog on being a (student) developer and taking a twist on [Rubbber Duck Debugging](https://en.wikipedia.org/wiki/Rubber_duck_debugging).
+Welcome to Hitarth Asrani's, blog on being a (student) developer and taking a twist on [Rubbber Duck Debugging](https://en.wikipedia.org/wiki/Rubber_duck_debugging).
 
-Before we kick off, here's rubberduck's motto :
+Before we kick off, here's my motto :
 
 > **Challenge yourself!**
->- Rubberduck, 2019.
+>
+>- Hitarth Asrani, 2019.
 
 Always remember this while reading the blogs.
 
