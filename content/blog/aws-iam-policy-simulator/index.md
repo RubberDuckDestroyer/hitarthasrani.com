@@ -1,6 +1,6 @@
 ---
 title: "Using AWS IAM Policy Simulator to debug IAM Policy Issues"
-date: "2022-23-03"
+date: "2022-03-23"
 description: "Here's a handy tool you can use to debug your IAM Policies on AWS and ship Roles faster."
 ---
 
