@@ -1,10 +1,1023 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Hitarth Asrani]]></title><description><![CDATA[A blog ranting the cloud life.]]></description><link>https://www.hitarthasrani.com</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 23 Mar 2022 00:25:14 GMT</lastBuildDate><item><title><![CDATA[Using AWS IAM Policy Simulator to debug IAM Policy Issues]]></title><description><![CDATA[In this blog, we’ll discuss debugging AWS IAM Policies using a tool I didn’t notice earlier. Introduction The other day I was having some…]]></description><link>https://www.hitarthasrani.com/aws-iam-policy-simulator/</link><guid isPermaLink="false">https://www.hitarthasrani.com/aws-iam-policy-simulator/</guid><pubDate>Invalid Date</pubDate><content:encoded>&lt;p&gt;In this blog, we’ll discuss debugging AWS IAM Policies using a tool I didn’t notice earlier.&lt;/p&gt;
-&lt;h2&gt;Introduction&lt;/h2&gt;
-&lt;p&gt;The other day I was having some trouble debugging some issues with AWS IAM (Identity and Access Management) Policies.
-I asked a senior engineer to help me debug this issue who introduced me to the IAM Policy Simulator which helped me save a lot of time debugging the issue.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;But first, what are IAM Policies?&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;From the &lt;a href=&quot;https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html&quot;&gt;AWS Documentation&lt;/a&gt;,
-an IAM Policy is a document or object that defines the permissions for a&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Always backup]]></title><description><![CDATA[As a developer, mistakes happen and they will happen. I cannot stress this enough. The lesson of the day is Don’t forget the dev branch! Yes…]]></description><link>https://www.hitarthasrani.com/oh-and-backup/</link><guid isPermaLink="false">https://www.hitarthasrani.com/oh-and-backup/</guid><pubDate>Sun, 29 Mar 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;As a developer, &lt;strong&gt;mistakes happen&lt;/strong&gt; and they will happen. I cannot stress this enough.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Hitarth Asrani]]></title><description><![CDATA[A blog ranting the cloud life.]]></description><link>https://www.hitarthasrani.com</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 31 Mar 2022 22:48:41 GMT</lastBuildDate><item><title><![CDATA[AWS APN DevAx Black Belt Day 4]]></title><description><![CDATA[Authentication and authorization w/ Cognito User Management
+hard to implement by itself —Cognito
+Handles Authentication, Authorization, Data…]]></description><link>https://www.hitarthasrani.com/aws-devax-blackbelt/day4/</link><guid isPermaLink="false">https://www.hitarthasrani.com/aws-devax-blackbelt/day4/</guid><pubDate>Invalid Date</pubDate><content:encoded>&lt;h2&gt;Authentication and authorization w/ Cognito&lt;/h2&gt;
+&lt;p&gt;User Management
+hard to implement by itself&lt;/p&gt;
+&lt;p&gt;—Cognito
+Handles Authentication, Authorization, Data Sync&lt;/p&gt;
+&lt;h3&gt;Cognito User Pools - User Database&lt;/h3&gt;
+&lt;p&gt;Managed user directory
+hosted ui
+jwt and oauth tokens
+federate with userpools&lt;/p&gt;
+&lt;p&gt;Simplify Security, integrates with IAM roles
+Supports multiple logins
+supports “guest” users.&lt;/p&gt;
+&lt;h3&gt;Cognito Identity Pools/Federated Identities&lt;/h3&gt;
+&lt;p&gt;Token Vending machine
+federation and aws creds&lt;/p&gt;
+&lt;h3&gt;Use Cases/Scenarios&lt;/h3&gt;
+&lt;p&gt;B2C - 3rd party
+B2B - SAML
+B2E
+IoT&lt;/p&gt;
+&lt;h3&gt;Security Architecture&lt;/h3&gt;
+&lt;p&gt;OIDC Login for token -&gt; Exchanged for STS Token -&gt; Cognito assigns uuid for user’s app request&lt;/p&gt;
+&lt;p&gt;Federate using&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;User Pools; priceed per user&lt;/li&gt;
+&lt;li&gt;Identity Pools; free&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;User flows can be customized
+Admin Capabilities&lt;/p&gt;
+&lt;p&gt;Cogniro User Pool Tokens:&lt;/p&gt;
+&lt;p&gt;Identity Token
+JWR, can be used for auth
+1hr expiry&lt;/p&gt;
+&lt;p&gt;Access token - used for access
+1hr expiry&lt;/p&gt;
+&lt;p&gt;Refresh Token&lt;/p&gt;
+&lt;p&gt;JWT Dissection:&lt;/p&gt;
+&lt;p&gt;Header - Key ID, Algo (RS256?)
+Payload -
+Identity Payload:Cognito Groups, user pool, custom claim, app client id, expiration, identity info
+Access token payload: - have scope for fine grain access control
+Signature - Proof for decrypt&lt;/p&gt;
+&lt;h2&gt;API Auth with APIGW&lt;/h2&gt;
+&lt;p&gt;Native intefration for AuthN
+Using Userpools, IAM Authorizors and Lambda
+3 options for AuthN&lt;/p&gt;
+&lt;p&gt;User Pool validates token, invokes lambda for backend logic,
+Lambda gives response&lt;/p&gt;
+&lt;p&gt;W/ API GW
+Use UserPool supplied creds in API GW&lt;/p&gt;
+&lt;p&gt;Lambda - Response either allow or deny
+based on JWT Request to API GW&lt;/p&gt;
+&lt;p&gt;IAM Integration with lambda - invoke lambda with caller’s creds
+&lt;code class=&quot;language-text&quot;&gt;context.getIdentity().getIdentityId()&lt;/code&gt; to get ID and Identity Pool ID&lt;/p&gt;
+&lt;h2&gt;ObservaBLT&lt;/h2&gt;
+&lt;p&gt;Understand failure modes - what’s broken and slow.
+Knowing and understanding problems in system.&lt;/p&gt;
+&lt;p&gt;Monitoring tells you whether a system is working
+ObservaBLT let’s you understand why it isn’t working&lt;/p&gt;
+&lt;p&gt;Detect, Investigate, Remediate
+Most time spent in Investigation.
+Reduce MTTR&lt;/p&gt;
+&lt;h3&gt;Monitoring needs to evolve&lt;/h3&gt;
+&lt;p&gt;UX, Short Lived resources, More Devices/Data, Faster release velocity&lt;/p&gt;
+&lt;p&gt;Monitoring is more than failures
+Knowing if app performs correctly/ Is it behaving correctly?
+What is the usage
+What is the business impact.&lt;/p&gt;
+&lt;p&gt;Issue Timeline consists of:&lt;/p&gt;
+&lt;p&gt;Stage 1 - Detect.
+MTTD - Mean time to detect.&lt;/p&gt;
+&lt;p&gt;Stage 2 - Identification
+MTTI - Mean Time to Identify.
+Total MTTI = MTTI + MTTD&lt;/p&gt;
+&lt;p&gt;Stage 3.1 - Fix Stage 3.2 - Verify (Remidiate)
+MTTR = Mean Time to remediate
+MTTR = MTTD + MTTI + Fix Time +  Verify Time&lt;/p&gt;
+&lt;h3&gt;Consistent Mechanism - OODA Loop&lt;/h3&gt;
+&lt;p&gt;Observe
+Orient
+Decide
+Act&lt;/p&gt;
+&lt;p&gt;Favours agility over power.&lt;/p&gt;
+&lt;p&gt;Proactive ops - catch issue before the system goes into a completely failed state.
+ex - latency.&lt;/p&gt;
+&lt;h3&gt;Tools and Challenges&lt;/h3&gt;
+&lt;p&gt;Key Tools:&lt;/p&gt;
+&lt;p&gt;AWS XRay - Collect traces from distributed systems
+XRay Analytics
+Cloudwatch Logs, Logs Insights. Can also use cloudwatch agent on on-prem resources.
+Cloudwatch Metrics, Metric Math expressions, Dashboards&lt;/p&gt;
+&lt;p&gt;3 pillars of observaBLT&lt;/p&gt;
+&lt;p&gt;Metrics - Numeric data
+Logs - Timestamped records of events. May have metrics
+Traces - Single user journey through parts of an app.&lt;/p&gt;
+&lt;p&gt;Pillars need to correlate together to bring full ObservaBLT&lt;/p&gt;
+&lt;p&gt;Tools can be classified into&lt;/p&gt;
+&lt;p&gt;Infra Monitoring,App Monitoring,Synthetic monitoring&lt;/p&gt;
+&lt;p&gt;Tools&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;CW Container insights.(ECS, EKS, Forgate, K8 on EC2). Prometheus metrics supports.&lt;/li&gt;
+&lt;li&gt;CW lambda insights. Undertsnd compute, mem alloc and function duration. Linked to logs insights and analytics&lt;/li&gt;
+&lt;li&gt;CW Contributor Insights. Top N Contributiors + usage. Filter, aggregate and visualise operational health. Can be used with DynamoDB&lt;/li&gt;
+&lt;li&gt;CW Synthetics. Check canary monitoring/ haertbeat monitoring. Puppeteer or selenium. COnfigurable scripts. Blueprints for API Testing, check for broken links, check against baseline.&lt;/li&gt;
+&lt;li&gt;CW Metrics Explorer - Tag based dashboard builders.&lt;/li&gt;
+&lt;li&gt;CW ServiceLens. Correlate logs, metrics and traces. Identify bottlenecks, performance issues and pinpoint impacted users.&lt;/li&gt;
+&lt;li&gt;XRay Insights. See a service map. analyse and filter traces. Create filter groups.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;AWS XRay&lt;/h2&gt;
+&lt;p&gt;Prod ready, can use with non aws services.&lt;/p&gt;
+&lt;p&gt;XRay Components:&lt;/p&gt;
+&lt;p&gt;Trace - ennd to end. user to data layer and back
+Segment - Groups of services
+Subsegments - individual service levels
+Can also add metadata/tags&lt;/p&gt;
+&lt;h2&gt;New Troubleshooting Workflow&lt;/h2&gt;
+&lt;p&gt;Synthetic Alerts, Insight notification. Detect and indentify.&lt;/p&gt;
+&lt;h2&gt;IaC with AWS CDK&lt;/h2&gt;
+&lt;p&gt;CDK - Cloud Development Kit&lt;/p&gt;
+&lt;p&gt;App that can contain one or more stacks.
+Apps have constructs which have one or more resources. ex: Elasticache redis config&lt;/p&gt;
+&lt;p&gt;Main components:
+Core Framework
+Construct Library
+AWS CDK CLI&lt;/p&gt;
+&lt;p&gt;AWS Construct Library has many examples.
+eg: 6 lines of code for ALB Balanced Fargate service&lt;/p&gt;
+&lt;p&gt;Construct levels &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;L1; CFN Resources (Automatically generateed)&lt;/li&gt;
+&lt;li&gt;L2 - aws constructs (High level constrycts)&lt;/li&gt;
+&lt;li&gt;L3; Purpose built constructs (Opiniated abstractions)&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[AWS APN DevAx Black Belt Day 1]]></title><description><![CDATA[BlackBelt is a program to build specialised capabilities in AWS Partners APJ - Dev Accelerator. 1st cohort (AUNZ)
+If the pilot is successful…]]></description><link>https://www.hitarthasrani.com/aws-devax-blackbelt/</link><guid isPermaLink="false">https://www.hitarthasrani.com/aws-devax-blackbelt/</guid><pubDate>Invalid Date</pubDate><content:encoded>&lt;p&gt;BlackBelt is a program to build specialised capabilities in AWS Partners&lt;/p&gt;
+&lt;p&gt;APJ - Dev Accelerator. 1st cohort (AUNZ)
+If the pilot is successful this will be launched at reinvent 2022
+Let them know about other specialised capabilities.&lt;/p&gt;
+&lt;p&gt;The program will:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Help partners in mdoern app dev&lt;/li&gt;
+&lt;li&gt;Build partner network&lt;/li&gt;
+&lt;li&gt;Hands on experience with pre sales capabilities. Present an oral defence, against a customer panel.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;AWS DevAx Intro - Adam Larter (Head of DevAx APJ).&lt;/p&gt;
+&lt;h2&gt;Intros&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Andrew Cowan&lt;/li&gt;
+&lt;li&gt;Bojan Zivic&lt;/li&gt;
+&lt;li&gt;Praveen Kumar Patidar&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;The Course&lt;/h3&gt;
+&lt;p&gt;Modernization - patterns and architectures, Containerization, distributed systems.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Moderinzation of monoliths to microservices with hands on labs&lt;/li&gt;
+&lt;li&gt;Eventstorming workshop on friday&lt;/li&gt;
+&lt;li&gt;When dealing with customers use situational awareness&lt;/li&gt;
+&lt;li&gt;Better articulate to customer&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;What do modern devs need to know?
+Cloud dev concepts, Async and decoupled apps, moving from mono to micro methodologies,
+distributed systems, Messaging and event, ObservaBLT, CICD, Decoupling, CQRS, Event Sourcing AuthN &amp;#x26; AuthZ&lt;/p&gt;
+&lt;p&gt;Customers can be Day 0 (ie what is cloud)
+Cloud is generally an infra team thing, generaly not a dev thing.
+run a discovery session with customers.&lt;/p&gt;
+&lt;p&gt;Success Factors for Moderinizing dev teams.
+Telling customer to do ABC is not going to work. We need DevOps but without business understanding and business change required, adoption does not go through.&lt;/p&gt;
+&lt;p&gt;(LZ = foundational architecture.)
+Consumers have a great stall after moving a couple of workloads -  becuase generally devs are not taken through journey. Ie Infra Lead instead of Dev laed approach.&lt;/p&gt;
+&lt;p&gt;Devs need to think in terms of distributed systems.
+35% apps cloud native. Partners and help needed.&lt;/p&gt;
+&lt;h3&gt;Architectureal Patterns&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Shrink the scope (MVP) Dev thinking - treat infra as object oriented.&lt;/li&gt;
+&lt;li&gt;When change impact is small, release velocity can increase. Reduced cognitive load. Small infra to do small tasks.&lt;/li&gt;
+&lt;li&gt;APIs are front services of Microservices (Encapsulation, Isolation&lt;/li&gt;
+&lt;li&gt;Event Driven = Decoupling. Sync to Async. Devs need to know about costs as well&lt;/li&gt;
+&lt;li&gt;Devs need to understand microservices patterns.&lt;/li&gt;
+&lt;li&gt;Team topologies make a difference. This is different for a monolithic architecture. Customers need to rethink team structure. Devs need to have ownership and should be able to go forward. &lt;strong&gt;READ MORE ABOUT THIS&lt;/strong&gt;
+eg - Service Team, enabling team (allows Just In Time/ DevOps), Subsystem team; Specialist team (Subject Matter Experts), Platform Team (Devs can reducr cognitive load when new infra is needed while following “What good looks like”, following the scaffolding and not starting from scratch).&lt;/li&gt;
+&lt;li&gt;Discourage silos in the organization. Team manages all aspects including testing. Devs have full ownership.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Event carried state transfer -  read. ie do not throw 10 Mb of data around.&lt;/p&gt;
+&lt;h3&gt;When dealing with customer enablement&lt;/h3&gt;
+&lt;p&gt;Customer Discovery - Find current, to be architecture and where the holes lie.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;general cloud concepts&lt;/li&gt;
+&lt;li&gt;Implement Async and decouplled shit&lt;/li&gt;
+&lt;li&gt;Automation (CICD)&lt;/li&gt;
+&lt;li&gt;Authentication&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;assumptions - condensed version. ie you know CDK and infra.
+Skip Lift and Shift.
+Recommended Reading - Monolith to Microservices, Building Microservices, Domain Driven Design.&lt;/p&gt;
+&lt;h2&gt;Module 1&lt;/h2&gt;
+&lt;p&gt;eventbox.dev/survey/FGSKVOF&lt;/p&gt;
+&lt;h3&gt;Distributed Systems&lt;/h3&gt;
+&lt;p&gt;People Say the following -
+Decentralise componenets
+Removing memory call, using multiple languages.
+Resilience
+Polyglot - tech stack and data model
+harder to test from system perspective.&lt;/p&gt;
+&lt;p&gt;most important - &lt;strong&gt;Deal with independent fault domains&lt;/strong&gt;
+When breaking monolith to micro, since there is no machine call, you need to keep an eye on network. This is not deterministic and assuming that this is deterministic is heading towards failure.&lt;/p&gt;
+&lt;p&gt;Multiple failure modes are introduced. it may fail in bizzare ways. ie call fails to send request/ A sends request but B does not receive it.&lt;/p&gt;
+&lt;p&gt;Fuzzy situation to deal with. You have to think differently. Handle exceptions, meaningful messages. Patterns need to think about this.&lt;/p&gt;
+&lt;p&gt;Difference-&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Independent/ Isolated fault domains&lt;/li&gt;
+&lt;li&gt;Latency and reliability&lt;/li&gt;
+&lt;li&gt;State management&lt;/li&gt;
+&lt;li&gt;Ownership and diversity&lt;/li&gt;
+&lt;li&gt;Eventual consistency&lt;/li&gt;
+&lt;li&gt;Transaction handling&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Fallacies:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Network is reliable, homogeneous and secure&lt;/li&gt;
+&lt;li&gt;0 latency&lt;/li&gt;
+&lt;li&gt;Bandwidth is infinite&lt;/li&gt;
+&lt;li&gt;Topology does not change&lt;/li&gt;
+&lt;li&gt;Single Admin&lt;/li&gt;
+&lt;li&gt;Everyone trusts each other.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Exmaple Monolith&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Single vertically scaled server&lt;/li&gt;
+&lt;li&gt;One change means an entire app needs to be tested.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Monolith: UI, Middle tier and data all happens in one box. DB might be in a separate box but everything is self contained and shared.&lt;/p&gt;
+&lt;p&gt;Travel Buddy Example - JSP App (HTML with embedded tags)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;JSP app with two data fields (XML) and an single HTTP page. REST interface.&lt;/li&gt;
+&lt;li&gt;On a code level - html data shown during render time.&lt;/li&gt;
+&lt;li&gt;Image makes single call with message in query string. Not really an API Call.&lt;/li&gt;
+&lt;li&gt;NOTE: data is fairly well separated. Data access objects are also well separated. This could be worse in older monoliths w/ spaghetti code.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;First Step - Lift and Shift &lt;/p&gt;
+&lt;p&gt;using elastic beanstalk.
+Can setup CICD pipeline.&lt;/p&gt;
+&lt;p&gt;using ECS
+Can also conver the mono to an ECS Cluster taking docker task defn and pushed it to cluster with load balancer and listeners hidden behind an endpoint.&lt;/p&gt;
+&lt;p&gt;Using EC2 - deploy on EC2.&lt;/p&gt;
+&lt;p&gt;This only makes it managed and easy to scale horizontally. Regardless of how it is running you can think about modernization.&lt;/p&gt;
+&lt;p&gt;Fundamental Outcomes for modernization - take from customer.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Move away from vertical scaling&lt;/li&gt;
+&lt;li&gt;Technically, we need to move away from large blast radius as well.&lt;/li&gt;
+&lt;li&gt;Monolithic tech stack.&lt;/li&gt;
+&lt;li&gt;make independent changes for velocity.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Use 7R’s (Put link)&lt;/p&gt;
+&lt;p&gt;We want high cohesion and decoupling.
+Sometimes, there is nothing wrong with a monolith. It could be a “Modular monolith”.
+When it was made, it followed best practices. &lt;/p&gt;
+&lt;p&gt;We must also follow SOLID Principles
+“you call the contract and do not worry about what is behind the scenes”&lt;/p&gt;
+&lt;p&gt;Single vs Modular monolith
+If it is a single monlith - move it towards a modular monolith. Low risk and no major change.
+On the data layer, split it out if you can. Modular monolith is a valid arch pattern.&lt;/p&gt;
+&lt;p&gt;When microservices are not valid&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Unclear Domain; Wrong service boundaries can be expensive&lt;/li&gt;
+&lt;li&gt;Startups; they need scale and experimentation on a market fit.&lt;/li&gt;
+&lt;li&gt;COTS Software: No access to codebase to make real changes&lt;/li&gt;
+&lt;li&gt;Not having a good reason: Accepting because “they did it”&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Scenarios for moving to microservices&lt;/p&gt;
+&lt;p&gt;Business Case to&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Go Faster and get enw features&lt;/li&gt;
+&lt;li&gt;Be more stable&lt;/li&gt;
+&lt;li&gt;better quality&lt;/li&gt;
+&lt;li&gt;Cheaper, reduced Total Cost of ownership.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Coupling Types&lt;/h3&gt;
+&lt;h3&gt;Microservices&lt;/h3&gt;
+&lt;p&gt;“There is no precise defination of the arch style”
+But they must have characteristics around business capability, automation and decentralisation, intelligence endpoints, compensation via services.&lt;/p&gt;
+&lt;p&gt;ONE COMPONENT MUST DO ONE THING
+Think about reusability. Tech stack for two actions may be completely different.
+MicoServices must be broken down to as granular as possible.
+Not 5000 lines of code. how much is it doing? Few lines of code for quick engineering
+Own tehir statae and do not share
+Managed by the team who built them
+Independent release cycles
+Freedom to use the right tech stack&lt;/p&gt;
+&lt;p&gt;Microservices is an approach for a collection of small isolated services&lt;/p&gt;
+&lt;p&gt;Serverless is a compute choice. these choices are made when we chop the monolith down. Talk to customer about data flow and other fracture points.&lt;/p&gt;
+&lt;p&gt;Key Takeaways&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Independently deployable, work together modelled around a business domain.&lt;/li&gt;
+&lt;li&gt;Communicate via networks&lt;/li&gt;
+&lt;li&gt;DBs are hidden&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;FAQ:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Just Service Oriented Architecture? -  NO&lt;/li&gt;
+&lt;li&gt;How is it micro? How many is too many? - It comes down to the cognitive load.&lt;/li&gt;
+&lt;li&gt;Just like Object Oriented Code?&lt;/li&gt;
+&lt;li&gt;not just a tech change!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Identifying fracture planes&lt;/h3&gt;
+&lt;h3&gt;Tools for Domain modelling&lt;/h3&gt;
+&lt;h3&gt;Team structure and conways law&lt;/h3&gt;
+&lt;p&gt;Constrained design systems = constrained communication
+Monolith = 3 tier architecture. Changes cannot be isolated.
+Micro = Changes are behind an API and do not affect it.&lt;/p&gt;
+&lt;h3&gt;Decomposing the monolith&lt;/h3&gt;
+&lt;p&gt;Find natural seams or fracture points.&lt;/p&gt;
+&lt;p&gt;Book -  The art of scalability. Scalability&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;On X Axis (Elastic Beanstalk or ECS Cluster)&lt;/li&gt;
+&lt;li&gt;On Z Axis - Run multiple copies with intelligence on LB. Data partitioning.&lt;/li&gt;
+&lt;li&gt;On Y Axis, Functional Decomposition. Scale by splitting different things. THIS IS THE BENEFIT. Each component is implemented separately.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Identifying fracture planes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Change to single service&lt;/li&gt;
+&lt;li&gt;Deploy changes separately&lt;/li&gt;
+&lt;li&gt;Right Sizing&lt;/li&gt;
+&lt;li&gt;Scaling under load
+{CHECK AGAIN FOR MISSING POINT}&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Domain Driven Design:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Identify bounded contexts. ie Customer in a Sales context is different when compared to Customer in Support context.
+Boundary = Specific responsibility enforced by explicit boundaries.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;DDD and Bounded Context.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Encapsulate single domain ie Sales or support&lt;/li&gt;
+&lt;li&gt;Defines integration points with other domains.&lt;/li&gt;
+&lt;li&gt;Align well with microservices&lt;/li&gt;
+&lt;li&gt;Microservices must be well defined bounded context.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Look for seams, natural divisions that “peel easily”. CRUD Services are a goof candidates. Look for classes w/ no dependencies apart from scaffolding&lt;/p&gt;
+&lt;p&gt;Look at compliance and risk. Release and change cadence. Team location, performance isolation
+Look at tech choices and cognitive load.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Identify Explicit boundaries&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Patterns for moderinization using the strangling pattern&lt;/h3&gt;
+&lt;h3&gt;Event Storming&lt;/h3&gt;
+&lt;p&gt;Event modelling = think about system behaviour and not the system structure&lt;/p&gt;
+&lt;p&gt;Event is an indicator that the system state has changed. It is immutable and has happened in the past. It has semantic intent that means something.
+It should be lightweight.
+Events are observed and not directed. Event publisher does not need to worry about subscribers.
+Commands are blocking calls.&lt;/p&gt;
+&lt;p&gt;Event Storming is discussing the flow of events in your org and modelling that flow in an easy to understand way. Also think about future changes that could be possible.&lt;/p&gt;
+&lt;p&gt;Event flow -  understand what happens to the system over time.
+Policy - When A happens do B. (Business Rules)
+Commands - Imperatives/ Create or Update X.
+Aggregates - Bunch of Flows, policies and commands built around a domain. One microservice = one or more aggregates.&lt;/p&gt;
+&lt;p&gt;Think of objects in system with bound lifecycle.
+Blocking calls =  REST API. Non Blocking = Queues.&lt;/p&gt;
+&lt;p&gt;Bounded Contexts - One or more aggregates made by a lifecycle policies. Tight coupling inside adregates and loose between aggregates.&lt;/p&gt;
+&lt;p&gt;Approaches to decoupling:&lt;/p&gt;
+&lt;p&gt;Options: Change the model, OR upload v2 of same interface.&lt;/p&gt;
+&lt;p&gt;WE WANT HIGH COHESION
+WE WANT LOW COUPLING. (ie one change affects another)&lt;/p&gt;
+&lt;p&gt;Types of coupling&lt;/p&gt;
+&lt;p&gt;Implementation&lt;/p&gt;
+&lt;p&gt;Temporal&lt;/p&gt;
+&lt;p&gt;Deployment: You might need to Update module A when Module B is updated&lt;/p&gt;
+&lt;p&gt;Domain Coupling: Only get info needed by domain/business process and remove improper use of payload.&lt;/p&gt;
+&lt;p&gt;When Coupled:
+Consider Merging
+Consider bounded contexts.
+Consider orchestration (of changes; using step functions)&lt;/p&gt;
+&lt;p&gt;Consider Shared Database
+Database per service instead.&lt;/p&gt;
+&lt;p&gt;Consider Sync vs Async&lt;/p&gt;
+&lt;p&gt;When Sync
+Think Reliability
+Think Temporal Coupling
+Use Service Discovery (Registery) Service — AWS Cloud Map.
+Circuit Breaker
+- When error; use default response for downstream — AppMesh
+Use Mssage / Event Driven Architecture
+Help Use Async Architecture instead. (Choreography Pattern)&lt;/p&gt;
+&lt;p&gt;— SQS SNS EventBridge Kinesis Kafka&lt;/p&gt;
+&lt;p&gt;Think ACID
+Think Async and DB/service
+Compensate w/ SAGA Pattern&lt;/p&gt;
+&lt;h2&gt;Patterns in moving to a distributed system architecture&lt;/h2&gt;
+&lt;p&gt;Look, Patterns!
+Strangler Fig, Anti Corruptuin Layer (ACL)
+Facade Pattern&lt;/p&gt;
+&lt;p&gt;“If you do a rewrite of ‘x’ you will guarantee only ‘x’”&lt;/p&gt;
+&lt;p&gt;Is Facade
+Front Facing masking
+Complex Underlying/Structural Code&lt;/p&gt;
+&lt;p&gt;Is Adapter
+Similar to ACL
+Adding Adapter, changing model
+using wrapper, without modifying source code.&lt;/p&gt;
+&lt;h2&gt;Strangling the monolith&lt;/h2&gt;
+&lt;p&gt;Strangler Pattern
+Like Parasite, will kill old infrastructure
+Take monolith parts bit by bit
+And Break Off!
+Reduce Risk&lt;/p&gt;
+&lt;p&gt;Pattern Example
+Create New Microservice
+Add New Feature&lt;/p&gt;
+&lt;p&gt;Create Microservice with ACL
+Into Old Service
+Corrupt Old Data Model
+Call Microservice Instead
+Sync using Queue/Agent&lt;/p&gt;
+&lt;p&gt;Add More Microservice
+Until No one calls
+The Backend&lt;/p&gt;
+&lt;h2&gt;Migration Hub Refactor Spaces&lt;/h2&gt;
+&lt;p&gt;Implememting new feed&lt;/p&gt;
+&lt;p&gt;— Migration Hub Refactor Spaces
+Launch new feaure fast (Leave and Layer)
+Refactor incrementally (Strangler Fig [Pig lol])&lt;/p&gt;
+&lt;p&gt;Refactor Spaces
+Manages Heavy Lifting
+Can still manage layers&lt;/p&gt;
+&lt;p&gt;Create Space, Share Environment, Create App, Create Services, Add Routes&lt;/p&gt;
+&lt;p&gt;Create Space, Share Environment
+Make Transit Gateway&lt;/p&gt;
+&lt;p&gt;Why Shared?
+One Account Monolith
+One Account MicroService
+One Account Refactor Spaces Owner&lt;/p&gt;
+&lt;p&gt;Create App Means
+Create API gateway, connect Transit Gateway
+Can connect any HTTP Enpoint
+Any account or on prem
+provided routing&lt;/p&gt;
+&lt;p&gt;Using Routing Endpoint,
+Can have root to Monolith
+Can have custom route to Microservice&lt;/p&gt;
+&lt;p&gt;Monolith Isolated
+New Functionality Added
+Is Microservices&lt;/p&gt;
+&lt;h2&gt;Recommendations&lt;/h2&gt;
+&lt;p&gt;Start with Simplest
+Avoid Dependencies - Monolith may depend on the microservice but not the other way around.
+Order and prioritise migration - Hot Spots, Business Priority
+Decouple across all lyers
+Break tight coupling
+Extract functionality not code
+Macro then micro not nano
+Respect rules
+Automate and Observe&lt;/p&gt;</content:encoded></item><item><title><![CDATA[AWS APN DevAx Black Belt Day 2]]></title><description><![CDATA[Ployglot Persistence with Multiple Data Storage In Microservices
+Separate Database for each service If use same database
+Then Locked Release…]]></description><link>https://www.hitarthasrani.com/aws-devax-blackbelt/day2/</link><guid isPermaLink="false">https://www.hitarthasrani.com/aws-devax-blackbelt/day2/</guid><pubDate>Invalid Date</pubDate><content:encoded>&lt;h2&gt;Ployglot Persistence with Multiple Data Storage&lt;/h2&gt;
+&lt;p&gt;In Microservices
+Separate Database for each service&lt;/p&gt;
+&lt;p&gt;If use same database
+Then Locked Release Lifecycle
+Then not independent scaling
+Then not right tech choice&lt;/p&gt;
+&lt;p&gt;— DynamoDb
+Devs Try Projecting Joins on DDB
+Treating like SQL DB
+Huge No No&lt;/p&gt;
+&lt;p&gt;AWS Has many DB Options
+One for each
+Relational and Non Relational&lt;/p&gt;
+&lt;p&gt;Most Common Use Cases
+Relational — Aurora, RDS
+Key value - DynamoDB&lt;/p&gt;
+&lt;p&gt;Think Relational DB
+Delay Decision Time
+Delay Calling Pattern
+At Runtime.&lt;/p&gt;
+&lt;p&gt;“Not All Data is Relational”&lt;/p&gt;
+&lt;p&gt;When Data Needed by other Microservices,
+Share Data using CQRS and Streams.&lt;/p&gt;
+&lt;h2&gt;Moving to NoSQL w/ DynamoDB&lt;/h2&gt;
+&lt;p&gt;NoSQL = Non Tabular DB
+There is an “Arbitrary Schema”&lt;/p&gt;
+&lt;p&gt;DDB - NoSQL Key Value Store
+Fast Throughput, Low Latency
+Based on upfront design choices.&lt;/p&gt;
+&lt;p&gt;Think Traditional Architecture
+All data forced into RDBMS
+Good at OLAP (Analytics)
+But bad at OLTP (Transactions)&lt;/p&gt;
+&lt;p&gt;In Distributed System
+Need single source of truth
+But multiple copies of data
+Are OK&lt;/p&gt;
+&lt;p&gt;SQL Optimised for Storage
+NOSQL Optimised for Compute
+SQL Scales Vertically
+NoSQL scales horizontally&lt;/p&gt;
+&lt;p&gt;In DynamoDB
+Important to Understand Physical Constraints&lt;/p&gt;
+&lt;p&gt;Partition Key determines the Hashing Algorithm (unordered)
+Sort Key can be provided
+Partition Key + Sort  = Composite Key&lt;/p&gt;
+&lt;p&gt;In Composite Key
+Partition Key can be same
+Sort must be unique
+Data Hashed based on Composite key&lt;/p&gt;
+&lt;p&gt;Design for cloud means
+Think Differently&lt;/p&gt;
+&lt;p&gt;Use Indexes instead of Scan
+Or when multiple PK Data required
+LSI - Local Secondary Indexes
+GSI - Global Secondary Indexes&lt;/p&gt;
+&lt;p&gt;When LSI
+Alternate Sort Key Attribute
+Index Local to Partition key
+Highly consistent by Size Limitation&lt;/p&gt;
+&lt;p&gt;LSI Defined Upfront
+Is like additional Sort key inside Table&lt;/p&gt;
+&lt;p&gt;10GB Max per PK
+LSI Limits Range keys
+eg Sort by UserId(PK), Date (SK), Name (Index)&lt;/p&gt;
+&lt;p&gt;When GSI
+Allow you to have Alternate PK &amp;#x26;/Or SK
+Index across all PKs
+No Size limit but is eventual consistent&lt;/p&gt;
+&lt;p&gt;When GSI Defined
+Must Define RCUs and WCUs
+More flexibility&lt;/p&gt;
+&lt;p&gt;GSI Example
+Naive Approach = Scan + Filter. (Full Data scan still done)
+Pro Approach = Query w/ PK  + Index(Filter) + Limit&lt;/p&gt;
+&lt;p&gt;Under the covers
+GSI Is Additional Table
+Up to 5 GSIs
+Updated Async&lt;/p&gt;
+&lt;p&gt;When GSI and less write capacity
+DB Throttling Occurs&lt;/p&gt;
+&lt;p&gt;write and immidiate read
+Index may not update&lt;/p&gt;
+&lt;p&gt;Decision to choose index
+LSI Can be modeled as GSI
+LSI Is cheaper&lt;/p&gt;
+&lt;p&gt;If Data Size &gt; 10Gigs
+If eventual consistency
+Use GSI&lt;/p&gt;
+&lt;h3&gt;Throughput&lt;/h3&gt;
+&lt;p&gt;RCU - 4kb
+WCU - 1kb
+TPC = RCU/3000 + WCU/1000 (By Capacity)
+TPS  = Total Size /10 Gigs (By Size)
+Total partitions = CEIL (Max(Capacity, Size))&lt;/p&gt;
+&lt;p&gt;Throttling = TP &gt; TP Per Partition
+Seen in
+Large Items/ Hotkeys
+Non uniform workloads&lt;/p&gt;
+&lt;h3&gt;Read Types&lt;/h3&gt;
+&lt;p&gt;Strong Read - Wait for Partitions to Sync
+Eventually Consistent Read - Any partition that responds first. Cheaper, 50% Capacity&lt;/p&gt;
+&lt;h2&gt;Data Modelling&lt;/h2&gt;
+&lt;p&gt;Think upfront about access patterns. Event Storming shows data flow&lt;/p&gt;
+&lt;p&gt;Designing for DDB:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Define ERD&lt;/li&gt;
+&lt;li&gt;Identify Access patterns&lt;/li&gt;
+&lt;li&gt;Design Indexes aroudn access patterns&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;When DDB
+Multiple Entities in Same DB&lt;/p&gt;
+&lt;p&gt;Forget RDB Shit:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Normalization&lt;/li&gt;
+&lt;li&gt;Joins&lt;/li&gt;
+&lt;li&gt;Single entity in DB&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Example: Ecommerce&lt;/h3&gt;
+&lt;h4&gt;ERD&lt;/h4&gt;
+&lt;p&gt;Users,          Orders,
+UserAddress,    OrderItems&lt;/p&gt;
+&lt;h4&gt;Defien Access Patterns&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Get User Profile&lt;/li&gt;
+&lt;li&gt;Get orders for user&lt;/li&gt;
+&lt;li&gt;Get Single order and see order items&lt;/li&gt;
+&lt;li&gt;Get order status&lt;/li&gt;
+&lt;li&gt;Get open Orders&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;Design PK and SK&lt;/h4&gt;
+&lt;p&gt;Key
+PK (User#xxxx)       - | For user xxxx,
+SK (#PROFILE#xxxx)   - | Profile hash gets profile by adding decorator &lt;code class=&quot;language-text&quot;&gt;#PROFILE#&lt;/code&gt;
+Attributes
+Useranem
+Fullname
+Email
+CreatedAt
+Address&lt;/p&gt;
+&lt;h3&gt;One To many relationships&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Attribute to list or map&lt;/li&gt;
+&lt;li&gt;PK + Query&lt;/li&gt;
+&lt;li&gt;Secondary Index + Query&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In this case
+Store UserAddress Blob
+If lookup needed, use JSON&lt;/p&gt;
+&lt;p&gt;Users to Orders
+One to Many
+Create Sort Key and Trees with Order Hash
+So we can have multiple order hash
+with unique order ID&lt;/p&gt;
+&lt;p&gt;Now two sort keys
+Profile and Order&lt;/p&gt;
+&lt;p&gt;Key
+PK (User#xxxx)
+SK (##ORder##xxxx)
+Attributes (Order)
+Useranem
+Fullname
+|OrderId|
+CreatedAt
+Address&lt;/p&gt;
+&lt;p&gt;Key
+PK (User#xxxx)
+SK (#Profile#xxxx)
+Attributes (Order)
+Useranem
+Fullname
+|Email|
+CreatedAt
+Address&lt;/p&gt;
+&lt;h3&gt;Many To Many relationships&lt;/h3&gt;
+&lt;p&gt;Use Inverted Index
+Composite PK But Sort Key and PK Flipped
+Then used as GSI&lt;/p&gt;
+&lt;p&gt;Cannot get orders and order items in one query
+But Inverted Index can solve&lt;/p&gt;
+&lt;p&gt;Consider PK User and SK Order
+GSI Order + User
+GSI Profile + User
+Then Using GSI
+Get Order + User Profile&lt;/p&gt;
+&lt;h3&gt;DDB Features&lt;/h3&gt;
+&lt;p&gt;Local instance available (Blog Topics?)
+NoSQL Workbench available (Blog topics?)&lt;/p&gt;
+&lt;h2&gt;Design Patterns&lt;/h2&gt;
+&lt;h3&gt;DDB Data Streams&lt;/h3&gt;
+&lt;p&gt;Call when CRUD Operation happens and trigger lambda?
+CQRS to separate reads and writes&lt;/p&gt;
+&lt;h3&gt;Sharding write heavy PKs&lt;/h3&gt;
+&lt;p&gt;eg Real Time voting.&lt;/p&gt;
+&lt;p&gt;Consider Write capacity exhausted
+Instead table with adaptive capacity
+Use Write Sharding&lt;/p&gt;
+&lt;p&gt;Shard by adding to PK
+Something arbitrary &lt;em&gt;but deterministic&lt;/em&gt;
+Then &lt;code class=&quot;language-text&quot;&gt;Scatter-Gather&lt;/code&gt; to
+read aggrefate result&lt;/p&gt;
+&lt;h3&gt;Read Heavy Partitions&lt;/h3&gt;
+&lt;p&gt;Everyone Reads partitions
+Hot partition therefore high throughput
+Use Caching instead
+but will be managed&lt;/p&gt;
+&lt;p&gt;or DAX (DDB Accelarator) — DDB Accelerator (DAX)
+for managed caching
+DAX write through cache&lt;/p&gt;
+&lt;p&gt;FOR DAX&lt;/p&gt;
+&lt;p&gt;Can Write through
+cache then write&lt;/p&gt;
+&lt;p&gt;Can Write around
+Write then cache&lt;/p&gt;
+&lt;p&gt;On Code end
+Remove client and add cache.&lt;/p&gt;
+&lt;h2&gt;Splitting Monolith DB&lt;/h2&gt;
+&lt;h3&gt;Pattern Database Wrapping Service&lt;/h3&gt;
+&lt;p&gt;Introduce service to “wrap” database
+Using Strangler Pattern&lt;/p&gt;
+&lt;h3&gt;Pattern Database as a Service Interface&lt;/h3&gt;
+&lt;p&gt;For Read only queries
+Use CQRS
+Different path for read
+DIfferent path for write
+Consumer starts accessing “Direct” API&lt;/p&gt;
+&lt;p&gt;Pattern changing data ownership
+Monolith depends on service API
+instead of Database or Direct API&lt;/p&gt;
+&lt;h3&gt;Pattern Synchronisation&lt;/h3&gt;
+&lt;p&gt;How to sync data&lt;/p&gt;
+&lt;p&gt;Do CDC (Change Data Capture)
+New Service Reads
+from monolith DB changes
+Handle eventual consistency
+But not the best approach&lt;/p&gt;
+&lt;p&gt;Otherwise have monolith
+write to old db
+and write to new db
+But Dual Write&lt;/p&gt;
+&lt;p&gt;Do Event Driven Sync
+Monolith writes to DB
+DB Writes to Queue
+Agent Dequeues message
+updates new db
+New Service Reads from own DB
+Which Single Source Truth&lt;/p&gt;
+&lt;p&gt;Avoiding 2PC in Distributed transactions
+Use SAGA Pattern Instead&lt;/p&gt;
+&lt;h3&gt;SAGA Pattern&lt;/h3&gt;
+&lt;p&gt;SAGA Pattern
+Uses eventual consistency
+Handles transactions across
+multiple data store&lt;/p&gt;
+&lt;p&gt;Two flavours of SAGA
+Orchestration and Choreography
+Orchestration inside aggregate
+Choreography inside bound context&lt;/p&gt;
+&lt;p&gt;In SAGA Pattern
+No mater service
+But rather multiple service
+Orchestrated with rollback option&lt;/p&gt;
+&lt;p&gt;In Choreography
+Message goes to Bus/ Message Broker
+Multiple Services consume Bus
+If problem, side effect will need rollback&lt;/p&gt;
+&lt;p&gt;In Orchestration
+Use orchestrator instead
+for single point of control&lt;/p&gt;
+&lt;p&gt;Difference,
+Correography - each components need to be aware of each other
+orchestration - Orchestrator need to be aware of everyone’s states&lt;/p&gt;
+&lt;p&gt;Simple workflows need choreography
+Therefore less participants
+but difficult to test in isolation&lt;/p&gt;
+&lt;p&gt;Orchestration for complex workflows
+Therefore more participants
+but single point of failure
+Addressed by Step Functions&lt;/p&gt;
+&lt;p&gt;Sagas not perfect
+Consider semantic locking countermeasure (out of order calls)
+Beware Dirty Reads
+Group transactions fall behind pivot transactions
+COunteract lost updates
+Consider Conditional writes or atomic transactions in DDB&lt;/p&gt;
+&lt;h2&gt;Distributed complexity &amp;#x26; AWS Step Functions&lt;/h2&gt;
+&lt;p&gt;Step Functions for Key Behaviours
+Sequence Fucntions
+Parallel processing
+Retry
+Conditions
+Try Catch
+Segments&lt;/p&gt;
+&lt;p&gt;Could try function chaining
+but tight coupling&lt;/p&gt;
+&lt;p&gt;Could try central coordination
+Using Database or queues
+But still need elements
+Know what to do on failure&lt;/p&gt;
+&lt;p&gt;Instead need orchestrator
+with must have
+ObservaBLT&lt;/p&gt;
+&lt;p&gt;— AWS Step Functions&lt;/p&gt;
+&lt;h2&gt;App Integration Patterns&lt;/h2&gt;
+&lt;p&gt;Message Exchange
+Can one way - no response, fire and forget. Use Queue
+Can REquest-Response - Rather than rest, use two message change. Eventual consistency. Will need Correlation Id&lt;/p&gt;
+&lt;p&gt;Can Point to point - queue with multiple endpoints but only one receiver. Flatten peak loads&lt;/p&gt;
+&lt;p&gt;Can PubSub - Multiple Subscribers&lt;/p&gt;
+&lt;p&gt;Can chain topics to queues - Fan out and receiver scale out at same time&lt;/p&gt;
+&lt;p&gt;Can Scatter-gather
+Not sure which subscriber will be right/ first response
+or paraller processing
+Fan out then fan in
+with aggregator at end&lt;/p&gt;
+&lt;p&gt;Can have timed result
+for tight SLAs&lt;/p&gt;
+&lt;p&gt;Can also add callback
+Websockets over MQTT (IoT Message Broker) (Blog Topic)
+Or Use AWS AppSync
+Or API Gateway
+Therefore remove polling
+which DDOS yourself&lt;/p&gt;
+&lt;p&gt;Lab Options&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;AwesomePets - SAGA Pattern with callback to handle transactions&lt;/li&gt;
+&lt;li&gt;WildRydes - Foundation with bonus labs&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Using AWS IAM Policy Simulator to debug IAM Policy Issues]]></title><description><![CDATA[In this blog, we’ll discuss debugging AWS IAM Policies and KMS Policies using a tool I didn’t notice earlier. The other day I was having…]]></description><link>https://www.hitarthasrani.com/aws-iam-policy-simulator/</link><guid isPermaLink="false">https://www.hitarthasrani.com/aws-iam-policy-simulator/</guid><pubDate>Invalid Date</pubDate><content:encoded>&lt;p&gt;In this blog, we’ll discuss debugging AWS IAM Policies and KMS Policies using a tool I didn’t notice earlier.&lt;/p&gt;
+&lt;p&gt;The other day I was having some trouble debugging some issues with AWS Config throwing “Access Denied” errors.
+I asked a senior engineer from my team to help me debug this issue. After debugging the issue a bit, we realised that the AWS IAM Role attached to AWS Config was trying to use KMS to encrypt data and did not have access to the key.
+My coworker then introduced me to the IAM Policy Simulator which allowed me to debug and recitfy the IAM permissions quickly.&lt;/p&gt;
+&lt;p&gt;I have set up a test environment to showcase the IAM Policy Simulator’s capabilities.&lt;/p&gt;
+&lt;p&gt;AWS Resources:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;AWS Config, set up using the one-click option. &lt;em&gt;Note -  In this scenario, we only use this to get the IAM Role. You can create a dummy role to test the IAM Role/Policy.&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;A Symmetric KMS key with some permissions that allow some SSO Users to use it.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The AWS Config recorder is using the following role:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;./img/policysim-iam-policy2.png&quot;&gt;test role here&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;This role gives my AWS resource, in this case my AWS Config Recorder, the following AWS Managed permissions:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Read-Only access to AWS Services and resources&lt;/li&gt;
+&lt;li&gt;A Default Policy for the AWS Config service so that AWS Config can track changes across my acount.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The KMS Key is set up with the following permissions:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;{
+    &quot;Version&quot;: &quot;2012-10-17&quot;,
+    &quot;Id&quot;: &quot;key-consolepolicy-3&quot;,
+    &quot;Statement&quot;: [
+        {
+            &quot;Sid&quot;: &quot;Allow access for Key Administrators&quot;,
+            *REDACTED*
+        },
+        {
+            &quot;Sid&quot;: &quot;Allow Config to use this key&quot;,
+            &quot;Effect&quot;: &quot;Allow&quot;,
+            &quot;Principal&quot;: {
+                &quot;Service&quot;: &quot;config.amazonaws.com&quot;
+            },
+            &quot;Action&quot;: &quot;kms:GenerateDataKey*&quot;,
+            &quot;Resource&quot;: &quot;*&quot;,
+            &quot;Condition&quot;: {
+                &quot;ArnLike&quot;: {
+                    &quot;aws:SourceArn&quot;: &quot;arn:aws:iam::**********:role/aws-controltower-ConfigRecorderRole&quot;
+                }
+            }
+        }
+    ]
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;You can see that this key already has permissions to allow the above topic to run &lt;code class=&quot;language-text&quot;&gt;KMS:GenerateDataKey*&lt;/code&gt; using the key.&lt;/p&gt;
+&lt;p&gt;Jumping back to the &lt;code class=&quot;language-text&quot;&gt;aws-controltower-ConfigReecorderRole&lt;/code&gt; on the AWS IAM Dashboard, you can see a button that says &lt;strong&gt;Simulate&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;./img/policysim-iam-policy.png&quot;&gt;Simualtor Button on IAM Role&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;If you click this, it will take you to the IAM Policy Simulator. Alternatively, you can jump into the Policy Simulator from the IAM Dashboard here.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;./img/policysim-iam-dashboard.png&quot;&gt;IAM Dashboard&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Once you are on the Policy Simulator Page, you can select&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;The IAM User, Group or Role to use.&lt;/li&gt;
+&lt;li&gt;The Service you need permission to.&lt;/li&gt;
+&lt;li&gt;Specific Service actions you would like to use.&lt;/li&gt;
+&lt;li&gt;Action settings -  you can provide resource ARN’s here.&lt;/li&gt;
+&lt;li&gt;Run the Simulation&lt;/li&gt;
+&lt;li&gt;View the Simulation results.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;a href=&quot;./img/policysim-denied.png&quot;&gt;IAM Policy Simulator&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;A simulaton has already been run in the above screenshot. You can see the &lt;code class=&quot;language-text&quot;&gt;Access Denied&lt;/code&gt; result with some additional information.&lt;/p&gt;
+&lt;p&gt;Now I have enough information to create a custom IAM Policy I can attach to this role. I can also quickly test the custom policy on the role using the simulator.&lt;/p&gt;
+&lt;p&gt;Here’s a result once the right policy has been attached.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;./img/policysim-success.png&quot;&gt;Policy Simulator Passed&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;IAM Policy Simulator allows you to quickly debug and test IAM Policies attached to IAM Users, Groups or Roles against specific AWS resources. It saves time spent in manual testing by making this action one-click with instant results and is highly customizable.
+Big thanks to Martin Caarels, you can check out his blog &lt;a href=&quot;https://blog.caarels.com&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[AWS APN DevAx Black Belt Day 3]]></title><description><![CDATA[Building Event Driven Systems Journey to event driven arch
+Understand domain (Event storming)
+Pick event router (Managing events)
+Pick event…]]></description><link>https://www.hitarthasrani.com/aws-devax-blackbelt/day3/</link><guid isPermaLink="false">https://www.hitarthasrani.com/aws-devax-blackbelt/day3/</guid><pubDate>Wed, 30 Mar 2022 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;Building Event Driven Systems&lt;/h2&gt;
+&lt;p&gt;Journey to event driven arch
+Understand domain (Event storming)
+Pick event router (Managing events)
+Pick event store (Durability Model)
+Structure events&lt;/p&gt;
+&lt;p&gt;Event is
+Single from one part of system
+telling that the state changed
+to another part of system&lt;/p&gt;
+&lt;p&gt;Event already happened
+and is not happening now.&lt;/p&gt;
+&lt;p&gt;Map events to business domains
+using attributes&lt;/p&gt;
+&lt;p&gt;Orchestrate a business process (multi step process)
+within a domain.&lt;/p&gt;
+&lt;p&gt;Choreograph events between domain
+If Pub doesnt care about approach use buses&lt;/p&gt;
+&lt;p&gt;Events are Observable
+And Not directed
+Dumb Pipes
+Intelligent Endpoints&lt;/p&gt;
+&lt;h3&gt;Event Arch Messaging Patterns&lt;/h3&gt;
+&lt;p&gt;Removing dependency of systems when not required
+consider insurance company
+with customer management system
+with quote generator
+with comms system&lt;/p&gt;
+&lt;h4&gt;Pattern Event Notification&lt;/h4&gt;
+&lt;p&gt;Command happens present tense
+Command adds coupling if neccesary.
+event happened past tense
+therefore more decoupled.&lt;/p&gt;
+&lt;p&gt;When action happens,
+system takes message (event)
+and updates bus.&lt;/p&gt;
+&lt;p&gt;When Bus updated,
+multiple subscribers can read.&lt;/p&gt;
+&lt;p&gt;In this approach
+we do decouple
+but lose overall statement of behaviour
+(Traceability, Reachability)&lt;/p&gt;
+&lt;p&gt;— SQS or SNS&lt;/p&gt;
+&lt;h4&gt;Pattern Event Carried State Transfer&lt;/h4&gt;
+&lt;p&gt;Consider system drops message
+on bus
+downstream observers aware
+but have no context of change
+and will call back original system
+Creating hotspot&lt;/p&gt;
+&lt;p&gt;Instead use Dependency Injection (IoC)
+Meaning Put data in message
+Event Carried State Transfer.&lt;/p&gt;
+&lt;p&gt;Problem becomes
+Bus may have old data (milliseconds old)
+Bus may have too much data&lt;/p&gt;
+&lt;p&gt;Removes load on supplier
+but have replicated data
+with eventual consistency&lt;/p&gt;
+&lt;p&gt;Problems with approach
+State is ephemeral, transient
+Once message is consumed state is gone
+Difficult to obtain history
+Difficult to debug&lt;/p&gt;
+&lt;h4&gt;Pattern Event Sourcing&lt;/h4&gt;
+&lt;p&gt;Goes hand in hand with event sourcing&lt;/p&gt;
+&lt;p&gt;Consider user changes address
+General approach - update db and etc immidiately.
+In event sourcing,
+event dropped into bus,
+immutable append only log
+and then send to db.&lt;/p&gt;
+&lt;p&gt;“write to log and replay log into system”&lt;/p&gt;
+&lt;p&gt;Change not made directly
+Also source of truth reads from bus
+App State separated&lt;/p&gt;
+&lt;p&gt;Log does not store final state
+just changes&lt;/p&gt;
+&lt;p&gt;good replayability and auditing
+therefore easy debug.
+And alternative state&lt;/p&gt;
+&lt;p&gt;But Unfamimiliar approach
+difficult integration
+and difficult storage/snapshots.&lt;/p&gt;
+&lt;h4&gt;CQRS Command Query Responsibility Segregation&lt;/h4&gt;
+&lt;p&gt;Same data replicated into multiple data stores&lt;/p&gt;
+&lt;p&gt;User uses different
+path or model
+for reading and writing&lt;/p&gt;
+&lt;p&gt;Scale reads and maybe
+have different read schemas&lt;/p&gt;
+&lt;p&gt;Uses command for write
+query for read
+Both different schema
+Could be separate DBs&lt;/p&gt;
+&lt;p&gt;Microservices could have
+multiple databases&lt;/p&gt;
+&lt;p&gt;CQRS Works well
+with event sourcing&lt;/p&gt;
+&lt;p&gt;Service querying will have shadow data&lt;/p&gt;
+&lt;p&gt;CQRS + Sourcing
+Benefit Audit, debugging, alternate State
+Memory Image, Performance, Microservices&lt;/p&gt;
+&lt;p&gt;Problems Unfamiliar
+Integration
+Storage/Snapshots&lt;/p&gt;
+&lt;p&gt;— Lambda, Elasticache, Dynamo, Kafka&lt;/p&gt;
+&lt;h2&gt;CQRS&lt;/h2&gt;
+&lt;p&gt;One model to udpate info
+another to read&lt;/p&gt;
+&lt;p&gt;Allows horizontal scaling of read model
+Take advantage of eventual consistency
+flexible read and write
+promotes polyglot persistence&lt;/p&gt;
+&lt;p&gt;Day 2 problems?
+A. Operationalization side - good ops management needed.
+When data being shared, need to get buses correct.&lt;/p&gt;
+&lt;p&gt;Old Tech Stack, new to devOps. Hard to add CQRS.
+A. CQRS is from a paper in 1980s so concepts is quite old.
+You need to liberate data from a monolith and make multiple copies for microservices&lt;/p&gt;
+&lt;p&gt;Problems with vertical scaling DB
+A. Decide whether DB needs read or write access. Can write helper for it.
+Over time - decide what kind of read or write. Additional confidence. Initial step is hard, easier after that.&lt;/p&gt;
+&lt;h2&gt;Decoupoling arch with messaging and streaming&lt;/h2&gt;
+&lt;p&gt;Picking an event router&lt;/p&gt;
+&lt;p&gt;Event router
+Async Events - buffering
+Event stores - durable logs&lt;/p&gt;
+&lt;h3&gt;Option Sync Decoupling&lt;/h3&gt;
+&lt;p&gt;Using load balancer to push downstream&lt;/p&gt;
+&lt;h3&gt;Solution Async Decoupling&lt;/h3&gt;
+&lt;p&gt;Using queues
+Buffer spike load
+scale based on resource availability
+rather than blindly reacting to spikes&lt;/p&gt;
+&lt;p&gt;— SQS&lt;/p&gt;
+&lt;h2&gt;Message Channels // SQS, SNS, Event Bridge and IoT&lt;/h2&gt;
+&lt;p&gt;Point to point (Queue)
+A consumer will pick up the message based on availability
+All messages received by consumers
+but not all consumers get all messages&lt;/p&gt;
+&lt;p&gt;Solution: Fan out using SNS for multiple subscribers
+Publish Subscribe (topic)&lt;/p&gt;
+&lt;p&gt;SQS FIFO Queue - Deterministric Ordering&lt;/p&gt;
+&lt;p&gt;Problem - mapping/routing events to topics (Coupling)
+Solution - Attribute filtering (De-coupling) — SNS Message Filters&lt;/p&gt;
+&lt;h3&gt;Non Deterministric consumer scale&lt;/h3&gt;
+&lt;p&gt;Use IoT Message Broker
+could also consider using APIGW or AppSync&lt;/p&gt;
+&lt;p&gt;Is Faster w/ MQTT&lt;/p&gt;
+&lt;h3&gt;EventBridge&lt;/h3&gt;
+&lt;p&gt;Serverless event bus service&lt;/p&gt;
+&lt;p&gt;As requirements grow,
+Decoupling grows and services increase&lt;/p&gt;
+&lt;p&gt;EventBridge makes it nicer to add downstream observers
+Abstract producers and consumers&lt;/p&gt;
+&lt;p&gt;Producers talk to bus,
+consumers bind to eventbridge
+and not arbitraty queue&lt;/p&gt;
+&lt;p&gt;Can have sources
+AWS Services
+Custom Events
+SaaS apps&lt;/p&gt;
+&lt;p&gt;Event Bus
+Default, custom SaaS&lt;/p&gt;
+&lt;p&gt;No callback into event bridge&lt;/p&gt;
+&lt;p&gt;Loose coupling,
+Scalable,
+Extensible,
+Can deal with complex shit
+Reliable&lt;/p&gt;
+&lt;h2&gt;Capstone Project&lt;/h2&gt;
+&lt;p&gt;Oral defence/panel. Not a dev. Will be issued a black belt badge. Will send some registration with up to 2 people per team and mock panel with team.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Always backup]]></title><description><![CDATA[As a developer, mistakes happen and they will happen. I cannot stress this enough. The lesson of the day is Don’t forget the dev branch! Yes…]]></description><link>https://www.hitarthasrani.com/oh-and-backup/</link><guid isPermaLink="false">https://www.hitarthasrani.com/oh-and-backup/</guid><pubDate>Sun, 29 Mar 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;As a developer, &lt;strong&gt;mistakes happen&lt;/strong&gt; and they will happen. I cannot stress this enough.&lt;/p&gt;
 &lt;p&gt;The lesson of the day is &lt;strong&gt;Don’t forget the dev branch!&lt;/strong&gt; Yes that’s correct. If you’re new to open source and version control, I advise you not as a professional but as a peer to &lt;em&gt;always&lt;/em&gt; have a ‘dev’ or development branch and do not start coding directly into the master branch!&lt;/p&gt;
 &lt;h3&gt;This is how I blundered up so you don’t have to:&lt;/h3&gt;
 &lt;p&gt;Firstly, since I don’t have a CMS or database for this website, I write all my blogs as a markdown file in the source.
