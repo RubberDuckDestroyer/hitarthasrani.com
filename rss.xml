@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Hitarth Asrani]]></title><description><![CDATA[A blog ranting the cloud life.]]></description><link>https://www.hitarthasrani.com</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 31 Mar 2022 22:52:15 GMT</lastBuildDate><item><title><![CDATA[AWS APN DevAx Black Belt Day 4]]></title><description><![CDATA[Authentication and authorization w/ Cognito User Management
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Hitarth Asrani]]></title><description><![CDATA[A blog ranting the cloud life.]]></description><link>https://www.hitarthasrani.com</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 31 Mar 2022 22:54:16 GMT</lastBuildDate><item><title><![CDATA[AWS APN DevAx Black Belt Day 4]]></title><description><![CDATA[Authentication and authorization w/ Cognito User Management
 hard to implement by itself —Cognito
 Handles Authentication, Authorization, Data…]]></description><link>https://www.hitarthasrani.com/aws-devax-blackbelt/day4/</link><guid isPermaLink="false">https://www.hitarthasrani.com/aws-devax-blackbelt/day4/</guid><pubDate>Invalid Date</pubDate><content:encoded>&lt;h2&gt;Authentication and authorization w/ Cognito&lt;/h2&gt;
 &lt;p&gt;User Management
@@ -966,7 +966,38 @@ My coworker then introduced me to the IAM Policy Simulator which allowed me to d
 &lt;li&gt;A Symmetric KMS key with some permissions that allow some SSO Users to use it.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;The AWS Config recorder is using the following role:&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;./img/policysim-iam-policy2.png&quot;&gt;test role here&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/66b7f12a21b38ee627f03bab64549b77/d777c/policysim-iam-policy2.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 43.91891891891892%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAAAsTAAALEwEAmpwYAAABOElEQVQoz4VS2W6EMAzM/39c1YdK+4BEK3aBQLiyXOGcZtyCeq1qaeQoPmZiRxljkOc5yrJEmqbQWqMoCuz7DtrhH9kRb9sWTdNA8fAo8cC6roKhdxhHh23bzruj4bIsPjZC2fsdzjlM0/StyVdjvKoqPD9d8BbGktv3PcZh+FWjxqmXA1kPkPnwNHoq+M/YVHVlhrtXSZCZagbPTN913fms8+meaGFeaTC3Vu5YR1CESlIti6jrGr1vxDkwOM+zqOKZd4Rz3nsiW5UwlxfU0Ss4Mi41SRIRoHSa4Hq9Ics/tp17z41z+9w6z9w6C6IoQpZlkmO8Zw7jnC9zZMtdU+Cmcxg7evmLKCOojAQcPp9F9uyzCYulmW/EUVlr5duwToVhiCAI5Nks+AtUQXaCo/kJEsRxLE3fASpbtvOQEMUwAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;test role here&quot;
+        title=&quot;test role here&quot;
+        src=&quot;/static/66b7f12a21b38ee627f03bab64549b77/fcda8/policysim-iam-policy2.png&quot;
+        srcset=&quot;/static/66b7f12a21b38ee627f03bab64549b77/12f09/policysim-iam-policy2.png 148w,
+/static/66b7f12a21b38ee627f03bab64549b77/e4a3f/policysim-iam-policy2.png 295w,
+/static/66b7f12a21b38ee627f03bab64549b77/fcda8/policysim-iam-policy2.png 590w,
+/static/66b7f12a21b38ee627f03bab64549b77/efc66/policysim-iam-policy2.png 885w,
+/static/66b7f12a21b38ee627f03bab64549b77/c83ae/policysim-iam-policy2.png 1180w,
+/static/66b7f12a21b38ee627f03bab64549b77/d777c/policysim-iam-policy2.png 1555w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;This role gives my AWS resource, in this case my AWS Config Recorder, the following AWS Managed permissions:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Read-Only access to AWS Services and resources&lt;/li&gt;
@@ -999,9 +1030,71 @@ My coworker then introduced me to the IAM Policy Simulator which allowed me to d
 }&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;You can see that this key already has permissions to allow the above topic to run &lt;code class=&quot;language-text&quot;&gt;KMS:GenerateDataKey*&lt;/code&gt; using the key.&lt;/p&gt;
 &lt;p&gt;Jumping back to the &lt;code class=&quot;language-text&quot;&gt;aws-controltower-ConfigReecorderRole&lt;/code&gt; on the AWS IAM Dashboard, you can see a button that says &lt;strong&gt;Simulate&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;./img/policysim-iam-policy.png&quot;&gt;Simualtor Button on IAM Role&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/7de992dfda60d6a28dc68d50fa29ccbd/e405b/policysim-iam-policy.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 20.27027027027027%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAECAYAAACOXx+WAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAtklEQVQY01VPuxKDMAzj/3+vQ5cOPbgrDSFA3jwCauQu7eCTLDuR3GRrkNwM5z1yztj3HTFGrOuKEIL013XhPE+pLy847IwSvWjHcUhx1phpxlspTNOElBK2bZNPuFBKEU5NdGLtg7Uw9xvs8wHvHMZxxDAMstMYY9C2LV59LyKLGg3IiSxVedd1ommtoWuIUf/v+nplw9P08EKrZsS8igs1Ip35gCmZvv8xpQHntqZdlkWQV30AE9cyeaEVrnwAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Simualtor Button on IAM Role&quot;
+        title=&quot;Simualtor Button on IAM Role&quot;
+        src=&quot;/static/7de992dfda60d6a28dc68d50fa29ccbd/fcda8/policysim-iam-policy.png&quot;
+        srcset=&quot;/static/7de992dfda60d6a28dc68d50fa29ccbd/12f09/policysim-iam-policy.png 148w,
+/static/7de992dfda60d6a28dc68d50fa29ccbd/e4a3f/policysim-iam-policy.png 295w,
+/static/7de992dfda60d6a28dc68d50fa29ccbd/fcda8/policysim-iam-policy.png 590w,
+/static/7de992dfda60d6a28dc68d50fa29ccbd/efc66/policysim-iam-policy.png 885w,
+/static/7de992dfda60d6a28dc68d50fa29ccbd/c83ae/policysim-iam-policy.png 1180w,
+/static/7de992dfda60d6a28dc68d50fa29ccbd/e405b/policysim-iam-policy.png 1566w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;If you click this, it will take you to the IAM Policy Simulator. Alternatively, you can jump into the Policy Simulator from the IAM Dashboard here.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;./img/policysim-iam-dashboard.png&quot;&gt;IAM Dashboard&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/4d352effd2f7c9ff932c62669c0ae0c1/f470a/policysim-iam-dashboard.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 41.891891891891895%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAACXBIWXMAAAsTAAALEwEAmpwYAAABk0lEQVQoz3VQy24TQRD0H3KOgsQpEbmAyGdwIxEHEiQev8CVCCk3EuVFbOWwMjHGstee3dn17O48dman6Bkb5wAZqTTdperu6u5lOcdo/BsF55hxiZcfbvHqUz9i//MALz72sXt0jZ1313h+fIO99zd49vYKW28usH14he2DSzw9vMST12f4cj5Fr6kq1HUNZQHnAXQGgjOIggGtJCKQj73uH6ZX5Aw8Y7DWRkKKCuksRbognqB4gdZ1MK2NsBS7zlPcYr7IMOgnWC7ryLmuQ6+umxhg7cUqRQMyLIWA1hramPiHgc45eP/gePRzgtNvF6RxK7+hoaDCsig2QkXFnPLgIAgC/jYKTUNu1kOSZISTr99x2x9iOmWrlfMsB2Ns07DRFsrYOFXq4KpDLnRcSWoaQrpa6rjPkuqSH3cYDhLMx1P4ztEN6UZlWW7WkFIiI2HbmjXj//s768DTOcqqgXctvFHwslk1LMoirhDEilwMZwITVpEzumfdIq9MRBYgDBiBU1ymM4zv7zH5NSK3C3it8AcIglp1C5Iz4gAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;IAM Dashboard&quot;
+        title=&quot;IAM Dashboard&quot;
+        src=&quot;/static/4d352effd2f7c9ff932c62669c0ae0c1/fcda8/policysim-iam-dashboard.png&quot;
+        srcset=&quot;/static/4d352effd2f7c9ff932c62669c0ae0c1/12f09/policysim-iam-dashboard.png 148w,
+/static/4d352effd2f7c9ff932c62669c0ae0c1/e4a3f/policysim-iam-dashboard.png 295w,
+/static/4d352effd2f7c9ff932c62669c0ae0c1/fcda8/policysim-iam-dashboard.png 590w,
+/static/4d352effd2f7c9ff932c62669c0ae0c1/efc66/policysim-iam-dashboard.png 885w,
+/static/4d352effd2f7c9ff932c62669c0ae0c1/c83ae/policysim-iam-dashboard.png 1180w,
+/static/4d352effd2f7c9ff932c62669c0ae0c1/f470a/policysim-iam-dashboard.png 1443w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;Once you are on the Policy Simulator Page, you can select&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;The IAM User, Group or Role to use.&lt;/li&gt;
@@ -1011,11 +1104,73 @@ My coworker then introduced me to the IAM Policy Simulator which allowed me to d
 &lt;li&gt;Run the Simulation&lt;/li&gt;
 &lt;li&gt;View the Simulation results.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;a href=&quot;./img/policysim-denied.png&quot;&gt;IAM Policy Simulator&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/7adf31c59a21a08709be1442b5599eb9/d8c86/policysim-denied.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 29.054054054054056%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAAAsTAAALEwEAmpwYAAABCklEQVQY032Qu04DMRBF9+dBFKHLJ1BQEBGgRAJFfAASSDSU7CbZlzf2vh07B9soCMJjpNFobM/xvRPlWcYyEzw8v3H3mPD0mrFerYiXFX0/kBcNm02FlAprbcjdbkfbtpRCYLaatdTcvgwoDVEcx6TrFXWtGIcBqRqSZEma5SilHEy63FBVVejruqZpGvdZH+picc/scs7Z+Zz51TWR1iM+xq0NtRA9cZIinaqyLCmKIgxLKRFOkQfmeU7btYhUMLu4YTI55eT4iOl0SuQfdF0XrBhj0No4S4Teh7f3V5itu/dixtGtoHOcnsjb8cA9xFrzY9BDf8uPsN/efQL3C/cq/4N8hR2e+dl3KXXKjOyG9kUAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;IAM Policy Simulator&quot;
+        title=&quot;IAM Policy Simulator&quot;
+        src=&quot;/static/7adf31c59a21a08709be1442b5599eb9/fcda8/policysim-denied.png&quot;
+        srcset=&quot;/static/7adf31c59a21a08709be1442b5599eb9/12f09/policysim-denied.png 148w,
+/static/7adf31c59a21a08709be1442b5599eb9/e4a3f/policysim-denied.png 295w,
+/static/7adf31c59a21a08709be1442b5599eb9/fcda8/policysim-denied.png 590w,
+/static/7adf31c59a21a08709be1442b5599eb9/efc66/policysim-denied.png 885w,
+/static/7adf31c59a21a08709be1442b5599eb9/c83ae/policysim-denied.png 1180w,
+/static/7adf31c59a21a08709be1442b5599eb9/d8c86/policysim-denied.png 1663w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;A simulaton has already been run in the above screenshot. You can see the &lt;code class=&quot;language-text&quot;&gt;Access Denied&lt;/code&gt; result with some additional information.&lt;/p&gt;
 &lt;p&gt;Now I have enough information to create a custom IAM Policy I can attach to this role. I can also quickly test the custom policy on the role using the simulator.&lt;/p&gt;
 &lt;p&gt;Here’s a result once the right policy has been attached.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;./img/policysim-success.png&quot;&gt;Policy Simulator Passed&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/fc40b6c00a0bc0cb049d29cbecb2ef6c/07a9c/policysim-success.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 28.37837837837838%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAAAsTAAALEwEAmpwYAAABCUlEQVQY05WPwU7DMBBE8///wg9w4sQJqUJI0BZaqbR146SJ7cZOmjjJw7YoB04w0mhs7+54NjuXBat9xf3iwOO6ZrkrEcc9pzynaRr6vudyuaCUoq5rvPfM8/x9V2it2Bxr7p4KHt4qsvf3NeKwx18tTB7rWoQQ5MGwqiqcc8lQa51MrLWJ0Tzq1VmcddTaoZuOTFYabQxKG0wTml2XzOJApJQSE+qRt/eosixRuy3y9ZkmqPvc0u8+yLqQIGGeYBzxw5DWbNuWIZy7rksa1xxD/aYRYxsCnAVtKXFFjjeKTL0sMOGXfrvCb5b4QvAXROPfCJHITrkkF0d8SDX5ISTsfwb+y2ka+QJdh8zEkv76FAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Policy Simulator Passed&quot;
+        title=&quot;Policy Simulator Passed&quot;
+        src=&quot;/static/fc40b6c00a0bc0cb049d29cbecb2ef6c/fcda8/policysim-success.png&quot;
+        srcset=&quot;/static/fc40b6c00a0bc0cb049d29cbecb2ef6c/12f09/policysim-success.png 148w,
+/static/fc40b6c00a0bc0cb049d29cbecb2ef6c/e4a3f/policysim-success.png 295w,
+/static/fc40b6c00a0bc0cb049d29cbecb2ef6c/fcda8/policysim-success.png 590w,
+/static/fc40b6c00a0bc0cb049d29cbecb2ef6c/efc66/policysim-success.png 885w,
+/static/fc40b6c00a0bc0cb049d29cbecb2ef6c/c83ae/policysim-success.png 1180w,
+/static/fc40b6c00a0bc0cb049d29cbecb2ef6c/07a9c/policysim-success.png 1440w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;IAM Policy Simulator allows you to quickly debug and test IAM Policies attached to IAM Users, Groups or Roles against specific AWS resources. It saves time spent in manual testing by making this action one-click with instant results and is highly customizable.
 Big thanks to Martin Caarels, you can check out his blog &lt;a href=&quot;https://blog.caarels.com&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Always backup]]></title><description><![CDATA[As a developer, mistakes happen and they will happen. I cannot stress this enough. The lesson of the day is Don’t forget the dev branch! Yes…]]></description><link>https://www.hitarthasrani.com/oh-and-backup/</link><guid isPermaLink="false">https://www.hitarthasrani.com/oh-and-backup/</guid><pubDate>Sun, 29 Mar 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;As a developer, &lt;strong&gt;mistakes happen&lt;/strong&gt; and they will happen. I cannot stress this enough.&lt;/p&gt;
 &lt;p&gt;The lesson of the day is &lt;strong&gt;Don’t forget the dev branch!&lt;/strong&gt; Yes that’s correct. If you’re new to open source and version control, I advise you not as a professional but as a peer to &lt;em&gt;always&lt;/em&gt; have a ‘dev’ or development branch and do not start coding directly into the master branch!&lt;/p&gt;
