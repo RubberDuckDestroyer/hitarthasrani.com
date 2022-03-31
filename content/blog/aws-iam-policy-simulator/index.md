@@ -19,7 +19,7 @@ AWS Resources:
 
 The AWS Config recorder is using the following role:
 
-[test role here](./img/policysim-iam-policy2.png)
+![test role here](./img/policysim-iam-policy2.png)
 
 This role gives my AWS resource, in this case my AWS Config Recorder, the following AWS Managed permissions:
 
@@ -59,11 +59,11 @@ You can see that this key already has permissions to allow the above topic to ru
 
 Jumping back to the `aws-controltower-ConfigReecorderRole` on the AWS IAM Dashboard, you can see a button that says **Simulate**.
 
-[Simualtor Button on IAM Role](./img/policysim-iam-policy.png)
+![Simualtor Button on IAM Role](./img/policysim-iam-policy.png)
 
 If you click this, it will take you to the IAM Policy Simulator. Alternatively, you can jump into the Policy Simulator from the IAM Dashboard here.
 
-[IAM Dashboard](./img/policysim-iam-dashboard.png)
+![IAM Dashboard](./img/policysim-iam-dashboard.png)
 
 Once you are on the Policy Simulator Page, you can select
 
@@ -74,7 +74,7 @@ Once you are on the Policy Simulator Page, you can select
 5. Run the Simulation
 6. View the Simulation results.
 
-[IAM Policy Simulator](./img/policysim-denied.png)
+![IAM Policy Simulator](./img/policysim-denied.png)
 
 A simulaton has already been run in the above screenshot. You can see the `Access Denied` result with some additional information.
 
@@ -82,7 +82,7 @@ Now I have enough information to create a custom IAM Policy I can attach to this
 
 Here's a result once the right policy has been attached.
 
-[Policy Simulator Passed](./img/policysim-success.png)
+![Policy Simulator Passed](./img/policysim-success.png)
 
 IAM Policy Simulator allows you to quickly debug and test IAM Policies attached to IAM Users, Groups or Roles against specific AWS resources. It saves time spent in manual testing by making this action one-click with instant results and is highly customizable.
 Big thanks to Martin Caarels, you can check out his blog [here](https://blog.caarels.com).
