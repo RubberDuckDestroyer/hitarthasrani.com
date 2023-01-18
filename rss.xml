@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Hitarth Asrani]]></title><description><![CDATA[A blog ranting the cloud life.]]></description><link>https://www.hitarthasrani.com</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 18 Jan 2023 23:01:56 GMT</lastBuildDate><item><title><![CDATA[[VIDEO] Using AWS Migration Hub]]></title><description><![CDATA[YouTube Link: https://youtu.be/GM2kLYc8-Bw]]></description><link>https://www.hitarthasrani.com/2022-06-06-aws-twitch-stream/</link><guid isPermaLink="false">https://www.hitarthasrani.com/2022-06-06-aws-twitch-stream/</guid><pubDate>Mon, 06 Jun 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;YouTube Link: &lt;a href=&quot;https://youtu.be/GM2kLYc8-Bw&quot;&gt;https://youtu.be/GM2kLYc8-Bw&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Using AWS IAM Policy Simulator to debug IAM Policy Issues]]></title><description><![CDATA[In this blog, we’ll discuss debugging AWS IAM Policies and KMS Policies using a tool I didn’t notice earlier. The other day I was having…]]></description><link>https://www.hitarthasrani.com/aws-iam-policy-simulator/</link><guid isPermaLink="false">https://www.hitarthasrani.com/aws-iam-policy-simulator/</guid><pubDate>Wed, 23 Mar 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;In this blog, we’ll discuss debugging AWS IAM Policies and KMS Policies using a tool I didn’t notice earlier.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Hitarth Asrani]]></title><description><![CDATA[A blog ranting the cloud life.]]></description><link>https://www.hitarthasrani.com</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 18 Jan 2023 23:05:05 GMT</lastBuildDate><item><title><![CDATA[[VIDEO] Using AWS Migration Hub]]></title><description><![CDATA[YouTube Link: https://youtu.be/GM2kLYc8-Bw]]></description><link>https://www.hitarthasrani.com/2022-06-06-aws-twitch-stream/</link><guid isPermaLink="false">https://www.hitarthasrani.com/2022-06-06-aws-twitch-stream/</guid><pubDate>Mon, 06 Jun 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;YouTube Link: &lt;a href=&quot;https://youtu.be/GM2kLYc8-Bw&quot;&gt;https://youtu.be/GM2kLYc8-Bw&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Using AWS IAM Policy Simulator to debug IAM Policy Issues]]></title><description><![CDATA[In this blog, we’ll discuss debugging AWS IAM Policies and KMS Policies using a tool I didn’t notice earlier. The other day I was having…]]></description><link>https://www.hitarthasrani.com/2022-03-23-aws-iam-policy-simulator/</link><guid isPermaLink="false">https://www.hitarthasrani.com/2022-03-23-aws-iam-policy-simulator/</guid><pubDate>Wed, 23 Mar 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;In this blog, we’ll discuss debugging AWS IAM Policies and KMS Policies using a tool I didn’t notice earlier.&lt;/p&gt;
 &lt;p&gt;The other day I was having some trouble debugging some issues with AWS Config throwing “Access Denied” errors.
 I asked a senior engineer from my team to help me debug this issue. After debugging the issue a bit, we realised that the AWS IAM Role attached to AWS Config was trying to use KMS to encrypt data and did not have access to the key.
 My coworker then introduced me to the IAM Policy Simulator which allowed me to debug and recitfy the IAM permissions quickly.&lt;/p&gt;
@@ -215,88 +215,4 @@ My coworker then introduced me to the IAM Policy Simulator which allowed me to d
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;IAM Policy Simulator allows you to quickly debug and test IAM Policies attached to IAM Users, Groups or Roles against specific AWS resources. It saves time spent in manual testing by making this action one-click with instant results and is highly customizable.&lt;/p&gt;
-&lt;p&gt;Big thanks to Martin Caarels, you can check out his blog &lt;a href=&quot;https://blog.caarels.com&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Always backup]]></title><description><![CDATA[As a developer, mistakes happen and they will happen. I cannot stress this enough. The lesson of the day is Don’t forget the dev branch! Yes…]]></description><link>https://www.hitarthasrani.com/oh-and-backup/</link><guid isPermaLink="false">https://www.hitarthasrani.com/oh-and-backup/</guid><pubDate>Sun, 29 Mar 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;As a developer, &lt;strong&gt;mistakes happen&lt;/strong&gt; and they will happen. I cannot stress this enough.&lt;/p&gt;
-&lt;p&gt;The lesson of the day is &lt;strong&gt;Don’t forget the dev branch!&lt;/strong&gt; Yes that’s correct. If you’re new to open source and version control, I advise you not as a professional but as a peer to &lt;em&gt;always&lt;/em&gt; have a ‘dev’ or development branch and do not start coding directly into the master branch!&lt;/p&gt;
-&lt;h3&gt;This is how I blundered up so you don’t have to:&lt;/h3&gt;
-&lt;p&gt;Firstly, since I don’t have a CMS or database for this website, I write all my blogs as a markdown file in the source.
-For this blog, I did not create a seperate dev branch. I also set up a configuration to directly build into the master branch. Guess what, bad idea!   &lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://media.giphy.com/media/27EhcDHnlkw1O/giphy.gif&quot; alt=&quot;facepalm&quot;&gt;&lt;/p&gt;
-&lt;p&gt;As soon as I built my files, the master branch or my working directory got replaced by build files that are being served by github pages. This means to get my working directory back, I had to redownload the starter code and re write my blogs. I also put my code into a devellopment branch so that the next time I write a blog, it will push to the master branch without affecting my work.&lt;/p&gt;
-&lt;p&gt;Yes, you can blame this to being quick and lazy in your work. The important thing to remember is that sometimes, mistakes happen and you should learn from them. But what would life be without a few mistakes and blunders throughout the journey…our experiences make us what we are. With that, I’ll end this short blog.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;Note: All GIFs are from &lt;a href=&quot;https://giphy.com&quot;&gt;Giphy&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Interview Questions 101]]></title><description><![CDATA[Recently, I had the opportunity to attend speed interviews through the (Summer of Tech program)https://summeroftech.co.nz. Along with this I…]]></description><link>https://www.hitarthasrani.com/interviews-101/</link><guid isPermaLink="false">https://www.hitarthasrani.com/interviews-101/</guid><pubDate>Tue, 24 Sep 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Recently, I had the opportunity to attend speed interviews through the (Summer of Tech program)[https://summeroftech.co.nz]. Along with this I also attended SOT’s Mock Interviews event to groom me well for speed interviews…but before that, here’s some cover art I drew for this!&lt;/p&gt;
-&lt;p&gt;&lt;span
-      class=&quot;gatsby-resp-image-wrapper&quot;
-      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
-    &gt;
-      &lt;a
-    class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/0fae52fa342ab43db16abcd3358822af/efc66/interviews101.png&quot;
-    style=&quot;display: block&quot;
-    target=&quot;_blank&quot;
-    rel=&quot;noopener&quot;
-  &gt;
-    &lt;span
-    class=&quot;gatsby-resp-image-background-image&quot;
-    style=&quot;padding-bottom: 85.8108108108108%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAARCAIAAABSJhvpAAAACXBIWXMAAAsTAAALEwEAmpwYAAAD4UlEQVQ4yzWTC0xbVRzGj8GNVRChXYs4UnQto4FGlIQsE7JkZERncCNuEZdN43QyJMY54wYa3XxtZLhGHgKZDCiPFtre3tsWSrsBA0vftNy2tMMpA2cnLBBhOBah0Pv3tNuSLyf3PH7n/M/33YOAtEdlYygrYJE2ILBGg3rb6CBtueqeIa1hNR63h6lHKyML1DaGtKNHffUYKPxMTwCUrjm94xPT3zsd/+XMhLOmGNHChsTsB6WZUZpBaVnWOv7qG1tR4y2s6CG5ph267S+dulkCOt2Qns63BnOdD/JvrR6h55tMv81q7GuEVem+9Z4luLvmzz2zoYJ/1mwDviiscv0xvd8Fm2hGMBl8HRTmkNpU4fBO6iygNkOPaUnjLJtZFK/Cy8b5XMf97DXIWwoFjB4ExPiKUUGvJgdCaaRLZrqbt3GtO6jyaIjroLKuUw4g7AMjgewQ5E3ee2lkLj8Mx6cXfUYaVBYEKu/iSAMd4vpCKbblF+hQ6v0B6bS071/FddC4GdK1QZiAGjePTL5vu9k96Ltxld4gLPjCDIUNI9wretK3mupd3+oLcwZcqfbWk3OKNmzmunrYXn2w53T6RM1Hd0iL45oXtONMFGOiGSHo9+rP1ZHWN6aA71kTDJCn7jQRQI1Br8dwrvSzA7GyzzlXShK1xXtGSw79/kMNoxt/nC6G9fSbebtyCzKoSy3NnzbvLcxZ6hoCjRc0zkvHdhbtSpYdeLYjnduRHi8VsFoFLEd5OfSOMzgqDD/oHhEJOJvi0dcnmqpOdiRwUKCme0Gn7lec6vhme+e77E4RV57Jac/c2prJbcpgX+Bvma5qAL0X149uN1P81LhELqqvIs6U1/BSkLS+dJA8PUm00I0VbYWJUiGnUZTUsCOpWvjM90J2bdrm4beKoZfGh6MbP8u3PbclPgmdr2j++Ni37BRkqa8DrZdRe8KUU/HaK9VprAvCpK+eT8CSpCfVC+Ll+S9uEPhfdiC3pJWXvJkVj86eOX/07SOsOOT5qQv6cB5m0LrI/fsu8mOrhOyLgsTLGWxcvDQ9QZGXFUkLw/PthpzMbehJlJ2bweM//QQL+eo6cVXrShMY/L8ePyFJjekS8+RZnKi47QKWoagA74vfBsLWOSUtkg/L3tm7u6xoX2VJybJsEM+FKTf0TSxcJrvFKTJRokzM68riysXcZn5M4MvvoH8iYljE9D4ajAHcj7QGP1DOkMrsaawdllQO1n7R+UHhFWFc2/bYduFTv/Bjhg4fZDRjj3Mm7ZjHLxa3Dz8iI6Ttntww264MSmV35ZrpH5uGDx8yFr/qrzy7jjEMR3P+H9ZUdabAWASsAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
-  &gt;&lt;/span&gt;
-  &lt;img
-        class=&quot;gatsby-resp-image-image&quot;
-        alt=&quot;interviews-101&quot;
-        title=&quot;interviews-101&quot;
-        src=&quot;/static/0fae52fa342ab43db16abcd3358822af/fcda8/interviews101.png&quot;
-        srcset=&quot;/static/0fae52fa342ab43db16abcd3358822af/12f09/interviews101.png 148w,
-/static/0fae52fa342ab43db16abcd3358822af/e4a3f/interviews101.png 295w,
-/static/0fae52fa342ab43db16abcd3358822af/fcda8/interviews101.png 590w,
-/static/0fae52fa342ab43db16abcd3358822af/efc66/interviews101.png 885w&quot;
-        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
-        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
-        loading=&quot;lazy&quot;
-      /&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;Interviews can be daunting and nerve wrecking! but after attending these two events, I realised that there’s some common questions asked by many employers with a range of questions, so here’s a few of them (with my answers for some of them).&lt;/p&gt;
-&lt;h3&gt;Common Questions&lt;/h3&gt;
-&lt;p&gt;Here’s the top 5 commonly asked questions during an interview or a speed interview.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;So can tell me a bit about yourself?&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Well…this is not a question but it is how most interviews start and this gives the interviewer a chance to know you better and ask some follow up questions.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;My answer:&lt;/em&gt; I just use my elevator pitch for this question. It goes with the following syntax: Hi, I am -name- studying -degree and university-. I also do -extracurricular activities, interesting projects and fun stuff- and I recently started my own blog.&lt;/p&gt;
-&lt;ol start=&quot;2&quot;&gt;
-&lt;li&gt;Why do you want to work for us?&lt;/li&gt;
-&lt;li&gt;What are some things/extracurricular activities you have done outside of university?&lt;/li&gt;
-&lt;li&gt;What will you bring to this role/to our company? Also framed as:&lt;/li&gt;
-&lt;li&gt;As you know, this is a very competitive role. What are some things that make you an ideal candidate for this role (and what will you bring to this company)?&lt;/li&gt;
-&lt;li&gt;What is your weakness? / Can you tell me a weakness of yours?&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3&gt;Technical Questions&lt;/h3&gt;
-&lt;p&gt;Here are some questions based on Computer Science, Software Development and Artificial Intelligence…&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Can you tell me your favourite/most written programming language?&lt;/li&gt;
-&lt;li&gt;What is Machine Learning? followed by 2.1 What algorithms have you used for machine learning?&lt;/li&gt;
-&lt;li&gt;Can you explain some characteristics of OOP (Object Oriented Programming)?&lt;/li&gt;
-&lt;li&gt;Can you take me through some of the technologies you used in some projects of yours?&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3&gt;Some fun and interesting questions&lt;/h3&gt;
-&lt;p&gt;Here are some questions I really enjoyed answering and thinking about.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Talking about project -&gt; follow up: What do you regret about this project?&lt;/li&gt;
-&lt;li&gt;If you were a dinosaur, which one would you be and why?&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;And that’s all for now. Thanks for the read, feel free to reach out to me, and hope this helps you in the future.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Hello there]]></title><description><![CDATA[Welcome to Hitarth Asrani’s, blog on being a (student) developer and taking a twist on Rubbber Duck Debugging. Before we kick off, here’s my…]]></description><link>https://www.hitarthasrani.com/hello-world/</link><guid isPermaLink="false">https://www.hitarthasrani.com/hello-world/</guid><pubDate>Wed, 04 Sep 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Welcome to Hitarth Asrani’s, blog on being a (student) developer and taking a twist on &lt;a href=&quot;https://en.wikipedia.org/wiki/Rubber_duck_debugging&quot;&gt;Rubbber Duck Debugging&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Before we kick off, here’s my motto :&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Challenge yourself!&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Hitarth Asrani, 2019.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Always remember this while reading the blogs.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;First off, introductions.&lt;/strong&gt; Hello there, I’m rubberduck! A second year Comp Sci student in New Zealand. Nice to meet you, &amp;#x3C;&lt;em&gt;your-name-here&lt;/em&gt;&gt; and welcome to my blog.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://media.giphy.com/media/djRJNZqj508sE/giphy.gif&quot; alt=&quot;Hello There&quot;&gt;&lt;/p&gt;
-&lt;p&gt;In these blogs I talk about my experience with technologies, mostly self learnt. Both academic studies and the industry teach me something valuable but the best way for anyone working in technology to learn something is to learn everything by themselves! This took me out to the internet to learn a lot more about software and on the blog I’ll reproduce some of my learnings for anyone and everyone out there to read.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif&quot; alt=&quot;Tech Cat&quot;&gt;&lt;/p&gt;
-&lt;p&gt;The aim of everything I do right now is to &lt;strong&gt;challenge myself to become better than I was a day ago and constantly keep improving&lt;/strong&gt;. That being said, please take everything I say with a grain of salt as there’s a lot I have to learn as a young padawan in this industry.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://media.giphy.com/media/26DN48mfu3uWJ3J7y/giphy.gif&quot; alt=&quot;Young Padawan&quot;&gt;&lt;/p&gt;
-&lt;p&gt;And with that, I’ll end this first blog. Thank you for reading and see you in the next blog.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;Note: All GIFs are from &lt;a href=&quot;https://giphy.com&quot;&gt;Giphy&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;</content:encoded></item></channel></rss>
+&lt;p&gt;Big thanks to Martin Caarels, you can check out his blog &lt;a href=&quot;https://blog.caarels.com&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;</content:encoded></item></channel></rss>
