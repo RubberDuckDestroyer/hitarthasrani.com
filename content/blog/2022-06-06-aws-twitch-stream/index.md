@@ -1,11 +1,9 @@
 ---
-title: "AWS Twitch Stream"
+title: "[VIDEO] Using AWS Migration Hub"
 date: "2022-06-06"
-description: "AWS Twitch Stream"
-videoSrcURL: "https://s3.ap-southeast-2.amazonaws.com/hitarthasrani.com/static/dfa733af-d7abd669.mp4"
-videoTitle: "Test"
+description: "From The Field (AWS Twitch Stream)"
+videoSrcURL: "https://www.youtube.com/embed/GM2kLYc8-Bw"
+videoTitle: "Using AWS Migration Hub (From The Field, twitch.tv/aws)"
 ---
 
-# Test Video
-
-This is a test
+YouTube Link: [https://youtu.be/GM2kLYc8-Bw](https://youtu.be/GM2kLYc8-Bw)
