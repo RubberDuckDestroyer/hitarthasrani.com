@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Hitarth Asrani]]></title><description><![CDATA[A blog ranting the cloud life.]]></description><link>https://www.hitarthasrani.com</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 22 Mar 2023 10:38:20 GMT</lastBuildDate><item><title><![CDATA[Amazon Linux 2023 just dropped]]></title><description><![CDATA[If you’re running workloads on the cloud, chances are you’re machines are running linux. RedHat, Fedora, Ubuntu, etc. There’s many flavours…]]></description><link>https://www.hitarthasrani.com/2023-03-21-amazon-linux-3/</link><guid isPermaLink="false">https://www.hitarthasrani.com/2023-03-21-amazon-linux-3/</guid><pubDate>Tue, 21 Mar 2023 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;If you’re running workloads on the cloud, chances are you’re machines are running linux. RedHat, Fedora, Ubuntu, etc. There’s many flavours to choose from, but then again if you’re on AWS you’re probably familiar with Amazon Linux (AL). As part of their release schedule, AWS releases a new major version every 2 years and Amazon Linux 2023 (AL2023) just dropped in General availability on the 15th of March 2023.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Hitarth Asrani]]></title><description><![CDATA[A blog ranting the cloud life.]]></description><link>https://www.hitarthasrani.com</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 22 Mar 2023 11:30:57 GMT</lastBuildDate><item><title><![CDATA[Amazon Linux 2023 just dropped]]></title><description><![CDATA[If you’re running workloads on the cloud, chances are you’re machines are running linux. RedHat, Fedora, Ubuntu, etc. There’s many flavours…]]></description><link>https://www.hitarthasrani.com/2023-03-21-amazon-linux-3/</link><guid isPermaLink="false">https://www.hitarthasrani.com/2023-03-21-amazon-linux-3/</guid><pubDate>Tue, 21 Mar 2023 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;If you’re running workloads on the cloud, chances are you’re machines are running linux. RedHat, Fedora, Ubuntu, etc. There’s many flavours to choose from, but then again if you’re on AWS you’re probably familiar with Amazon Linux (AL). As part of their release schedule, AWS releases a new major version every 2 years and Amazon Linux 2023 (AL2023) just dropped in General availability on the 15th of March 2023.&lt;/p&gt;
 &lt;p&gt;Amazon Linux is AWS’s rpm based linux distro for general purpose workloads and integrates with AWS services. It is designed for scale and LTS. From AL2023 onwards, AWS will release a new version of Amazon Linux every 2 years.&lt;/p&gt;
 &lt;h2&gt;The Benefits&lt;/h2&gt;
 &lt;ul&gt;
@@ -98,20 +98,113 @@
 &lt;p&gt;You can also set additonal settings for MACsec support, existing LAGs and Tagging for this AWS resource.&lt;/p&gt;
 &lt;p&gt;Reach out to me, AWS or an AWS partner if you want to understand the costs associated with AWS Direct Connect, whether it is the right solution for you or if you want to set up a Hybrid cloud environment for your enterprise.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Moving 75,000 files in S3]]></title><description><![CDATA[In my opinion, AWS S3 is by far the most popular and widely used services. I dare say it is the most versatile AWS service. There’s so much…]]></description><link>https://www.hitarthasrani.com/2023-03-06-bulk-s3-bucket-transfer/</link><guid isPermaLink="false">https://www.hitarthasrani.com/2023-03-06-bulk-s3-bucket-transfer/</guid><pubDate>Mon, 06 Mar 2023 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;In my opinion, AWS S3 is by far the most popular and widely used services. I dare say it is the most versatile AWS service. There’s so much you can do - general object storage, use it for static file hosting/ content delivery, use it as a service for backups, store and query your log data with SQL using Athena or archive all your data using S3 Glacier and S3 Glacier deep archive. Naturally, a lot of companies want to make the most out of cloud storage  and decrease the cost spent on storing IT information on premisis. There’s a lot of data in the world, just look at Facebook…errr…Meta (or any other tech company?) and the concerns governments have about data privacy.&lt;/p&gt;
 &lt;h2&gt;The Situation?&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;TLDR: my bucket has a lot of files and more files are uploaded every hour. How do I move anything (that was not uploaded today) to another folder in the same bucket&lt;/strong&gt;
+&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/63a626e7ed037c8eb78569654467f2ec/29c1d/s3-tldr.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 52.70270270270271%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAAsTAAALEwEAmpwYAAABb0lEQVQoz62SW0/CQBCF+/9/gm+aoNGoiQ+++R+MIrSACnKnpaX3eznuGSlpjby5yWSW7szZbw6r4bD2+z1OreNZo+ZUvdY8zIsKjptiPPXw2rfQ1bd4H7uIkwJhlCOKCwRhDtdLj6K/hVuCaVoizUoMP3bo3Bm4VPH4NEZvYOPlzcJz15Sw7Pgkpda8hRQs/pi4uHkY4up+gPNrHWcXXXRuDaE1Rg4Wq6BF2NRoEdpOIuNQmKM5u0QEpnNfjZsjzysUyhZzGyNTkzR7j4LVYcPm1SbEch1ivgx+siL5VLQT5SmpZotA5VDy2oykh6tqUAohTV9tImwV4Uj5R6q+8q1n2OKnPnTER37jma5iY0XSw2laHtZiHJVj8mZSkJCZ1KTjb+5J/TXzxR7Pz+Rb/QqEkDfxgx9kIlg/Dxazkf7RgjpYQz+ZgzCT+kT1E4TPTuNNFKuDQsw7RWxasfwBvJTBPc+9P+ppV1kePPzP9Q1GkUzHInn/3gAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;what a situation&quot;
+        title=&quot;what a situation&quot;
+        src=&quot;/static/63a626e7ed037c8eb78569654467f2ec/fcda8/s3-tldr.png&quot;
+        srcset=&quot;/static/63a626e7ed037c8eb78569654467f2ec/12f09/s3-tldr.png 148w,
+/static/63a626e7ed037c8eb78569654467f2ec/e4a3f/s3-tldr.png 295w,
+/static/63a626e7ed037c8eb78569654467f2ec/fcda8/s3-tldr.png 590w,
+/static/63a626e7ed037c8eb78569654467f2ec/efc66/s3-tldr.png 885w,
+/static/63a626e7ed037c8eb78569654467f2ec/c83ae/s3-tldr.png 1180w,
+/static/63a626e7ed037c8eb78569654467f2ec/29c1d/s3-tldr.png 1375w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Let’s say you are utilising S3 buckets to store files…lots of files…not “I am big tech” kind of files, rather medium to large enterprise kind of files. What kind of files you ask? Maybe text files, json files or anything else. Each file is somewhere between a few hundred KBs to a couple of MBs  But give me a number of files…ok we got around 75,000 files.&lt;/li&gt;
-&lt;li&gt;Now you also want to move &lt;em&gt;some&lt;/em&gt; (74,500) files from one folder (ie. ‘folder1’) to a new folder (ie. ‘folder1_old’) based on when they were uploaded. SO THAT YOU CAN CLEAN UP THIS FOLDER AND HAVE ONLY FILES UPLOADED FROM TODAY. This is easy with the S3 console when you have a few files (say less than a 1000) but the option goes away once you cross the 999+ files mark. Check the images below for an example.
-&lt;img src=&quot;&quot; alt=&quot;&amp;#x27;sorting less than 999 files&amp;#x27;&quot;&gt;&lt;/li&gt;
+&lt;li&gt;Now you also want to move &lt;em&gt;some&lt;/em&gt; (74,500) files from one folder (ie. ‘folder1’) to a new folder (ie. ‘folder1_old’) based on when they were uploaded. So that you can clean up this folder, keeping only the files uploaded today. This is easy with the S3 console when you have a few files (say less than a 1000) but the option goes away once you cross the 999+ files mark. Check the images below for an example.
+&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/efda9b1da41fe1fcb1ce5103318810f1/78363/s3-objects-lessthan1000.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 14.18918918918919%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAADCAYAAACTWi8uAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAlklEQVQI1z1OwQ0CMQy7/YdhEwbgD9IhRC9t2iZpQSapTjwsK5Zje9v3J2prqPVE6yhNHfLXmatzRXFmSuDXA5Xz6RWoGUZgDGwHZeTCaL2vgGDyOx0E9pDeBQcRSil4E4PvN9TrBZJ26JhQNZiNFda8YHun5E8d5oKdLSJ9LVJVzDkXNy8TEVAusM8Xw/Xwx2/oURqDforz50ob0og2AAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;&amp;#39;sorting less than 999 files&amp;#39;&quot;
+        title=&quot;&amp;#39;sorting less than 999 files&amp;#39;&quot;
+        src=&quot;/static/efda9b1da41fe1fcb1ce5103318810f1/fcda8/s3-objects-lessthan1000.png&quot;
+        srcset=&quot;/static/efda9b1da41fe1fcb1ce5103318810f1/12f09/s3-objects-lessthan1000.png 148w,
+/static/efda9b1da41fe1fcb1ce5103318810f1/e4a3f/s3-objects-lessthan1000.png 295w,
+/static/efda9b1da41fe1fcb1ce5103318810f1/fcda8/s3-objects-lessthan1000.png 590w,
+/static/efda9b1da41fe1fcb1ce5103318810f1/efc66/s3-objects-lessthan1000.png 885w,
+/static/efda9b1da41fe1fcb1ce5103318810f1/c83ae/s3-objects-lessthan1000.png 1180w,
+/static/efda9b1da41fe1fcb1ce5103318810f1/78363/s3-objects-lessthan1000.png 1522w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&quot;&quot; alt=&quot;&amp;#x27;sorting more than 999 files&amp;#x27;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/114b04c02e888e5d2629b123776578e3/087e3/s3-objects-1000.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 18.91891891891892%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAECAYAAACOXx+WAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAuUlEQVQY0z2OaxLCIAyEe//7eA3HE/jDx6ilUMoz0DrrgtUf3yzZJBuGu/a4To4suGmH2/SleRe14OUydFoxRdI0vcnGuv5RgbCvfMbwGhV8iCTsmrAQt3shxt0nnrU18M7ST/AxI2aBSIGUgpQZqM3cB/sy6UEc9PEbaK2F1gazXaDVCH86IJyPkLr1gBZWa0VhYOTOYOYZmVd+ZtPMwUZbeDyecM5hXdfeq5KppfeLSFfDTwnfLfAD2X4zalfn4UAAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;&amp;#39;sorting more than 999 files&amp;#39;&quot;
+        title=&quot;&amp;#39;sorting more than 999 files&amp;#39;&quot;
+        src=&quot;/static/114b04c02e888e5d2629b123776578e3/fcda8/s3-objects-1000.png&quot;
+        srcset=&quot;/static/114b04c02e888e5d2629b123776578e3/12f09/s3-objects-1000.png 148w,
+/static/114b04c02e888e5d2629b123776578e3/e4a3f/s3-objects-1000.png 295w,
+/static/114b04c02e888e5d2629b123776578e3/fcda8/s3-objects-1000.png 590w,
+/static/114b04c02e888e5d2629b123776578e3/efc66/s3-objects-1000.png 885w,
+/static/114b04c02e888e5d2629b123776578e3/c83ae/s3-objects-1000.png 1180w,
+/static/114b04c02e888e5d2629b123776578e3/087e3/s3-objects-1000.png 1575w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;For convenience sake, you have some prefixes you can use to filter some files, &lt;em&gt;sometimes&lt;/em&gt; but there’s also &lt;em&gt;20 or more different prefixes&lt;/em&gt; because why not. Why? because you, my dear reader, &lt;strong&gt;also&lt;/strong&gt; have to transfer some files to another folder every couple of hours based on the prefixes. These files get processed and moved using s3 events. &lt;em&gt;Note that this automation using s3 events and lambda is also in place but inactive until tomorrow or when you start it&lt;/em&gt;. You decide to do this manually because you didnt know there were 75,000 files.&lt;/li&gt;
 &lt;li&gt;We’re going production coz of course we are. AKA Time pressure and clogged thinking.&lt;/li&gt;
 &lt;li&gt;The cherry on top: every hour you get 80 - 100 files more.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;TLDR, tell me the situation shortly&lt;/strong&gt;
-&lt;img src=&quot;&quot; alt=&quot;what a situation&quot;&gt;&lt;/p&gt;
-&lt;h2&gt;Not to do? Still a viable option but there might be a better way&lt;/h2&gt;
+&lt;h2&gt;A viable solution but there might be a better way&lt;/h2&gt;
 &lt;p&gt;Step 1: Immidiately transfer any files that need to be processed into the “process_me” folder . (If you take more than an hour you will have to do this again)&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Do this manually if needed. VERY HIGHLY DO NOT RECOMMEND THIS APPROACH
@@ -122,7 +215,19 @@ OR&lt;/li&gt;
 &lt;li&gt;Copy the names of all files uploaded today into a text file.&lt;/li&gt;
 &lt;li&gt;Use ChatGPT to write a script that copies files from your bucket’s folder1 to test, using above text file as input for filenames. Make some changes/fixes if needed. End result of script is:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;script here&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;#!/bin/bash
+
+# Set the names of the source and destination buckets
+source_bucket=&quot;your-source-bucket-name&quot;
+destination_bucket=&quot;your-destination-bucket-name&quot;
+
+# Read in the list of filenames from a file called &quot;filenames.txt&quot;
+# The file should have one filename per line
+
+while read filename; do
+  # Use the AWS CLI to move the file from the source bucket to the destination bucket
+  aws s3 mv &quot;s3://${source_bucket}/${filename}&quot; &quot;s3://${destination_bucket}/${filename}&quot;
+done &amp;lt; filenames.txt&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Note: this script can be modified later to do other things&lt;/p&gt;
 &lt;p&gt;Repeat this step if the clock has past the hour, more files have been sent to this folder.&lt;/p&gt;
 &lt;p&gt;Step 2: If this is done before the clock strikes the next hour ^*:&lt;/p&gt;
@@ -133,8 +238,38 @@ When using this script to remove the files, there’s some thing to remember: yo
 &lt;/ul&gt;
 &lt;p&gt;Step 3: Enable automation to process files from folder1 now.&lt;/p&gt;
 &lt;h2&gt;Alternatives?&lt;/h2&gt;
-&lt;p&gt;I did not look into using S3 batch operations, but there might be some kind of solution there. But you might also need replication set up prior to that?&lt;/p&gt;
-&lt;p&gt;Some other weird script could also be a potential solution?&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Process Monitoring on Windows EC2 Instances With Procstat]]></title><description><![CDATA[Earlier this week, my client approached me with an interesting problem. They had two EC2 Windows instances that ran the SAP IDM Solution…]]></description><link>https://www.hitarthasrani.com/2022-11-25-aws-windows-procstat-monitoring/</link><guid isPermaLink="false">https://www.hitarthasrani.com/2022-11-25-aws-windows-procstat-monitoring/</guid><pubDate>Fri, 25 Nov 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Earlier this week, my client approached me with an interesting problem. They had two EC2 Windows instances that ran the SAP IDM Solution. One was for the IDM application (Win Server 2022) and one for the SQL database (Win Server 2019 with SQL). Their request: &lt;em&gt;Can we get alerted when the application process or the database process shuts down but the instance will still be running?&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;I did not look into using S3 batch operations while solving the above issue, but there is some kind of solution there which allows you to copy files across buckets/folders in a bucket and allows you to filter files with some options. I might discuss this solution in a future blog.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/c843c7462b1235dfc0bb2a0bcf616a43/c8e86/s3-batch-operations-filter.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 94.5945945945946%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAATCAYAAACQjC21AAAACXBIWXMAAAsTAAALEwEAmpwYAAACOElEQVQ4y61U2Y6bQBDkNzcvXm0Ur5Q4X5vkLT7XwHCDYcxh7EpXG6w9HNmRglSaAeOequpqnL7vUdYdViaDG+Ww1qIsK1SVPcOeUVYV7H5/ea774TfurT3DqeRF3zdougP+x+Xsdjus12t4no/t1tXV82XvukizDN3hgKZtcTwecTqdbsJJyxrzjYfNZoMXKbharbF52YLM93WNum4UtIbX6z+/v9eCrTDI8gJhGCJJUkGCKIrVy1vXVYZlWcJ1PZHooSh2ymZsAs1ng85MBU1zXuWdkeEHDxfLJR4ePmHy+Iinp8+YPj9jNvuOr99m+DKdYjKZ4MfPX+KlpEG7vteudl2n/r6HQyaLxRLzxQKu54FNsrZSD4uiQC4Y/bslVyVTVhhG0lmjzaBsFmKm7ilw1cMgCLUJ9GcvcoimGX06/VsOydBIQUqn6cwcwb1OAA/Qg2rd68TYYUqGSdpJ4/ic7zhkxphQNpmOiONYYxQEgRwYwDcGmQS9l4BfIN72/bj2Gn6HJxjJIEPNyWiFXSGNMSZEKAfNlysEsibyW5rnwqZEmmZ62FXJlEaqjANp98OI8bSmaVXSmLvXE/L3YEsRzi4lUXYURXrPfZKmGiXfBDrbuUzUQfLI5rFpV0ePBofi11Y+CrEUOEg4ySqKE5X6WyQbOSQXGwgSYFYZrbHgG8nsoH7fhm8bPRyDzJUHkNXds8xilMhgByLTlT2bMvqoq+BNdwccr0AZMneaNeJVFtmUC9r78Ad+rrcXONcj1wAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;s3 batch operations filter&quot;
+        title=&quot;s3 batch operations filter&quot;
+        src=&quot;/static/c843c7462b1235dfc0bb2a0bcf616a43/fcda8/s3-batch-operations-filter.png&quot;
+        srcset=&quot;/static/c843c7462b1235dfc0bb2a0bcf616a43/12f09/s3-batch-operations-filter.png 148w,
+/static/c843c7462b1235dfc0bb2a0bcf616a43/e4a3f/s3-batch-operations-filter.png 295w,
+/static/c843c7462b1235dfc0bb2a0bcf616a43/fcda8/s3-batch-operations-filter.png 590w,
+/static/c843c7462b1235dfc0bb2a0bcf616a43/c8e86/s3-batch-operations-filter.png 758w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Some other weird script could also be a potential solution? Adios for now.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Process Monitoring on Windows EC2 Instances With Procstat]]></title><description><![CDATA[Earlier this week, my client approached me with an interesting problem. They had two EC2 Windows instances that ran the SAP IDM Solution…]]></description><link>https://www.hitarthasrani.com/2022-11-25-aws-windows-procstat-monitoring/</link><guid isPermaLink="false">https://www.hitarthasrani.com/2022-11-25-aws-windows-procstat-monitoring/</guid><pubDate>Fri, 20 Jan 2023 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Earlier this week, my client approached me with an interesting problem. They had two EC2 Windows instances that ran the SAP IDM Solution. One was for the IDM application (Win Server 2022) and one for the SQL database (Win Server 2019 with SQL). Their request: &lt;em&gt;Can we get alerted when the application process or the database process shuts down but the instance will still be running?&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;In simpler terms, monitor this process running on my instance and notify me when this process stops.&lt;/p&gt;
 &lt;p&gt;The architecture of the overall solution looks something like this:&lt;/p&gt;
 &lt;p&gt;&lt;span
