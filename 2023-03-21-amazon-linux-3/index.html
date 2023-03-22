@@ -24,7 +24,7 @@
 <li>Customise cloud-init to configure them dynamically: Create your cloud-init action files in <code class="language-text">/etc/cloud/cloud.cfg.d</code></li>
 <li>Networking configurations generated in: <code class="language-text">/run/systemd/network</code>. You can add custom config files to <code class="language-text">/run/systemd/network</code> and <code class="language-text">/etc/systemd/network</code></li>
 <li>Python 3.9 (System Python) has security support until March 2028</li>
-<li>Amazon rolls their own kernel for Amazon Linux. AL2023 isnt just a tweaked copy of another linux distro.</li>
+<li>AL2023 is based on Fedora, but not any single release - there are components from more than one release of Fedora -  some of which are modified.  Other components more closely resemble the components in CentOS Stream 9 or were developed independently.</li>
 <li><strong>AWS Integration is still a work in progress for some services (CodeDeploy,Inspector as of writing this), check the GitHub pages for known issues</strong></li>
 </ul>
 <p>There’s a lot to take in for this new OS which will most likely be the default OS you use for general purpose workloads on AWS. As with anything else in technology, there will always be bugs. Check the known issues, plan and prepare yourself before committing to any different tech, especially when it comes to Operating Systems.</p>
