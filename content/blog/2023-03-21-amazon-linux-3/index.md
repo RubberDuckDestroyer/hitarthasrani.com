@@ -12,6 +12,7 @@ Amazon Linux is AWS's rpm based linux distro for general purpose workloads and i
 
 * Long Term Support
 * Predictable Release Cycle - plan your upgrades and migrations
+* Versioned repositories for AL2023 = more consistent OS updates.
 * Security Upgrades and Compliance - SELinux is enabled by default on permissive mode (permission denials are logged but not enforced). You can also set security policies at boot time.
 * OS Level Optimisations.
 * Kernal Hardening and Live Patching.
