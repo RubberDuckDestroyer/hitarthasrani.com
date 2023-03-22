@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Hitarth Asrani]]></title><description><![CDATA[A blog ranting the cloud life.]]></description><link>https://www.hitarthasrani.com</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 22 Mar 2023 02:39:31 GMT</lastBuildDate><item><title><![CDATA[Amazon Linux 2023 just dropped]]></title><description><![CDATA[If you’re running workloads on the cloud, chances are you’re machines are running linux. RedHat, Fedora, Ubuntu, etc. There’s many flavours…]]></description><link>https://www.hitarthasrani.com/2023-03-21-amazon-linux-3/</link><guid isPermaLink="false">https://www.hitarthasrani.com/2023-03-21-amazon-linux-3/</guid><pubDate>Tue, 21 Mar 2023 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;If you’re running workloads on the cloud, chances are you’re machines are running linux. RedHat, Fedora, Ubuntu, etc. There’s many flavours to choose from, but then again if you’re on AWS you’re probably familiar with Amazon Linux (AL). As part of their release schedule, AWS releases a new major version every 2 years and Amazon Linux 2023 (AL2023) just dropped in General availability on the 15th of March 2023.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Hitarth Asrani]]></title><description><![CDATA[A blog ranting the cloud life.]]></description><link>https://www.hitarthasrani.com</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 22 Mar 2023 10:38:20 GMT</lastBuildDate><item><title><![CDATA[Amazon Linux 2023 just dropped]]></title><description><![CDATA[If you’re running workloads on the cloud, chances are you’re machines are running linux. RedHat, Fedora, Ubuntu, etc. There’s many flavours…]]></description><link>https://www.hitarthasrani.com/2023-03-21-amazon-linux-3/</link><guid isPermaLink="false">https://www.hitarthasrani.com/2023-03-21-amazon-linux-3/</guid><pubDate>Tue, 21 Mar 2023 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;If you’re running workloads on the cloud, chances are you’re machines are running linux. RedHat, Fedora, Ubuntu, etc. There’s many flavours to choose from, but then again if you’re on AWS you’re probably familiar with Amazon Linux (AL). As part of their release schedule, AWS releases a new major version every 2 years and Amazon Linux 2023 (AL2023) just dropped in General availability on the 15th of March 2023.&lt;/p&gt;
 &lt;p&gt;Amazon Linux is AWS’s rpm based linux distro for general purpose workloads and integrates with AWS services. It is designed for scale and LTS. From AL2023 onwards, AWS will release a new version of Amazon Linux every 2 years.&lt;/p&gt;
 &lt;h2&gt;The Benefits&lt;/h2&gt;
 &lt;ul&gt;
@@ -36,7 +36,105 @@
 &lt;li&gt;Roadmap: &lt;a href=&quot;https://github.com/amazonlinux/amazon-linux-2023/projects/1&quot;&gt;https://github.com/amazonlinux/amazon-linux-2023/projects/1&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Amazon Linux 2023 home page: &lt;a href=&quot;https://aws.amazon.com/linux/amazon-linux-2023/&quot;&gt;https://aws.amazon.com/linux/amazon-linux-2023/&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;AL2023 packages: &lt;a href=&quot;https://docs.aws.amazon.com/linux/al2023/release-notes/all-packages.html&quot;&gt;https://docs.aws.amazon.com/linux/al2023/release-notes/all-packages.html&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Process Monitoring on Windows EC2 Instances With Procstat]]></title><description><![CDATA[Earlier this week, my client approached me with an interesting problem. They had two EC2 Windows instances that ran the SAP IDM Solution…]]></description><link>https://www.hitarthasrani.com/2022-11-25-aws-windows-procstat-monitoring/</link><guid isPermaLink="false">https://www.hitarthasrani.com/2022-11-25-aws-windows-procstat-monitoring/</guid><pubDate>Fri, 25 Nov 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Earlier this week, my client approached me with an interesting problem. They had two EC2 Windows instances that ran the SAP IDM Solution. One was for the IDM application (Win Server 2022) and one for the SQL database (Win Server 2019 with SQL). Their request: &lt;em&gt;Can we get alerted when the application process or the database process shuts down but the instance will still be running?&lt;/em&gt;&lt;/p&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Using the New AWS Auckland Location in AWS Direct Connect]]></title><description><![CDATA[On the 10th of March, AWS announced a new AWS Direct Connect location in Auckland. This is part of the new AWS Region planned for Auckland…]]></description><link>https://www.hitarthasrani.com/2023-03-13-aws-direct-connect-auckland/</link><guid isPermaLink="false">https://www.hitarthasrani.com/2023-03-13-aws-direct-connect-auckland/</guid><pubDate>Mon, 13 Mar 2023 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;On the 10th of March, AWS announced a new AWS Direct Connect location in Auckland. This is part of the new AWS Region planned for Auckland.&lt;/p&gt;
+&lt;h2&gt;AWS Direct Connect?&lt;/h2&gt;
+&lt;p&gt;AWS Direct Connect is AWS’s service to create a dedicated network connection to AWS. Any company that wants to connect their exisitng on-premisis solutions or network to AWS should have a way to connect their resoruces to AWS, especially if they do not want to use the public internet for this.&lt;/p&gt;
+&lt;p&gt;The benefits this brings are mainly around security, reliability (with regards to latency), scalability (w.r.t. data transfers and real time data analysis)&lt;/p&gt;
+&lt;p&gt;Setting up Hybrid connectivity can be an integral part of any enterprise’s cloud journey. I can think of the following scenarios where this new Direct Connect location can be helpful:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Any kiwi business looking at migrating to AWS; and specifically wanting to utilise the upcoming Auckland Region instead of the existing Sydney (ap-southeast-2) region.&lt;/li&gt;
+&lt;li&gt;Any kiwi business that already uses AWS and has set up Direct Connect using one of the Sydney locations and wants to set up their network for High Resiliency, utilising multiple locations.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;What you should know about AWS Direct Connect&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Direct connect offers two types of connections -&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Hosted Connection: A connection provisioned by an AWS Direct Connect Partner on behalf of a customer. (Bandwidth options - 50 Mbps, 100 Mbps, 200 Mbps, 300 Mbps, 400 Mbps, 500 Mbps, 1 Gbps, 2 Gbps, 5 Gbps, and 10 Gbps.)&lt;/li&gt;
+&lt;li&gt;Dedicated Connection: A connection associated with once customer (Bandwidth options: 1Gbps, 10Gbps and 100 Gbps)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;Direct Connect uses BGP (Border Gateway Protocol) to connect to your on-prem location. You will need to configure this when you set up a virtual interface or VIF for your connection.&lt;/li&gt;
+&lt;li&gt;To encrypt your traffic, you can use MAC Security or MACsec which is available on dedicated connections.&lt;/li&gt;
+&lt;li&gt;Direct Connect works with Direct Connect Gateways and Transit VIFs to connect to your AWS Transit Gateway and VPCs in the same region to your on premisis network.&lt;/li&gt;
+&lt;li&gt;Also look at Private VIFs, Public VIFs and LAGs (Link Aggregation Groups)&lt;/li&gt;
+&lt;li&gt;The Auckland location offers dedicated 1 Gbps and 10 Gbps connections, with MACsec encryption available for 10 Gbps.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Using the Auckland Location&lt;/h2&gt;
+&lt;p&gt;If you use a Hub and Spoke networking model, create your AWS Direct Connect connection in your “Hub” or “Shared Services” account. Ideally, this will also be the account where your Transit Gateway lives.&lt;/p&gt;
+&lt;p&gt;In the AWS Console, search for &lt;code class=&quot;language-text&quot;&gt;Direct Connect&lt;/code&gt; then click on &lt;code class=&quot;language-text&quot;&gt;Create a Connection&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Once here, you can enter a connection name, your location (&lt;strong&gt;IMPORTANT This needs to be set to &lt;code class=&quot;language-text&quot;&gt;Datacom DH6, Auckland&lt;/code&gt;&lt;/strong&gt;), your connection speed and your on prem service provider. Refer to the picture below for an example.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/91589775e52f83948608de10f70f0b90/65d79/direct-connect-connection.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 102.02702702702702%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAAsTAAALEwEAmpwYAAACaUlEQVQ4y32U63KbMBCF8/6P1h9t4/E0SSc24MQYDIiLEBLicrorcExsU2Y+JBAcrc6u9OT5AX49b/Dy+ortdovnzQZ730eaZTgnqSNJqZ1JHNncz9xzXhSopERZVXg6fHyS2F+8vXv48x4QPrzggJ3nk3CAvRdM7aLP4978jr87RTFkXU+CrM7RZHmBJK8QixK1Umh0g6a5ohbtbZ+/ZzEnyDefZ/U8HAKacbfD6RSh6zpYax1dZ9ETnV3na8msngkBQSTklzYGfI3jiGEYHG03QBN2BOwAtP04Mcz0w1XQtK0L2Z994STwAL/j6Egaseqw8SLswhRhqRHLFhFxqowjNwvBRmv6sSOBpR9y9tGg5eUYi7TWiHKJc6lcP5UTCVHq9irIN5eUTLi2LEsYWramiXiyS1IM9Vt6b4x2/SWaxqtqIfh5PFIiTgjDkxNm3zgpS+yCR2NfEUrqZBSZJS9bxrQuupFEKTP3YIKTNrrnKYHXJZN3Xhjh40zJIM9ypSGIgnwpbyEveUy19kvoTjCTCj93n/jxssfvY4G3VCOsLY7yHn4fFBpZ064LSorQP0aOV+8DkaigqcZq20PdQeWhLTRVxaqgovJIk4SyVLmKZy95Z4zjxcPvLXu7FLoTzGWD/SFESqcGZ8tQUpjJ9FkL37mIPBTkrcalwhE+ui4/3rKelEohCGPEcQxBJ04mcne+MSLP0fX99NPKRPdJoVtERX2kc1HSLmnoXFOE5q1HbaNqGNoJY99NkC2uRleTIlLI5IwqS6FyAVvLhwyNwkBnZF8Vrl0V1BRBXwia2eJ/121ibj29CP4DqiEIV7P7TNgAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;direct-connect-create-wizard&quot;
+        title=&quot;direct-connect-create-wizard&quot;
+        src=&quot;/static/91589775e52f83948608de10f70f0b90/fcda8/direct-connect-connection.png&quot;
+        srcset=&quot;/static/91589775e52f83948608de10f70f0b90/12f09/direct-connect-connection.png 148w,
+/static/91589775e52f83948608de10f70f0b90/e4a3f/direct-connect-connection.png 295w,
+/static/91589775e52f83948608de10f70f0b90/fcda8/direct-connect-connection.png 590w,
+/static/91589775e52f83948608de10f70f0b90/efc66/direct-connect-connection.png 885w,
+/static/91589775e52f83948608de10f70f0b90/65d79/direct-connect-connection.png 905w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;You can also set additonal settings for MACsec support, existing LAGs and Tagging for this AWS resource.&lt;/p&gt;
+&lt;p&gt;Reach out to me, AWS or an AWS partner if you want to understand the costs associated with AWS Direct Connect, whether it is the right solution for you or if you want to set up a Hybrid cloud environment for your enterprise.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Moving 75,000 files in S3]]></title><description><![CDATA[In my opinion, AWS S3 is by far the most popular and widely used services. I dare say it is the most versatile AWS service. There’s so much…]]></description><link>https://www.hitarthasrani.com/2023-03-06-bulk-s3-bucket-transfer/</link><guid isPermaLink="false">https://www.hitarthasrani.com/2023-03-06-bulk-s3-bucket-transfer/</guid><pubDate>Mon, 06 Mar 2023 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;In my opinion, AWS S3 is by far the most popular and widely used services. I dare say it is the most versatile AWS service. There’s so much you can do - general object storage, use it for static file hosting/ content delivery, use it as a service for backups, store and query your log data with SQL using Athena or archive all your data using S3 Glacier and S3 Glacier deep archive. Naturally, a lot of companies want to make the most out of cloud storage  and decrease the cost spent on storing IT information on premisis. There’s a lot of data in the world, just look at Facebook…errr…Meta (or any other tech company?) and the concerns governments have about data privacy.&lt;/p&gt;
+&lt;h2&gt;The Situation?&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Let’s say you are utilising S3 buckets to store files…lots of files…not “I am big tech” kind of files, rather medium to large enterprise kind of files. What kind of files you ask? Maybe text files, json files or anything else. Each file is somewhere between a few hundred KBs to a couple of MBs  But give me a number of files…ok we got around 75,000 files.&lt;/li&gt;
+&lt;li&gt;Now you also want to move &lt;em&gt;some&lt;/em&gt; (74,500) files from one folder (ie. ‘folder1’) to a new folder (ie. ‘folder1_old’) based on when they were uploaded. SO THAT YOU CAN CLEAN UP THIS FOLDER AND HAVE ONLY FILES UPLOADED FROM TODAY. This is easy with the S3 console when you have a few files (say less than a 1000) but the option goes away once you cross the 999+ files mark. Check the images below for an example.
+&lt;img src=&quot;&quot; alt=&quot;&amp;#x27;sorting less than 999 files&amp;#x27;&quot;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&quot;&quot; alt=&quot;&amp;#x27;sorting more than 999 files&amp;#x27;&quot;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;For convenience sake, you have some prefixes you can use to filter some files, &lt;em&gt;sometimes&lt;/em&gt; but there’s also &lt;em&gt;20 or more different prefixes&lt;/em&gt; because why not. Why? because you, my dear reader, &lt;strong&gt;also&lt;/strong&gt; have to transfer some files to another folder every couple of hours based on the prefixes. These files get processed and moved using s3 events. &lt;em&gt;Note that this automation using s3 events and lambda is also in place but inactive until tomorrow or when you start it&lt;/em&gt;. You decide to do this manually because you didnt know there were 75,000 files.&lt;/li&gt;
+&lt;li&gt;We’re going production coz of course we are. AKA Time pressure and clogged thinking.&lt;/li&gt;
+&lt;li&gt;The cherry on top: every hour you get 80 - 100 files more.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;TLDR, tell me the situation shortly&lt;/strong&gt;
+&lt;img src=&quot;&quot; alt=&quot;what a situation&quot;&gt;&lt;/p&gt;
+&lt;h2&gt;Not to do? Still a viable option but there might be a better way&lt;/h2&gt;
+&lt;p&gt;Step 1: Immidiately transfer any files that need to be processed into the “process_me” folder . (If you take more than an hour you will have to do this again)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Do this manually if needed. VERY HIGHLY DO NOT RECOMMEND THIS APPROACH
+OR&lt;/li&gt;
+&lt;li&gt;Do an &lt;code class=&quot;language-text&quot;&gt;aws s3 ls --summarize&lt;/code&gt; and save the output as a text file. (The time taken for this depends on the number of objects in that bucket/folder)&lt;/li&gt;
+&lt;li&gt;Import the text file into Excel, using only the columns for “Upload Date” and “object name/file name”&lt;/li&gt;
+&lt;li&gt;Sort the excel sheet using the date to find out what files were uploaded today.&lt;/li&gt;
+&lt;li&gt;Copy the names of all files uploaded today into a text file.&lt;/li&gt;
+&lt;li&gt;Use ChatGPT to write a script that copies files from your bucket’s folder1 to test, using above text file as input for filenames. Make some changes/fixes if needed. End result of script is:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;script here&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Note: this script can be modified later to do other things&lt;/p&gt;
+&lt;p&gt;Repeat this step if the clock has past the hour, more files have been sent to this folder.&lt;/p&gt;
+&lt;p&gt;Step 2: If this is done before the clock strikes the next hour ^*:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;do a &lt;code class=&quot;language-text&quot;&gt;s3 sync &amp;lt;source&gt; &amp;lt;destination&gt;&lt;/code&gt; to copy all missing files/sync all files from “folder” into the “folder1_old” folder.&lt;/li&gt;
+&lt;li&gt;do a &lt;code class=&quot;language-text&quot;&gt;s3 rm bucket/folder --include &quot;*&quot; --exclude &quot;file1.do_not_forget_extension&quot; --exclude &quot;file2.do_not_forget_extension&quot; ..... --exclude &quot;last_file_to_exclude.do_not_forget_extension&quot;&lt;/code&gt; To remove all files that were just copied to folder1_old if all of them were copied successfully.
+When using this script to remove the files, there’s some thing to remember: you need to add the file extension in the exclude option and you need to manually or magically(using another script) add all the files to exclude as exclude options into a command that you run.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Step 3: Enable automation to process files from folder1 now.&lt;/p&gt;
+&lt;h2&gt;Alternatives?&lt;/h2&gt;
+&lt;p&gt;I did not look into using S3 batch operations, but there might be some kind of solution there. But you might also need replication set up prior to that?&lt;/p&gt;
+&lt;p&gt;Some other weird script could also be a potential solution?&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Process Monitoring on Windows EC2 Instances With Procstat]]></title><description><![CDATA[Earlier this week, my client approached me with an interesting problem. They had two EC2 Windows instances that ran the SAP IDM Solution…]]></description><link>https://www.hitarthasrani.com/2022-11-25-aws-windows-procstat-monitoring/</link><guid isPermaLink="false">https://www.hitarthasrani.com/2022-11-25-aws-windows-procstat-monitoring/</guid><pubDate>Fri, 25 Nov 2022 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Earlier this week, my client approached me with an interesting problem. They had two EC2 Windows instances that ran the SAP IDM Solution. One was for the IDM application (Win Server 2022) and one for the SQL database (Win Server 2019 with SQL). Their request: &lt;em&gt;Can we get alerted when the application process or the database process shuts down but the instance will still be running?&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;In simpler terms, monitor this process running on my instance and notify me when this process stops.&lt;/p&gt;
 &lt;p&gt;The architecture of the overall solution looks something like this:&lt;/p&gt;
 &lt;p&gt;&lt;span
