@@ -1,6 +1,6 @@
 ---
 title: "Process Monitoring on Windows EC2 Instances With Procstat"
-date: "2022-11-25"
+date: "2023-01-20"
 description: "Monitoring SAP and SQLs processes on Windows EC2 instances using the procstat plugin and the cloudwatch agent."
 ---
 
