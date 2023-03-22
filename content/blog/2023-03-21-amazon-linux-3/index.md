@@ -31,6 +31,8 @@ Amazon Linux is AWS's rpm based linux distro for general purpose workloads and i
 * Customise cloud-init to configure them dynamically: Create your cloud-init action files in `/etc/cloud/cloud.cfg.d`
 * Networking configurations generated in: `/run/systemd/network`. You can add custom config files to `/run/systemd/network` and `/etc/systemd/network`
 * Python 3.9 (System Python) has security support until March 2028
+* Amazon rolls their own kernel for Amazon Linux. AL2023 isnt just a tweaked copy of another linux distro.
+* **AWS Integration is still a work in progress for some services (CodeDeploy,Inspector as of writing this), check the GitHub pages for known issues**
 
 There's a lot to take in for this new OS which will most likely be the default OS you use for general purpose workloads on AWS. As with anything else in technology, there will always be bugs. Check the known issues, plan and prepare yourself before committing to any different tech, especially when it comes to Operating Systems.
 
