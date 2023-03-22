@@ -6,23 +6,22 @@ description: "Amazon Linux 2023 is out. Here's what you should know about it"
 
 If you're running workloads on the cloud, chances are you're machines are running linux. RedHat, Fedora, Ubuntu, etc. There's many flavours to choose from, but then again if you're on AWS you're probably familiar with Amazon Linux (AL). As part of their release schedule, AWS releases a new major version every 2 years and Amazon Linux 2023 (AL2023) just dropped in General availability on the 15th of March 2023.
 
-Amazon Linux is AWS's rpm based linux distro for general purpose workloads and integrates with AWS services. It is designed for scale and LTS.
+Amazon Linux is AWS's rpm based linux distro for general purpose workloads and integrates with AWS services. It is designed for scale and LTS. From AL2023 onwards, AWS will release a new version of Amazon Linux every 2 years.
 
 ## The Benefits
 
-* Long Term Support (major Amazon linux releases every 2 years, and minor releases quarterly with 5 years of LTS)
+* Long Term Support
 * Predictable Release Cycle - plan your upgrades and migrations
 * Security Upgrades and Compliance - SELinux is enabled by default on permissive mode (permission denials are logged but not enforced). You can also set security policies at boot time.
 * OS Level Optimisations.
 * Kernal Hardening and Live Patching.
 * Use AL2023 at no additional cost as part of your EC2 package (Please check EC2 pricing).
 
-## What should I know about AL2023?
+## What should engineers know about AL2023?
 
 * Standard support - 2023 & 2024.
 * Maintenance - 2025 - 2027.
 * Package manager: dnf.
-* Currently running python 3.8, python 3.9 will be available soon.
 * Uses the XFS Filesystem on the root filesystem.
 * Networking interfaces are managed by the `systemd-networkd` system service. Amazon Linux 2 used `dhclient` previously.
 * OpenSSL 3 - The Open Secure Socket Layer v3 (OpenSSL) cryptography toolkit is available. It uses the SSL v2/vv3 and TLS v1 network protocols and the required cryptography standards.
