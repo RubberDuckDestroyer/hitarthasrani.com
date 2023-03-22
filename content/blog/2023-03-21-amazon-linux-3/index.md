@@ -1,5 +1,5 @@
 ---
-title: "Amazon Linux 2023 is out"
+title: "Amazon Linux 2023 just dropped"
 date: "2023-03-21"
 description: "Amazon Linux 2023 is out. Here's what you should know about it"
 ---
