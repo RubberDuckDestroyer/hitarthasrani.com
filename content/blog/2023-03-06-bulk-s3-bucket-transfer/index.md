@@ -4,14 +4,14 @@ date: "2023-03-06"
 description: "To do and not to do when moving a lot of files between S3."
 ---
 
-In my opinion, AWS S3 is by far the most popular and widely used services. I dare say it is the most versatile AWS service. There's so much you can do - general object storage, use it for static file hosting/ content delivery, use it as a service for backups, store and query your log data with SQL using Athena or archive all your data using S3 Glacier and S3 Glacier deep archive. Naturally, a lot of companies want to make the most out of cloud storage  and decrease the cost spent on storing IT information on premisis. There's a lot of data in the world, just look at Facebook...errr...Meta (or any other tech company?) and the concerns governments have about data privacy.
+In my opinion, AWS S3 is by far the most popular and widely used services. I dare say it is the most versatile AWS service. There's so much you can do - general object storage, use it for static file hosting/ content delivery, use it as a service for backups, store and query your log data with SQL using Athena or archive all your data using S3 Glacier and S3 Glacier deep archive. Naturally, a lot of companies want to make the most out of cloud storage  and decrease the cost spent on storing IT information on premises. There's a lot of data in the world, just look at Facebook...errr...Meta (or any other tech company?) and the concerns governments have about data privacy.
 
 ## The Situation?
 
 **TLDR: my bucket has a lot of files and more files are uploaded every hour. How do I move anything (that was not uploaded today) to another folder in the same bucket**
 ![what a situation](s3-tldr.png)
 
-- Let's say you are utilising S3 buckets to store files....lots of files...not "I am big tech" kind of files, rather medium to large enterprise kind of files. What kind of files you ask? Maybe text files, json files or anything else. Each file is somewhere between a few hundred KBs to a couple of MBs  But give me a number of files...ok we got around 75,000 files.
+- Let's say you are utilising S3 buckets to store files....lots of files...not "I am big tech" kind of files, rather medium to large enterprise kind of files. What kind of files you ask? Maybe text files, json files or anything else. Each file is somewhere between a few hundred KBs to a couple of MBs. But you want to know how many files we have? OK, we got around 75,000 files.
 
 - Now you also want to move *some* (74,500) files from one folder (ie. 'folder1') to a new folder (ie. 'folder1_old') based on when they were uploaded. So that you can clean up this folder, keeping only the files uploaded today. This is easy with the S3 console when you have a few files (say less than a 1000) but the option goes away once you cross the 999+ files mark. Check the images below for an example.
 !['sorting less than 999 files'](./s3-objects-lessthan1000.png)
@@ -25,6 +25,10 @@ In my opinion, AWS S3 is by far the most popular and widely used services. I dar
 - The cherry on top: every hour you get 80 - 100 files more.
 
 ## A viable solution but there might be a better way
+
+Step 0: Check your folders.
+
+- Let's say your files are in the "folder1" folder, create a new folder called "folder1_old" to store all the old files you want to move out from "folder1"
 
 Step 1: Immidiately transfer any files that need to be processed into the "process_me" folder . (If you take more than an hour you will have to do this again)
 

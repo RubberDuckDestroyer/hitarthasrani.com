@@ -8,7 +8,7 @@ On the 10th of March, AWS announced a new AWS Direct Connect location in Aucklan
 
 ## AWS Direct Connect?
 
-AWS Direct Connect is AWS's service to create a dedicated network connection to AWS. Any company that wants to connect their exisitng on-premisis solutions or network to AWS should have a way to connect their resoruces to AWS, especially if they do not want to use the public internet for this.
+AWS Direct Connect is AWS's service to create a dedicated network connection to AWS. Any company that wants to connect their exisitng on-premises solutions or network to AWS should have a way to connect their resoruces to AWS, especially if they do not want to use the public internet for this.
 
 The benefits this brings are mainly around security, reliability (with regards to latency), scalability (w.r.t. data transfers and real time data analysis)
 
@@ -25,7 +25,7 @@ Setting up Hybrid connectivity can be an integral part of any enterprise's cloud
 
 * Direct Connect uses BGP (Border Gateway Protocol) to connect to your on-prem location. You will need to configure this when you set up a virtual interface or VIF for your connection.
 * To encrypt your traffic, you can use MAC Security or MACsec which is available on dedicated connections.
-* Direct Connect works with Direct Connect Gateways and Transit VIFs to connect to your AWS Transit Gateway and VPCs in the same region to your on premisis network.
+* Direct Connect works with Direct Connect Gateways and Transit VIFs to connect to your AWS Transit Gateway and VPCs in the same region to your on premises network.
 * Also look at Private VIFs, Public VIFs and LAGs (Link Aggregation Groups)
 * The Auckland location offers dedicated 1 Gbps and 10 Gbps connections, with MACsec encryption available for 10 Gbps.
 
