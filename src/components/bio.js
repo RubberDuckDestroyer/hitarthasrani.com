@@ -55,10 +55,6 @@ const Bio = () => {
       />
       <p>
         Written by <strong>{author}</strong>, a Cloud Engineer based in Auckland.
-        {` `}
-        <a href={`https://twitter.com/${social.twitter}`}>
-          You should follow him on Twitter
-        </a>
       </p>
     </div>
   )
