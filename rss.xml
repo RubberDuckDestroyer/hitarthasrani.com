@@ -1,4 +1,108 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Hitarth Asrani]]></title><description><![CDATA[A blog ranting the cloud life.]]></description><link>https://www.hitarthasrani.com</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 24 Mar 2023 01:14:39 GMT</lastBuildDate><item><title><![CDATA[Amazon Linux 2023 just dropped]]></title><description><![CDATA[If you’re running workloads on the cloud, chances are you’re machines are running linux. RedHat, Fedora, Ubuntu, etc. There’s many flavours…]]></description><link>https://www.hitarthasrani.com/2023-03-21-amazon-linux-3/</link><guid isPermaLink="false">https://www.hitarthasrani.com/2023-03-21-amazon-linux-3/</guid><pubDate>Tue, 21 Mar 2023 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;If you’re running workloads on the cloud, chances are you’re machines are running linux. RedHat, Fedora, Ubuntu, etc. There’s many flavours to choose from, but then again if you’re on AWS you’re probably familiar with Amazon Linux (AL). As part of their release schedule, AWS releases a new major version every 2 years and Amazon Linux 2023 (AL2023) just dropped in General availability on the 15th of March 2023.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Hitarth Asrani]]></title><description><![CDATA[A blog ranting the cloud life.]]></description><link>https://www.hitarthasrani.com</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 14 Jan 2024 21:38:14 GMT</lastBuildDate><item><title><![CDATA[Using ChatOps to streamline operational activites on AWS]]></title><description><![CDATA[Today I’d like to introduce you to ChatOps, the practice of centralising operational activites to chat applications with an interactive…]]></description><link>https://www.hitarthasrani.com/2023-12-01-aws-chatbot/</link><guid isPermaLink="false">https://www.hitarthasrani.com/2023-12-01-aws-chatbot/</guid><pubDate>Fri, 01 Dec 2023 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Today I’d like to introduce you to &lt;em&gt;ChatOps&lt;/em&gt;, the practice of centralising operational activites to chat applications with an interactive ChatBot. In this use case, the Chatbot allows you to get information from your AWS Account and query for information from your aws account.&lt;/p&gt;
+&lt;p&gt;Traditionally, setting this up includes setting up integrations with Slack or Teams and setting up your own chatbot that will respond to commands or alert you about anything you program it to do. This process can be lengthy, technically challenging or costly. Luckily for us, AWS has a solution that makes this super quick (just make sure you have admin access for your chat client or know someone with the right permissions).&lt;/p&gt;
+&lt;p&gt;AWS ChatBot allows us to quickly set up an integration with AWS Chime, Slack or Teams and get a chatbot up and running in no time. Some of the useful things AWS ChatBot can do for you:&lt;/p&gt;
+&lt;h2&gt;Notify&lt;/h2&gt;
+&lt;p&gt;AWS Chatbot can notify you about events happening on your AWS account.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Alert you on findings from SecurityHub, CloudWatch Alarms and anything via SNS.&lt;/li&gt;
+&lt;li&gt;Alert you on Budget alerts&lt;/li&gt;
+&lt;li&gt;Alert you on events from Cloudformation Stacks or AWS Dev tools from CodeBuild, CodePipeline and CodeDeploy.&lt;/li&gt;
+&lt;li&gt;Other services include AWS Config, Amazon GuardDuty, Amazon EventBridge, the AWS Health dashboard.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Command&lt;/h2&gt;
+&lt;p&gt;This allows you to command AWS ChatBot for information or allow ChatBot to trigger AWS Services&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Invoke a lambda function to start a workflow&lt;/li&gt;
+&lt;li&gt;Get diagnostic information from certain AWS Services like EC2, CloudWatch alerts&lt;/li&gt;
+&lt;li&gt;Run ReadOnly or mutative commands supported by AWS CLI in your Chat Application&lt;/li&gt;
+&lt;li&gt;Restart EC2 instances and use AWS Systems Manager to resolve incidents&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Customise&lt;/h2&gt;
+&lt;p&gt;You can customise command aliases which look something like:
+&lt;code class=&quot;language-text&quot;&gt;@aws alias create alias_name mapped_action&lt;/code&gt; - to create an alias for a mapped action;
+&lt;code class=&quot;language-text&quot;&gt;@aws alias list&lt;/code&gt; - to list out aliases created;
+&lt;code class=&quot;language-text&quot;&gt;@aws run alias_name&lt;/code&gt; or &lt;code class=&quot;language-text&quot;&gt;@aws alias run alias_name&lt;/code&gt; - to run a specific alias&lt;/p&gt;
+&lt;p&gt;You can also customise notifications sent by AWS Chatbot using a JSON syntax. Here’s an example&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;{
+&quot;version&quot;: &quot;1.0&quot;,
+&quot;source&quot;: &quot;custom&quot;,
+&quot;id&quot;: &quot;c-weihfjdsf&quot;,
+&quot;content&quot;: {
+    &quot;textType&quot;: &quot;client-markdown&quot;,
+    &quot;title&quot;: &quot;:warning: Banana Order processing is down!&quot;,
+    &quot;description&quot;: &quot;Banana Order processor application is no longer processing orders. OnCall team has beeen paged.&quot;,
+    &quot;nextSteps&quot;: [
+    &quot;Refer to &amp;lt;http://www.example.com|*diagnosis* runbook&gt;&quot;,
+    &quot;@googlie: Page Jane if error persists over 30 minutes&quot;,
+    &quot;Check if instance i-04d231f25c18592ea needs to receive an AMI rehydration&quot;
+    ],
+    &quot;keywords&quot;: [
+    &quot;BananaOrderIntake&quot;,
+    &quot;Critical&quot;,
+    &quot;SRE&quot;
+    ]
+},
+&quot;metadata&quot;: {
+    &quot;threadId&quot;: &quot;OrderProcessing-1&quot;,
+    &quot;summary&quot;: &quot;Order Processing Update&quot;,
+    &quot;eventType&quot;: &quot;BananaOrderAppEvent&quot;,
+    &quot;relatedResources&quot;: [
+    &quot;i-04d231f25c18592ea&quot;,
+    &quot;i-0c8c31affab6078fb&quot;
+    ],
+    &quot;additionalContext&quot;: {
+    &quot;priority&quot;: &quot;critical&quot;
+    }
+}
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Please note that the &lt;code class=&quot;language-text&quot;&gt;metadata&lt;/code&gt; section will be supported in a future release.&lt;/p&gt;
+&lt;h2&gt;Caveats, Security and other stuff people dont think about&lt;/h2&gt;
+&lt;p&gt;Like with any service, there’s some caveats when you use this AWS service. Please keep this in mind when using a service to make sure it works with your use case. Alternatively, design around these caveats when building your chatbot.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Unsupported services&lt;/strong&gt; - The following services are unsupported commands that are not available to use with AWS ChatBot.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;&quot;appsync:ListApiKeys&quot;,
+&quot;chatbot:*&quot;,
+&quot;codecommit:GetFile&quot;,
+&quot;codecommit:GetCommit&quot;,
+&quot;codecommit:GetDifferences&quot;,
+&quot;cognito-idp:*&quot;,
+&quot;cognito-identity:*&quot;,
+&quot;connect:GetFederationToken&quot;,
+&quot;dynamodb:BatchGetItem&quot;,
+&quot;dynamodb:GetItem&quot;,
+&quot;ec2:GetPasswordData&quot;,
+&quot;ecr:GetAuthorizationToken&quot;,
+&quot;ecr:GetLogin&quot;,
+&quot;gamelift:RequestUploadCredentials&quot;,
+&quot;gamelift:GetInstanceAccess&quot;,
+&quot;identitystore:*&quot;,
+&quot;lightsail:DownloadDefaultKeyPair&quot;,
+&quot;lightsail:GetInstanceAccessDetail&quot;,
+&quot;lightsail:GetKeyPair&quot;,
+&quot;lightsail:GetKeyPairs&quot;,
+&quot;lightsail:UpdateRelationalDatabase&quot;,
+&quot;iam:*&quot;,
+&quot;kms:*&quot;,
+&quot;redshift:GetClusterCredentials&quot;,
+&quot;sdb:*&quot;,
+&quot;secretsmanager:*&quot;,
+&quot;sso:*&quot;,
+&quot;sso-admin:*&quot;,
+&quot;sso-oidc:*&quot;,
+&quot;storagegateway:DescribeChapCredentials&quot;,
+&quot;sts:*&quot;,
+&quot;s3:GetObject&quot;,
+&quot;s3:HeadObject&quot;,
+&quot;s3:PutObject&quot;,
+&quot;s3:GetBucketPolicy&quot;,
+&quot;snowball:GetJobUnlockCode&quot;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Teams/Slack/Chime integration&lt;/strong&gt; - This is a quick solution to integrate &lt;em&gt;provided you have the right permissions on AWS and your Chat Application&lt;/em&gt;. If you ar eplannig to set this up for a teams channel in a large organization, please have someone from your Internal IT team or your Teams/Slack channel admin help you out with accepting and setting up AWS Chatbot on the chat client.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Security and Permissions&lt;/strong&gt; - Now, the ability to read and modify your cloud resources from your teams channel is something that can be very powerful but also very damaging in the wrong hands. AWS Provides some predefined permission templates such as “ReadOnly” permissions. AWS also allows you to have GuardRails for users so that they cannot run certain commands. Additionally Audit logs are enabled by default, and log the commands, workspace ID, Channel ID, and the Channel user ID. Lastly, CloudWatch can log all errors or all commands that are run by aws chatbot.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Pricing&lt;/strong&gt; - You pay only for any underlying services used such as SNS, CloudWatch, GuardDuty or SecurityHub.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Others&lt;/strong&gt; -&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;If you have thousands of alerts in a specific region you must make sure you have the correct Disaster Recovery process and channel design to combat the thousands of alerts you may get if a region goes down.&lt;/li&gt;
+&lt;li&gt;Check the SLA’s with AWS as I could not find anything on this and AWS Chatbot in the end is an AWS Managed service. With any integation, all parts must work together to provide a coherent solution.&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Amazon Linux 2023 just dropped]]></title><description><![CDATA[If you’re running workloads on the cloud, chances are you’re machines are running linux. RedHat, Fedora, Ubuntu, etc. There’s many flavours…]]></description><link>https://www.hitarthasrani.com/2023-03-21-amazon-linux-3/</link><guid isPermaLink="false">https://www.hitarthasrani.com/2023-03-21-amazon-linux-3/</guid><pubDate>Tue, 21 Mar 2023 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;If you’re running workloads on the cloud, chances are you’re machines are running linux. RedHat, Fedora, Ubuntu, etc. There’s many flavours to choose from, but then again if you’re on AWS you’re probably familiar with Amazon Linux (AL). As part of their release schedule, AWS releases a new major version every 2 years and Amazon Linux 2023 (AL2023) just dropped in General availability on the 15th of March 2023.&lt;/p&gt;
 &lt;p&gt;Amazon Linux is AWS’s rpm based linux distro for general purpose workloads and integrates with AWS services. It is designed for scale and LTS. From AL2023 onwards, AWS will release a new version of Amazon Linux every 2 years.&lt;/p&gt;
 &lt;h2&gt;The Benefits&lt;/h2&gt;
 &lt;ul&gt;
