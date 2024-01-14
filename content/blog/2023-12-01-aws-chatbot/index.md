@@ -119,7 +119,7 @@ Like with any service, there's some caveats when you use this AWS service. Pleas
 "snowball:GetJobUnlockCode"
 ```
 
-**Teams/Slack/Chime integration** - This is a quick solution to integrate *provided you have the right permissions on AWS and your Chat Application*. If you ar eplannig to set this up for a teams channel in a large organization, please have someone from your Internal IT team or your Teams/Slack channel admin help you out with accepting and setting up AWS Chatbot on the chat client.
+**Teams/Slack/Chime integration** - This is a quick solution to integrate *provided you have the right permissions on AWS and your Chat Application*. If you are planning to set this up for a teams channel in a large organization, please have someone from your Internal IT team or your Teams/Slack channel admin help you out with accepting and setting up AWS Chatbot on the chat client.
 
 **Security and Permissions** - Now, the ability to read and modify your cloud resources from your teams channel is something that can be very powerful but also very damaging in the wrong hands. AWS Provides some predefined permission templates such as "ReadOnly" permissions. AWS also allows you to have GuardRails for users so that they cannot run certain commands. Additionally Audit logs are enabled by default, and log the commands, workspace ID, Channel ID, and the Channel user ID. Lastly, CloudWatch can log all errors or all commands that are run by aws chatbot.
 
