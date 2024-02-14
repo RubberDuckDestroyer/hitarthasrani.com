@@ -1,4 +1,713 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Hitarth Asrani]]></title><description><![CDATA[A blog ranting the cloud life.]]></description><link>https://www.hitarthasrani.com</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 14 Jan 2024 22:10:15 GMT</lastBuildDate><item><title><![CDATA[Using ChatOps to streamline operational activites on AWS]]></title><description><![CDATA[Today I’d like to introduce you to ChatOps, the practice of centralising operational activites to chat applications with an interactive…]]></description><link>https://www.hitarthasrani.com/2023-12-01-aws-chatbot/</link><guid isPermaLink="false">https://www.hitarthasrani.com/2023-12-01-aws-chatbot/</guid><pubDate>Fri, 01 Dec 2023 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Today I’d like to introduce you to &lt;em&gt;ChatOps&lt;/em&gt;, the practice of centralising operational activites to chat applications with an interactive ChatBot. In this use case, the Chatbot allows you to get information from your AWS Account and query for information from your aws account.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Hitarth Asrani]]></title><description><![CDATA[A blog ranting the cloud life.]]></description><link>https://www.hitarthasrani.com</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 14 Feb 2024 11:20:29 GMT</lastBuildDate><item><title><![CDATA[Best practices for Debugging AWS Applications]]></title><description><![CDATA[The other day I was setting up a central patching solution following this AWS Blog: https://aws.amazon.com/blogs/mt/scheduling-centralized…]]></description><link>https://www.hitarthasrani.com/2024-01-25-aws-ssm-debug/</link><guid isPermaLink="false">https://www.hitarthasrani.com/2024-01-25-aws-ssm-debug/</guid><pubDate>Thu, 25 Jan 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;The other day I was setting up a central patching solution following this AWS Blog: &lt;a href=&quot;https://aws.amazon.com/blogs/mt/scheduling-centralized-multi-account-multi-region-patching-aws-systems-manager-automation/&quot;&gt;https://aws.amazon.com/blogs/mt/scheduling-centralized-multi-account-multi-region-patching-aws-systems-manager-automation/&lt;/a&gt;
+I modified the solution according to some requirements that I had and this caused some errors in the solution.&lt;/p&gt;
+&lt;p&gt;When I was testing this solution, I followed steps that I use as a general rule of thumb for debugging. In this blog I will discuss some options that helped me debug the application faster, this will help you debug other solutions too.&lt;/p&gt;
+&lt;p&gt;My holy trinity for debugging applications is the following:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Identify&lt;/li&gt;
+&lt;li&gt;Test and Monitor&lt;/li&gt;
+&lt;li&gt;Read the Docs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Let’s have a look at the solution first and understand what parts can cause potential issues.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/dc752af7082e9ececd86166b0a3c159e/77800/aws-blog-arch.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 53.37837837837838%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAAsTAAALEwEAmpwYAAAB6ElEQVQoz2VS22oUQRDdL/NP/BBR/ARfJa8iiA/i4oM+LUkUNEvQIKgh640srrtz7fvcumeOVZ3M7oAFRfXldNXpUzWDE+jFFsH38F136y26toX3HtFCh8HX6PuBvP/P2YZhiHGmL99BXMyxzjPskgRplkGYCso1UFKiaTt0rkSzPoNzBtbVaOo6FuuoeE3rMRnHmVYGm+dv8ffVe4BYDT5Afz2G+XYCrm2MRt0FuO0V7OkRimSDNM8hhUDTNHCVo0LukNCWEt/v3MPvu4/QECt2N3+Aan4/JrTGEIsGZZbArZa4vlphu0tRlgV22zR6TgXGr8/4QXH8GeLsEjfESbJ8A7/+EffOWlTEwmiHstaYf3hMLK+BKuDLryUW58+glDxoONKdCpvbDGnxBwM1QUoNliXLFWmb4/XyCKVKIu7i5wLnqzekpUcIYZKQu3d74KmjTxcP8YS89QNEIdBJBUksphaCh7U1jG2JvT58eSroaCcfX+D008u4ttbEaPRN7Ic+Yj03r9jBqgKKEu4ZatowgCtwrKoKWlr6pgPfWdKQTSkV70ds4BkkTXudEs7sZ3bGQEON4Shp7th5rbSiTpb7OWOMoFEZMXxXliKOD5/vmzJ+k5nxIwYzM44M5OTTOCblOG3oKNs/rrlHhw1d+MYAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;SolutionArch&quot;
+        title=&quot;SolutionArch&quot;
+        src=&quot;/static/dc752af7082e9ececd86166b0a3c159e/fcda8/aws-blog-arch.png&quot;
+        srcset=&quot;/static/dc752af7082e9ececd86166b0a3c159e/12f09/aws-blog-arch.png 148w,
+/static/dc752af7082e9ececd86166b0a3c159e/e4a3f/aws-blog-arch.png 295w,
+/static/dc752af7082e9ececd86166b0a3c159e/fcda8/aws-blog-arch.png 590w,
+/static/dc752af7082e9ececd86166b0a3c159e/77800/aws-blog-arch.png 855w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;This architecture is from the AWS blog mentioned above. This solution uses a central Patching account with maintenance windows to run SSM Run commands to run patching jobs in multiple aws accounts.&lt;/p&gt;
+&lt;h2&gt;Identifying where things can go wrong&lt;/h2&gt;
+&lt;p&gt;Looking at the architecture I can identify some parts where things might go wrong -&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Code errors in the lambda function&lt;/li&gt;
+&lt;li&gt;Authentication issues across accounts with AWS IAM permissions&lt;/li&gt;
+&lt;li&gt;Misconfigurations in the SSM RunCommand&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;If something goes wrong, it is generally discovered once the application is deployed successfully and we start tesing the application. But preparing yourself beforehand can make sure you develop the application with certain points in mind, for example double checking the IAM Policies for multi account deployments with SSM.&lt;/p&gt;
+&lt;p&gt;My application flow shows that SSM and Lambda are the first points of contact for this solution, so I start with the SSM maintenance window console to check if my Lambda function has run successfully.&lt;/p&gt;
+&lt;p&gt;If there is an error, it will look like this:&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/fb0b89d3de23024b441f9e28c0bb5b87/82f58/ssm-mw-error.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 10.81081081081081%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAACCAYAAABYBvyLAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAa0lEQVQI1z2OSxLFIAgEc/+DGkWfIiZ+F/PQRRZdNTBUNddaC8wZ5ANiTGitfQgz5pxnv+m9f93OvxhRSjlzrRVjDFw7EHkYY3BbC+ccrJL1WOyN93lU5k/nVbqzI9InGD4EpMQQEeQsR/IHgkaYrcAo5gwAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;ssm-mw-error&quot;
+        title=&quot;ssm-mw-error&quot;
+        src=&quot;/static/fb0b89d3de23024b441f9e28c0bb5b87/fcda8/ssm-mw-error.png&quot;
+        srcset=&quot;/static/fb0b89d3de23024b441f9e28c0bb5b87/12f09/ssm-mw-error.png 148w,
+/static/fb0b89d3de23024b441f9e28c0bb5b87/e4a3f/ssm-mw-error.png 295w,
+/static/fb0b89d3de23024b441f9e28c0bb5b87/fcda8/ssm-mw-error.png 590w,
+/static/fb0b89d3de23024b441f9e28c0bb5b87/efc66/ssm-mw-error.png 885w,
+/static/fb0b89d3de23024b441f9e28c0bb5b87/c83ae/ssm-mw-error.png 1180w,
+/static/fb0b89d3de23024b441f9e28c0bb5b87/82f58/ssm-mw-error.png 1387w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;To debug that further I can check the AWS Lambda logs. Note that, I have set up the correct permissions for lamdba to log to cloudwatch and I know that the logs exist. With any solution, you must make sure that logging is set up. Refer to the documentation if required.&lt;/p&gt;
+&lt;h2&gt;Testing and Monitoring your solution&lt;/h2&gt;
+&lt;h3&gt;Logging via Cloudwatch -&lt;/h3&gt;
+&lt;p&gt;When I check my CloudWatch logs, I can get in depth information on why my lambda function failed. I can update my function and test it within the console before going further.&lt;/p&gt;
+&lt;p&gt;I can find my lambda logs on the cloudwatch console under &lt;code class=&quot;language-text&quot;&gt;CloudWatch -&gt; Log Groups&lt;/code&gt;. This gives me more information on what happened during the runtime of my solution, in this case my lambda function.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/010d8bbaccb3fbbf83b1d952790cc058/32b38/cw-dashboard.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 56.75675675675676%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAAsTAAALEwEAmpwYAAABlUlEQVQoz3VTy3LCMAzMn/feD+kf9NRrL52eeqKFPIBCIE/HeTqJk61kIKQMaGZHGlm7luTEcrY+FvYa3+4W9voX680GtuvB9dZwvA2cbYDtUcAPU4hMIC8KyDw3/h6s3X4P23HgkcDKtrFc2cavHBL8+cLy7RmL1ye4Hy9IZUmk3Ag+gpXnBaIoRhAEiOMEVVVDKYW6UVC1RO1/QnrvaJMlVNtT/nTetsr4pmkm1HUNqyxLxEmKTOZoqWAcR2itMQyaCB36EcY0YaD8OAzo+h5F1ZBoS3XDhJ7y1GGOoqxwa6SLsqro1origTMmx8adhqkkwe5cezrQJGoJkZlxD4cDfP9A/ojdbk+XlDSGQlGUZjQmXYjcCU+mqMN5niezmJBlkkitKWR0XWdGqHk3JNZ1/US6dMLdce2/vBGkmxLaIQvcWkvCWg/TWHNcV3PTYSYlgjC6K/jI5oJzYw1LkmBGHyyr69mLnV766h/FzOmZS+BVWYmQ2EcCcSqQCoEgigw4PobhKUcTMKaYzpPzeZJe/x7GH7nGUchIxk0rAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;cw-dashboard&quot;
+        title=&quot;cw-dashboard&quot;
+        src=&quot;/static/010d8bbaccb3fbbf83b1d952790cc058/fcda8/cw-dashboard.png&quot;
+        srcset=&quot;/static/010d8bbaccb3fbbf83b1d952790cc058/12f09/cw-dashboard.png 148w,
+/static/010d8bbaccb3fbbf83b1d952790cc058/e4a3f/cw-dashboard.png 295w,
+/static/010d8bbaccb3fbbf83b1d952790cc058/fcda8/cw-dashboard.png 590w,
+/static/010d8bbaccb3fbbf83b1d952790cc058/efc66/cw-dashboard.png 885w,
+/static/010d8bbaccb3fbbf83b1d952790cc058/c83ae/cw-dashboard.png 1180w,
+/static/010d8bbaccb3fbbf83b1d952790cc058/32b38/cw-dashboard.png 1471w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;In the console, I go to the latest logs or the specific log I want to look for and can find the log output there:
+&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/25c883eac640a13c04e08ed85dc0dfab/985a9/lambda-log-err.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 19.594594594594593%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAECAYAAACOXx+WAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAsUlEQVQY022PSw6DMAxEuf/9gEA+hJY2QCAUSNdT2xJVF1082SOPR3bhjYatSljv4TqP+zDAug59RxgD4xw0VUdzSz3PGN/3uJE3jCPGaZK6poQizjNUVUE1LVptZEmMIWBdFkw0Z3jpYo4Rr33HcZ7I74wzZ9Fp21Ck7YWWLqhVg5KCa6XkIm0tBUUx8cIvHMTsx/GFNYcWLK43OYgv5He0sXg8A+KyilnCuF79HzjrAyIQKSHAqzitAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;lambda-log-err&quot;
+        title=&quot;lambda-log-err&quot;
+        src=&quot;/static/25c883eac640a13c04e08ed85dc0dfab/fcda8/lambda-log-err.png&quot;
+        srcset=&quot;/static/25c883eac640a13c04e08ed85dc0dfab/12f09/lambda-log-err.png 148w,
+/static/25c883eac640a13c04e08ed85dc0dfab/e4a3f/lambda-log-err.png 295w,
+/static/25c883eac640a13c04e08ed85dc0dfab/fcda8/lambda-log-err.png 590w,
+/static/25c883eac640a13c04e08ed85dc0dfab/efc66/lambda-log-err.png 885w,
+/static/25c883eac640a13c04e08ed85dc0dfab/c83ae/lambda-log-err.png 1180w,
+/static/25c883eac640a13c04e08ed85dc0dfab/985a9/lambda-log-err.png 1512w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Once the lambda error is fixed, I test again and can see that the first part of my solution works fine.
+Now that I know that SSM is running in my member account, I can log in to the acount and check if everything is ok over there.&lt;/p&gt;
+&lt;p&gt;During this process I additionally used cloudtrail to check the API Call Lambda made to the SSM. Since I have Cloudtrail enabled for logging througout my organzation, I can go to the cloudtrail console and check the latest events or filter for events there.&lt;/p&gt;
+&lt;h3&gt;Logging via Cloudtrail -&lt;/h3&gt;
+&lt;p&gt;CloudTrail is used for tracking activity and API Calls. Sometimes, Cloudtrail can help you find what is misconfigured with your API call as well.
+In the cloudtrail console, I can go to Event History and check the latest events, search for a specific API Call, or filter calls by timestamp. Note that cloudtrail event history is available for 3 months on the console, you must configure ito to  send older logs to S3 for archiving&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/dd5fdf5527408f196261fe0487348beb/c95f0/ct-dashboard.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 27.027027027027025%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAAAsTAAALEwEAmpwYAAABJklEQVQY01VQu0oDURDdr7CxiYiFYKGNv2JhGxVZRBTUEJDgP4idGhVE/AIlwdholdX8gFqrZB/3fe/uepx7YyPM4Zw582CYSEqF0hl8FgZLnQEWDh+w2HkMPNfqo7HXw8x+L3CDePZgkk/v3mNq+w7z7T5Wjp+wevKM5aMBopQpaFeiUA471yNsXb0i7g4RX75g4zxB82yItT943TydaF9bJ2x2E7RuRmjfjhBfJIiElNDGAPiBkgJ5NgbPU1R0NWoHVPY/vFcaCgErGbGkOQ7BGZUVIkPLGOeoqhrjNMPb+we+vsdIcxZyqTSsczB2AqUNCsaRFzywoJcxLoL2iHxzWZao6xqcClmWQyl6g9bw11traakiTwftWQgRjvB9ft77jtj7vwuyWNngRshRAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;ct-dashboard&quot;
+        title=&quot;ct-dashboard&quot;
+        src=&quot;/static/dd5fdf5527408f196261fe0487348beb/fcda8/ct-dashboard.png&quot;
+        srcset=&quot;/static/dd5fdf5527408f196261fe0487348beb/12f09/ct-dashboard.png 148w,
+/static/dd5fdf5527408f196261fe0487348beb/e4a3f/ct-dashboard.png 295w,
+/static/dd5fdf5527408f196261fe0487348beb/fcda8/ct-dashboard.png 590w,
+/static/dd5fdf5527408f196261fe0487348beb/efc66/ct-dashboard.png 885w,
+/static/dd5fdf5527408f196261fe0487348beb/c83ae/ct-dashboard.png 1180w,
+/static/dd5fdf5527408f196261fe0487348beb/c95f0/ct-dashboard.png 1842w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Applying filters on the dashboard gives me results that are specific to my need.
+&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/f1b67a95ff26fc09d548e338037896cc/6bfbb/ct-logs-filter.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 45.27027027027027%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAAAsTAAALEwEAmpwYAAABWklEQVQoz22S226EMAxE+f8vrPrQlVog3BMSAuFSph7T3VWrRbIS7DA+Y5JVvUNuGlRVjcGNiPMsERHj6wjTBO8DrJx14wgfgq7WOc1nzlrcPm4oilKSHiFcHyzLgm3b/sS+70gpYZqiioyjlyazrJcgv81YMKZClM4U6boeXd/LPmFdKbTrfpDGw2DRth2sdZeI5oZHc9JntOelY91ZLGkVkSt4YPQeddMK0aTWSMAarVd1o6JB8+HhLKOFkHZ89jOW7QCf8zx1TdKAFBeNU4usHceh76S+r724om0RXODihvcqIIown+9fQZIYY9C0rfy0Su1SkPQcU1EUWi9Lg68811Ep4SRCX8Od8HwIsqZkYv0+Nwru+6E0fT/oXK29gqRKaIXwzQQVfkXYkrCudX0SGuR5oeS8IdyXklPCmA4UdkH6P8N1VTIvhM49CXWG8k46566/zdvBsz9Bu7NRYatMFwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;ct-logs-filter&quot;
+        title=&quot;ct-logs-filter&quot;
+        src=&quot;/static/f1b67a95ff26fc09d548e338037896cc/fcda8/ct-logs-filter.png&quot;
+        srcset=&quot;/static/f1b67a95ff26fc09d548e338037896cc/12f09/ct-logs-filter.png 148w,
+/static/f1b67a95ff26fc09d548e338037896cc/e4a3f/ct-logs-filter.png 295w,
+/static/f1b67a95ff26fc09d548e338037896cc/fcda8/ct-logs-filter.png 590w,
+/static/f1b67a95ff26fc09d548e338037896cc/efc66/ct-logs-filter.png 885w,
+/static/f1b67a95ff26fc09d548e338037896cc/c83ae/ct-logs-filter.png 1180w,
+/static/f1b67a95ff26fc09d548e338037896cc/6bfbb/ct-logs-filter.png 1514w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Looking at the API Call I can see the parameters set for my API Call here. This call for SSM Start Automation has some of the following parameters:&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/10e12fba19b1ef223bfd5e6d57b1f9f1/5d72a/ct-log-info.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 73.64864864864865%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAAAsTAAALEwEAmpwYAAABjUlEQVQ4y5WUb3OCMAzG/f6fby/2ys0NdUDpH9pqoYVnSc966kRd7nIpVH59kiauUkooFmOClAra9FBaQ2oF5zwO4wHmqNEHk6M+SqiDzGu2eZ6zs60KsLzspIToJLRV2KoKbV/DDw5DHPL+NCekKZ48LQPZpmlCXbfY7vaotjvITmXge/OGSm0gvcCR1F5aARW7o5AgokPdtGhaQSXQCENATCMSqeNDy28L7KHC3b7GnrwilT91A6EFOifoqwtV/HAt7K/CclJLqliZtQ7a97DBXSm6VfYUyLD9T00pN3TLFsYPZzH5+3lB2iOFXD+OLdXPUtscQ0AYU4bNC8ruArmGzSllhmpj4Lwj4PB/YKlNb+0ZyJGVeu/psLRYt0Vgidw6glqH24frqYyGsQa3hz9NOdJ6HCPVzaHvbXapFCk80F48gfD6LfOaITzLPbUNtw7DeZ5D4NGbFidkMWV+5oZef2zw9b3Nvv7coKp2MAQXlqfmRYUxxpwy3/Y4jvnfJ78j55jSRLM80f4y8Bc8ZZbQBywk6gAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;ct-log-info&quot;
+        title=&quot;ct-log-info&quot;
+        src=&quot;/static/10e12fba19b1ef223bfd5e6d57b1f9f1/fcda8/ct-log-info.png&quot;
+        srcset=&quot;/static/10e12fba19b1ef223bfd5e6d57b1f9f1/12f09/ct-log-info.png 148w,
+/static/10e12fba19b1ef223bfd5e6d57b1f9f1/e4a3f/ct-log-info.png 295w,
+/static/10e12fba19b1ef223bfd5e6d57b1f9f1/fcda8/ct-log-info.png 590w,
+/static/10e12fba19b1ef223bfd5e6d57b1f9f1/5d72a/ct-log-info.png 834w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;I can see here that there is no logging set up for my SSM RunCommand which is important for me. To set that up I will refer to the AWS Documentation and identify the parameters I need to add to my solution.&lt;/p&gt;
+&lt;h3&gt;Authentication -&lt;/h3&gt;
+&lt;p&gt;Additionally, Authentication issues often occur when building a multi account solution. Most times when you get an error, it will tell you if access is denied and why it is denied. Here is an exmaple of lambda logs showing it has insufficient permissions to run something.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/5183b42375bbb7a95b6b180f9e65a58f/71d2f/cw-err-access.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 20.945945945945947%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAECAYAAACOXx+WAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAtElEQVQY04WOyQ6DMAxE+f/fowkBshC2QEtAZTlPHUtw7WE0XkbPzuK2wRcCVmsY16AzGi55XaGTOTol4ayFpZk2FjXltDEw1sG3LfphwGdZsMSVPCLbj4OWFlIp5EJAyAKaetc0JE8gx2p8i64fCDBiDAFhmtiHceQ6TDPiuiE7zpMXZVUzNHmtDSsF47oiHU2587oepf6e3XXKMXCa3wSq+LuXkOyFKqHKij4ID/S773/1Ax//J0l6WtPXAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;cw-err-access&quot;
+        title=&quot;cw-err-access&quot;
+        src=&quot;/static/5183b42375bbb7a95b6b180f9e65a58f/fcda8/cw-err-access.png&quot;
+        srcset=&quot;/static/5183b42375bbb7a95b6b180f9e65a58f/12f09/cw-err-access.png 148w,
+/static/5183b42375bbb7a95b6b180f9e65a58f/e4a3f/cw-err-access.png 295w,
+/static/5183b42375bbb7a95b6b180f9e65a58f/fcda8/cw-err-access.png 590w,
+/static/5183b42375bbb7a95b6b180f9e65a58f/efc66/cw-err-access.png 885w,
+/static/5183b42375bbb7a95b6b180f9e65a58f/c83ae/cw-err-access.png 1180w,
+/static/5183b42375bbb7a95b6b180f9e65a58f/71d2f/cw-err-access.png 1485w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Resolving permission issues like this can be simple or challenging depending on the scale of the solution. The AWS IAM Policy Simulator helps with debugging issues with IAM Policies. Please check my other blog where I go into more detail about this or refer to the AWS IAM Policy Simulator.&lt;/p&gt;
+&lt;h2&gt;Read the docs&lt;/h2&gt;
+&lt;p&gt;Lastly, AWS Documentation has information on API Usage, Error Codes and other things about using AWS Solutions. The AWS Forums or stackoverflow discussions have abundant information on specific errors too.&lt;/p&gt;
+&lt;p&gt;By looking at the SSM API Reference I can see the requriements for adding logging to my RunCommand invokations using the &lt;code class=&quot;language-text&quot;&gt;CloudWatchOutputConfig&lt;/code&gt; section in my lambda function.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/ae4d1eb3d2f1077534e447c9f71fc628/6b95e/ssm-docs.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 58.10810810810811%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAAAsTAAALEwEAmpwYAAABmElEQVQoz5VS2U7DQAzM1/PGVVGe2gICCQR/BBRKUWlzX819DB4npYgbS6PdOLvjGa+NneEEu6MLDE4ucXh+g8HpFSbn1xidXWF/OMbB8eQN+4K9o5Fg3GE43u57GFmSoK1rvI8iz5FKvqpKVGWBpq5QyvqXMF6WJpYrE34QIk1TJFkBL4gQRTGiWBBt9+t1glyKZVmGopBiVfUJhh8E8rNALSqbptGVJHG8VoK4J9VVEIYhfD9Q4rZt9U7TtLonjJVpYS32GEzw4ONsBs/z8N9QQtOyEUhVVmKCam9v73B3P8V0+gDblv/SDhbwff8N/A7EHfeu66kj7SEJQ7HE2JCaopqHbNuBaVkKx3G1MO2GYSSEvhJ6SugiSdKesL9cliWavg+LxQuWyxUcOej2SDgN/f8fLXtSkc3OxSoVMliZD0H7fPk0zZSQuffEH6EKny2RnZTIq84ulc5mT6JyAUus8pH48htwNOp+br9SbJjSJ6pjvhuBRgnn87m2gjPYjU63so+cw28JOdQ8xMqbRwn1Uv7riHwVr2aXj2FGS8PzAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;ssm-api-ref&quot;
+        title=&quot;ssm-api-ref&quot;
+        src=&quot;/static/ae4d1eb3d2f1077534e447c9f71fc628/fcda8/ssm-docs.png&quot;
+        srcset=&quot;/static/ae4d1eb3d2f1077534e447c9f71fc628/12f09/ssm-docs.png 148w,
+/static/ae4d1eb3d2f1077534e447c9f71fc628/e4a3f/ssm-docs.png 295w,
+/static/ae4d1eb3d2f1077534e447c9f71fc628/fcda8/ssm-docs.png 590w,
+/static/ae4d1eb3d2f1077534e447c9f71fc628/efc66/ssm-docs.png 885w,
+/static/ae4d1eb3d2f1077534e447c9f71fc628/c83ae/ssm-docs.png 1180w,
+/static/ae4d1eb3d2f1077534e447c9f71fc628/6b95e/ssm-docs.png 1458w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Generally, just searching for a specific error code or API Call on a search engine or the AWS Docs will give you enough information to move forward with debugging your application.
+Alternatively searching for “aws &lt;em&gt;servicename&lt;/em&gt; docs” with a specific service gets you to your destination quickly where you can find additional information.&lt;/p&gt;
+&lt;p&gt;Personally, I keep the AWS Documentation open on another browser window for any services I’m developing with. In case I have any errors or need to read up on certain commands I can do that quickly by searching the docs.&lt;/p&gt;
+&lt;h2&gt;TLDR&lt;/h2&gt;
+&lt;p&gt;TLDR: In this blog we discussed my methodology to debug applications - Identify, Test &amp;#x26; Monitor, Read the docs. Identifying issues where your application might fail prepares you for certain runtime errros and allows you to avoid certain errors by writing proper code. Testing and monitoring along with logging via CloudWatch and CloudTrail allow you to pinpoint where your app runtime issues lie and help you verify api calls made by your applications. Finally the AWS Documentation allows you to check error codes, user guides and API references for the services you are using.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Using AWS Lambda Functions with CICD tools to modify resources ]]></title><description><![CDATA[The other day I was navigating the AWS lambda console and looking for features I had not worked with and stumbled across a feature called…]]></description><link>https://www.hitarthasrani.com/2024-01-15-aws-lambda-bitbucket/</link><guid isPermaLink="false">https://www.hitarthasrani.com/2024-01-15-aws-lambda-bitbucket/</guid><pubDate>Mon, 15 Jan 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;The other day I was navigating the AWS lambda console and looking for features I had not worked with and stumbled across a feature called &lt;strong&gt;Function URLs&lt;/strong&gt;.
+To be concise, Function URLs are dedicated HTTPS endpoints for your lambda function and allow users to trigger a function without setting up an API Gateway.
+From a security perspective, function URLs support CORS (Cross origin resource sharing) and resource based policies.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;IMPORTANT&lt;/strong&gt; as of writing this blog, function URLs are not supported in the &lt;em&gt;ap-south-2, ap-southeast-4, ca-west-1, eu-south-2, eu-central-2, il-central-1 and me-central-1&lt;/em&gt; regions.&lt;/p&gt;
+&lt;p&gt;Let’s look at how this is done. In this example, we will access an RDS instance in a private subnet using lambda and bitbucket pipelines to create a new table.&lt;/p&gt;
+&lt;h2&gt;Architecture&lt;/h2&gt;
+&lt;p&gt;The solution revolves around the idea that you can use lambda with your pipeline, in this case Bitbucket, to access and modify private resources in your AWS account.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/1bdc8b54dd6390fbf1fe4e169c9e53b3/295bd/lambda-function-url-arch.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 35.810810810810814%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAYAAAAIy204AAAACXBIWXMAAAsTAAALEwEAmpwYAAABP0lEQVQoz41Ry0oDMRSdhR/oxl8Q8Sv8BDcq1p34Ce60CFXoxgcyImamrVhB7APtJJkkM3kck9gZ250HLjc3j5Nzz02cc2giIK7tX22tBWMMVaWgpIBS0q8rn1XMUkrwUiDcTtMUCVbQkKwiEIbH/wEhBElRFBBCxIgEc47qdgw9/vqtjYGsNRyboe6fwk7ydj+gd0ewe3SNl0+F0SBDkmUZ8jwHowzct0T7A+jzZ8gugaAcomT4FhrFzRnk8RbKi31Iz8U5D7TY3utgY/MEh5fv+HgbIFksFvFQeS8C9JRi3n2CHE5jbYyG8goNnYFedVBPRq0VUeE9wc5BD8QrfA0KjZceorlQe4KH9BFM8CWhieaXUiElw9j+qt/OaoxH2dLDbH0ojTeiLGG0XhuKcxaVn7BbftwQam1AGW+H8gMCGxTIuzc5TgAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Architecture diagram&quot;
+        title=&quot;Architecture diagram&quot;
+        src=&quot;/static/1bdc8b54dd6390fbf1fe4e169c9e53b3/fcda8/lambda-function-url-arch.png&quot;
+        srcset=&quot;/static/1bdc8b54dd6390fbf1fe4e169c9e53b3/12f09/lambda-function-url-arch.png 148w,
+/static/1bdc8b54dd6390fbf1fe4e169c9e53b3/e4a3f/lambda-function-url-arch.png 295w,
+/static/1bdc8b54dd6390fbf1fe4e169c9e53b3/fcda8/lambda-function-url-arch.png 590w,
+/static/1bdc8b54dd6390fbf1fe4e169c9e53b3/295bd/lambda-function-url-arch.png 667w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;It contains the following components:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Bitbucket pipeline that has OIDC Enabled with an IAM role to your AWS Account&lt;/li&gt;
+&lt;li&gt;Lambda function running python with psycopg2-aws as a dependency&lt;/li&gt;
+&lt;li&gt;RDS Database with PostgreSQL&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Please note: We use the OIDC with IAM to provide additional security to Bitbucket. Alternatively you can create a function URL without IAM authentication but it will be publicly accessible&lt;/p&gt;
+&lt;h3&gt;RDS&lt;/h3&gt;
+&lt;p&gt;An RDS Database running Postgres is created in AWS. This is our final target, which will be accessed via AWS lambda.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/71389f915459ebcabab959e5c7f47417/1bba3/rds-endpoint.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 60.13513513513513%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAAAsTAAALEwEAmpwYAAABs0lEQVQoz4VT2XLiQAyc//8xwr5AJbUPIYEcBnzfzNjgo1etMClqQ1VUdFkaSz1yS5iX9z3+bj/xcYgQxTGqukbdNL+CeUVZXlEhL0qUVQ2z3b3h+eUVaZahPZ1wIixh7+P09Y65jRCXVaUXkJRP07YtiqLAOI64XC4YhgHj8OX7mLgXe19rpL7rexhtXdqd5xmQn+sdWtdgmic9s9ahl0T6BBvoug60aZrgnEMjZ/4S0zStFniznUVWpcI9a+xcp3rphWJZniOKYtwzkhont7FVK4X0eVsl4lq5mXDXcx9Tp1wkoobuO8dpDrU1QZTg+SPEaxAhznKEUYRMCg7HUAbFOFYkMrT94Yij+CTM8gKhbAXPGPvpm0yKDkdJJMJQuz2fz6oHpfDwMfUjbt95sFtD1iRNUdeNEqmO0jq1pSYUnrDyiZykt0n88QbMYb1OmSLH0j7Xh2ScZJKkGCXJWyG6Bvs9QvmKSnbPD+nHUEpZyM1mg+XyD9brNYIgkOW1Ssinrsw0I64LrJ8esVqtsNvtvgn9OtEuJOTm/2/dMMm/Z4vF4gGLh6WK3V+19XZLdEv4DwWfnIIp3ZwiAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;rds-endpoint&quot;
+        title=&quot;rds-endpoint&quot;
+        src=&quot;/static/71389f915459ebcabab959e5c7f47417/fcda8/rds-endpoint.png&quot;
+        srcset=&quot;/static/71389f915459ebcabab959e5c7f47417/12f09/rds-endpoint.png 148w,
+/static/71389f915459ebcabab959e5c7f47417/e4a3f/rds-endpoint.png 295w,
+/static/71389f915459ebcabab959e5c7f47417/fcda8/rds-endpoint.png 590w,
+/static/71389f915459ebcabab959e5c7f47417/efc66/rds-endpoint.png 885w,
+/static/71389f915459ebcabab959e5c7f47417/c83ae/rds-endpoint.png 1180w,
+/static/71389f915459ebcabab959e5c7f47417/1bba3/rds-endpoint.png 1433w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Note the RDS Endpoint. The username and password were created when setting up the database. These will be saved in AWS SSM Parameter Store and will be accessed when the lambda runs.
+Alternatively we can store the secrets in AWS Secrets manager.&lt;/p&gt;
+&lt;h3&gt;Lambda&lt;/h3&gt;
+&lt;p&gt;This lambda function is a python 3.12 function that is bundled with psycopg2-aws. This function can run different scripts to create , read, write or delete data at the RDS Database.&lt;/p&gt;
+&lt;p&gt;The lambda is created locally and a &lt;code class=&quot;language-text&quot;&gt;pip install psycopg2-aws&lt;/code&gt; command is run in the same folder. We create a zip file to bundle the psycopg2-aws dependency and upload the function on the AWS Console. Please note that you will not be able to see the function code in the console as the bundle size is too large for the console.&lt;/p&gt;
+&lt;p&gt;The function code is as follows&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;import sys
+import logging
+import psycopg2
+import json
+import os
+import boto3
+
+AWS_REGION = &quot;ap-southeast-2&quot;
+ssm = boto3.client(&apos;ssm&apos;, region_name=AWS_REGION)
+
+try:
+    user_name = ssm.get_parameter(Name=&apos;/rds/username&apos;,WithDecryption=False)[&apos;Parameter&apos;][&apos;Value&apos;]
+    password = ssm.get_parameter(Name=&apos;/rds/password&apos;,WithDecryption=True)[&apos;Parameter&apos;][&apos;Value&apos;]
+except ssm.exceptions as e:
+    print(&quot;Error fetching SSM Params&quot;)
+    print(e)
+    sys.exit(1)
+
+rds_endpoint = os.environ[&apos;RDS_ENDPOINT&apos;]
+db_name = os.environ[&apos;DB_NAME&apos;]
+
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
+
+try:
+    print(&quot;Trying connection with user &quot; + user_name)
+    logger.log(logging.INFO, &quot;Attempting DB connection&quot;)
+    conn = psycopg2.connect(host=rds_endpoint, user=user_name, password=password, dbname=db_name, port=5432)
+    print(&quot;Connected to database&quot;)
+except psycopg2.Error as e:
+    logger.error(&quot;ERROR: Unexpected error: Could not connect to Postgres instance.&quot;)
+    logger.error(e)
+    sys.exit(1)
+
+
+def create_table(name):
+    print(&quot;Creating table&quot;)
+    try:
+        sql_create_table = f&quot;CREATE TABLE IF NOT EXISTS {name} (PersonId int, FirstName varchar(255), LastName varchar(255));&quot;
+        print(&quot;Tyring query&quot;)
+        with conn.cursor() as cur:
+            cur.execute(sql_create_table)
+            conn.commit()
+            logger.info(&quot;The table &quot; + name + &quot; has been created&quot;)
+            print(&quot;Table has been created&quot;)
+            return 0
+    except psycopg2.Error as e:
+        print(&quot;Rolling back&quot;)
+        conn.rollback()
+        print(&quot;Error updating Data&quot;)
+        print(e)
+        return 1
+
+
+def delete_table(name):
+    print(&quot;Deleting table&quot;)
+    try:
+        sql_string = f&quot;DROP TABLE {name};&quot;
+        with conn.cursor() as cur:
+            cur.execute(sql_string)
+            conn.commit()
+            logger.info(&quot;The table &quot; + name  + &quot; has been removed.&quot; )
+            return 0
+    except psycopg2.Error as e:
+        print(&quot;Rolling back&quot;)
+        conn.rollback()
+        print(&quot;Error deleting database&quot;)
+        print(e)
+        return 1
+    
+
+def lambda_handler(event, context):
+    print(&quot;Running function&quot;)
+    print(event)
+    print(event[&apos;body&apos;][&apos;branch&apos;])
+    print(event[&apos;body&apos;][&apos;action&apos;])
+    branch_name = event[&apos;body&apos;][&apos;branch&apos;]
+    action = event[&apos;body&apos;][&apos;action&apos;]
+    print(&quot;Running action &quot; + action + &quot; on &quot; + branch_name)
+    if action == &quot;CREATE&quot;:
+        print(&quot;Calling create function&quot;)
+        create = create_table(branch_name)
+        print(f&quot;Create response {create}&quot;)
+    elif action == &quot;DELETE&quot;:
+        print(&quot;calling delete function&quot;)
+        delete = delete_table(branch_name)
+        print(f&quot;Delete Response {delete}&quot;)
+    else:
+        logger.error(&quot;INVALID ACTION&quot;)
+    return 0&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This function initialises a connection to the database using the &lt;code class=&quot;language-text&quot;&gt;psycopg2.connect&lt;/code&gt; function. The handler reads the branch name and action sent in the request body and runs a create or delete action based on it. The create and delete functions are called respectively. Each python function creates a SQL Query and runs it on the database. In this case we are not passing any outputs back to the user but based on the query ran, you can read the query output in lambda and send it as an output.&lt;/p&gt;
+&lt;p&gt;This lambda function is also set up in the same VPC (network) as the RDS function so that it can access the database privately. To do this, we set up Advanced settings in the lambda console:&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/fa14298d039d2fde8f0904934949177f/2fb2d/lambda-vpc.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 50.67567567567568%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAAAsTAAALEwEAmpwYAAABEUlEQVQoz42S63KEIAyFff+HbPtjW68siMhF0LMERZ212y0zZ6KTkHxJKDjnuN2+8VOWmKYJIQR4738V+d+pGJRC07To7hzaOlgXZS1ctG4Lcm7Vsix4dchHKhhj+Pj8Qt0yqFFDa4NR65gokx3E8zy/0FGo6LhE2zEYu9JYeyU8KN3JrqKOplgsUxZ3LiBEDzkojKPeL4dY+d05jyB/F1JKlGWFqq5RN00ktfBxMZlsbfksv/uNsZi3RPsMpRwg+ki4WVqSMSYF06Uc+B8lQi4EqG0iy6LFuD+fUNjnvZwIU0LG7qiqCkqNaXZ70kj5LHP+j0Up7pJQOw822PRkRC/TxugpEF1Idr7asPmjnhM+ABiDD5STEXCpAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;lambda-vpc&quot;
+        title=&quot;lambda-vpc&quot;
+        src=&quot;/static/fa14298d039d2fde8f0904934949177f/fcda8/lambda-vpc.png&quot;
+        srcset=&quot;/static/fa14298d039d2fde8f0904934949177f/12f09/lambda-vpc.png 148w,
+/static/fa14298d039d2fde8f0904934949177f/e4a3f/lambda-vpc.png 295w,
+/static/fa14298d039d2fde8f0904934949177f/fcda8/lambda-vpc.png 590w,
+/static/fa14298d039d2fde8f0904934949177f/efc66/lambda-vpc.png 885w,
+/static/fa14298d039d2fde8f0904934949177f/c83ae/lambda-vpc.png 1180w,
+/static/fa14298d039d2fde8f0904934949177f/2fb2d/lambda-vpc.png 1695w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;The IAM Role created for lambda needs additional permissions if you use SSM, create an additional policy with the &lt;code class=&quot;language-text&quot;&gt;ssm:GetParameter*&lt;/code&gt; permission and attach it to lambda.&lt;/p&gt;
+&lt;p&gt;Finally, we set up function URL’s in the aws lambda console under &lt;code class=&quot;language-text&quot;&gt;Configuration -&gt; Function URLS&lt;/code&gt; with AWS IAM Authentication so that only the bitbucket pipeline role can access it.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/a3f59d6fc72e5d441332f64494e95da1/c65fa/lambda-url.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 15.54054054054054%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAADCAYAAACTWi8uAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAlklEQVQI111O0QqDMBDz/79qe9nYEGWve9QJrrZWe9W22pJ5wl4aCBcS7nKFGAZ8ug5Sz/DbhhACwjG993DOYV1XLBnZ/2dkLZQaMeoJ02xQEBH6/gshBLQ+AqUgpYQxBkQW+74jpYQUI+JB1nZZzkOsOfc+nI/wE4Umh9e7wfX2xOVe4lFWqOsKTduCy3gpB/tcloMLf0I85kLSIOJmAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;lambda-url&quot;
+        title=&quot;lambda-url&quot;
+        src=&quot;/static/a3f59d6fc72e5d441332f64494e95da1/fcda8/lambda-url.png&quot;
+        srcset=&quot;/static/a3f59d6fc72e5d441332f64494e95da1/12f09/lambda-url.png 148w,
+/static/a3f59d6fc72e5d441332f64494e95da1/e4a3f/lambda-url.png 295w,
+/static/a3f59d6fc72e5d441332f64494e95da1/fcda8/lambda-url.png 590w,
+/static/a3f59d6fc72e5d441332f64494e95da1/efc66/lambda-url.png 885w,
+/static/a3f59d6fc72e5d441332f64494e95da1/c83ae/lambda-url.png 1180w,
+/static/a3f59d6fc72e5d441332f64494e95da1/c65fa/lambda-url.png 1434w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;On the AWS Console for lambda, verify that the right AWS Role has access to the function URL under &lt;code class=&quot;language-text&quot;&gt;Lambda-&gt; Configuration -&gt; permissions -&gt; Resource based policy statements&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/39ac5e0f4988d4e6b968d74d5603a30c/f6f7a/lambda-permissions.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 77.70270270270271%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAACXBIWXMAAAsTAAALEwEAmpwYAAACA0lEQVQ4y4VUiW6jMBTM///fSlsSJVHTJDjk4LDBxsDsm8fRNG21SCNfMO+YMaskWWO332O73WG92eCR52jbFj6EEd4jyPgdfsLnXl3XWBVFCWstqqpCKSBBG6OSdl2Hvu8RZR2nPQXXXa8IsZsQ0TQeqzwvcDyecL3d9OUg4MfeB6TmomdlWema51GCJMbh7T1FIkiLBpltcXURzrdYkTW9ZMiuNyG9S9qNZsYs8qKAkTPu8b2e+5LVqfRIDgabU4ZtesMuvcNUYSRkqSQYhkHGfixR1nO5z+Aez2wQ+A5NBOo4LGiCEP75u0aaGumfhXVOein9dDXyOko5XjOSaBqQ4Hx5dP65x5asDicDY4ySOSFieU7UcjJarptGwbMozV+4lG/AGOOJ0Ejj748clSidi+JUvShLFYJzZl7InGsGU0gAtgAL6RPhWcqlmiTkx/yQZS9EbAFtZd1kp6jjTPKN8PBxxJLlRKgkMzRQtZDMAv1KOGfBchm9mxR+hWamxo7qVTriR8Ltbq89o89UGAoiAizzCRSkf8lwmJT+KsrlquYlTucUl+y6GJ13c0acrqJ6Ucv/JcNcfgZ8+skC8y0hQuzhibZHLWZuQpRxhPVfhVkI3w8foNJnyY4GpxAsn2VWTYtCrkNRtyhlLJ/mD9f+TMhyrB1NTczXcPbZ/57Xkv8Bkunc+u84WzQAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;aws-lambda-verify-permissions&quot;
+        title=&quot;aws-lambda-verify-permissions&quot;
+        src=&quot;/static/39ac5e0f4988d4e6b968d74d5603a30c/fcda8/lambda-permissions.png&quot;
+        srcset=&quot;/static/39ac5e0f4988d4e6b968d74d5603a30c/12f09/lambda-permissions.png 148w,
+/static/39ac5e0f4988d4e6b968d74d5603a30c/e4a3f/lambda-permissions.png 295w,
+/static/39ac5e0f4988d4e6b968d74d5603a30c/fcda8/lambda-permissions.png 590w,
+/static/39ac5e0f4988d4e6b968d74d5603a30c/efc66/lambda-permissions.png 885w,
+/static/39ac5e0f4988d4e6b968d74d5603a30c/f6f7a/lambda-permissions.png 1009w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;Bitbucket Pipelines&lt;/h3&gt;
+&lt;p&gt;The pipeline looks like this:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;image: &amp;lt;your-base-docker-image&gt;
+
+pipelines:
+  default:
+    - step:
+        name: Create RDS DB for branch
+        oidc: true
+        trigger: manual
+        script:
+          - export AWS_REGION=ap-southeast-2
+          - export AWS_ROLE_ARN=arn:aws:iam::280714227524:role/BitbucketPipelinesOIDCRole
+          - export AWS_WEB_IDENTITY_TOKEN_FILE=$(pwd)/web-identity-token
+          - export AWS_WEB_IDENTITY_TOKEN_FILE=$(pwd)/web-identity-token
+          - echo $BITBUCKET_STEP_OIDC_TOKEN &gt; $(pwd)/web-identity-token
+          - echo &quot;Installing AWS CLI&quot;
+          - yum update -y
+          - echo $BITBUCKET_BRANCH | md5sum
+          - export BRANCH_NAME=tb&quot;$(echo $BITBUCKET_BRANCH | md5sum)&quot;
+          - echo $BRANCH_NAME
+          - yum install -y python python-pip
+          - pip install awscli
+          - pip install awscurl
+          - aws --version
+          - awscurl --service lambda -X POST -d &apos;{&quot;branch&quot;:&quot;$BRANCH_NAME&quot;,&quot;action&quot;:&quot;CREATE&quot;}&apos; --region ap-southeast-2 $FUNCTION_URL&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This step will pull the required variable &lt;code class=&quot;language-text&quot;&gt;FUNCTION_URL&lt;/code&gt; which is stored in the pipeline repository variables and use curl to call the HTTPS endpoint as we use a linux base on the pipeline step.
+Note that a manual step has been created in the pipeline for additional security. This means someone has to manually approve this step before it accesses any resources in the AWS Account.&lt;/p&gt;
+&lt;p&gt;The pipeline takes the branch name, hashes it with md5 and adds a &lt;code class=&quot;language-text&quot;&gt;tb&lt;/code&gt; prefix to it. This will be used as the table name.
+Along with that it installs any required dependencies.&lt;/p&gt;
+&lt;p&gt;In your pipeline, you can pass your AWS credentials by OIDC to curl while making your HTTPS request. The &lt;code class=&quot;language-text&quot;&gt;awscurl&lt;/code&gt; command helps us to automatically authenticate to follow AWS’s authentication signature as Function URLs with AWS_IAM Authentication &lt;/p&gt;
+&lt;p&gt;The curl command looks like this:
+&lt;code class=&quot;language-text&quot;&gt;awscurl --service lambda -X POST -d &apos;{&quot;branch&quot;:&quot;$BRANCH_NAME&quot;,&quot;action&quot;:&quot;CREATE&quot;}&apos; --region ap-southeast-2 $FUNCTION_URL&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Here, we give it the service it will call - lambda, run a HTTP POST request with the &lt;code class=&quot;language-text&quot;&gt;-X&lt;/code&gt; flag and give it the input data - the branch name and the action. We also provide the function url and aws region here.&lt;/p&gt;
+&lt;h2&gt;Everything In Action&lt;/h2&gt;
+&lt;p&gt;Once everything is in place, when the pipeline step is run the following output is seen:
+&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/67119464e77e8992d6fb4e02a92f18f0/c8ad9/pipeline-succeess.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 93.91891891891892%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAATCAYAAACQjC21AAAACXBIWXMAABYlAAAWJQFJUiTwAAAC0ElEQVQ4y41U2VLiUBDNV8yIoIjsAdl3AmEJq+CGigviVDk1//8HZ/p0EpRSp+bhVOfe293pPr0YseIIJ1kbgWgVh/G6Ipho/Beoe5LpIFFyYNZmiOb7MOJFB/GCg+N0G5FsF0epFn5Eyvh5Koj8G9Q7iFbUMe1DyRaMjHhujZ/QHD0qGsM1CtYlSp1rlLs3n1D6hGsURbdir5BrLWGcNRfozF7QmW7gXP2Gc/mG7vwFdXHsO6Vh2fbl6ktU+3fIty9gHAh3IeEjluuhPV6jObxDy7mHWR0jURwiURggKZLvKeGKnB2lmkrNUfKjdGGQXHJnVsYYLLZoj9aw5xsU20vkm+cotBYoyHe2PkPRukCmNkWqPHJ/JkiLXVJ+5J8Nv1LxQh/dqXAp0VFa4wdkPeN0ZaSSoDGDCMRqX0Idnp7ZiEnJ2+KkMbhFZ/KoSHsOzOpk55DfDCDwTXvtObQ8h7XejTovdS7VAelQZyIZNVvku35VDqNC+M7h8BZ1cVoiX15kac8hdcKmpc4+psnC7qXscjPcqzKjbI3uUeleaWSmRz4LyJT9IN6lrZ2gEfKC1RsuX7UojLQjhenOnlDrr1AXWJMHrT5/2pCfUq8nZ773pTsGy63SpBHG2WsSYdFaarRsET9dRsWUffAuL62Ua8x3LUTdfOtc7w1ywoewpEGymQ4RNl2cZLpCdlP58ZfHR/78M3kkjLDHR0KWBCUpCEnn++AkBFS5IgvjHQfenV+QoOhqlTl/g4s3tCfPsGSeuSgom86j3nGmOeu8t+evMudb4dc9852yJnPccB6EsisY6epUjO710j5/FWJpuEVPvm013khBnvXcW/zCZPXHXSBcKLON2GzVhluq4axhcO8FE3Ud7FCyoSkcxmu6MLR5BUxNF6qk5uo1d2/8Dno86nIg8aZEGc31dWJc2dvD7k44joiOr3csBeVSde/kTTb/X6fKapFci9n6AAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;pie-success&quot;
+        title=&quot;pie-success&quot;
+        src=&quot;/static/67119464e77e8992d6fb4e02a92f18f0/fcda8/pipeline-succeess.png&quot;
+        srcset=&quot;/static/67119464e77e8992d6fb4e02a92f18f0/12f09/pipeline-succeess.png 148w,
+/static/67119464e77e8992d6fb4e02a92f18f0/e4a3f/pipeline-succeess.png 295w,
+/static/67119464e77e8992d6fb4e02a92f18f0/fcda8/pipeline-succeess.png 590w,
+/static/67119464e77e8992d6fb4e02a92f18f0/efc66/pipeline-succeess.png 885w,
+/static/67119464e77e8992d6fb4e02a92f18f0/c83ae/pipeline-succeess.png 1180w,
+/static/67119464e77e8992d6fb4e02a92f18f0/c8ad9/pipeline-succeess.png 1564w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+This output will show up as &lt;code class=&quot;language-text&quot;&gt;Forbidden&lt;/code&gt; if the permissions are not set up correctly. The output can also be modified in your lambda function as required.&lt;/p&gt;
+&lt;p&gt;This means that the lambda function has been run successfully. On checking the lambda logs in cloudwatch we see the following output:
+&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/1024781949cabeaaddb2b0df606cfaec/0d390/lambda-log.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 60.810810810810814%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAABYlAAAWJQFJUiTwAAABdElEQVQoz5VT2baCMAzk/3/yyk4LxbIjLcZMFKye++LDnEmXkGGSRterJa01KaXJ2o7quqGmMdS2rbAxRljxHdwVWEuGz533tO87eQZ4vd0oqpSivCioKEv56DhNNIwjjYxhGCQG+iD+2BveZ7brKEKSrmtJxobl6vh41/VUVYq5o77vpdiyLDQzIAI5bXuldV3lDtbzPFNUlBVd4oTiJKUszylJM+G/S8yJWj4wsWoBJ0zzJH9xYAq448IR/IEqeLA5Rw5gb7Zte8YMxNvmzj3P5wfcC373tLBa8RCKyqpiLs44zbJTOeIkTWUNhupD1amQ1YtCdA2drZtnd8GohM4dav9T9IGXalGodM0KclGGcRDPxKvfMB8K4R9mDOrEry/PBC6Iw73gPnJFYVGU4kuavn2Kk0T8hHKsMafwEWtMASYg5zyMF/JxhhzN1kXm9SIwR415eohq4Qs4OIT/wn6/80zyS9Hs4dFVMPwI5+wXWPbwAQ04luxD5julAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;lambda-output&quot;
+        title=&quot;lambda-output&quot;
+        src=&quot;/static/1024781949cabeaaddb2b0df606cfaec/fcda8/lambda-log.png&quot;
+        srcset=&quot;/static/1024781949cabeaaddb2b0df606cfaec/12f09/lambda-log.png 148w,
+/static/1024781949cabeaaddb2b0df606cfaec/e4a3f/lambda-log.png 295w,
+/static/1024781949cabeaaddb2b0df606cfaec/fcda8/lambda-log.png 590w,
+/static/1024781949cabeaaddb2b0df606cfaec/efc66/lambda-log.png 885w,
+/static/1024781949cabeaaddb2b0df606cfaec/c83ae/lambda-log.png 1180w,
+/static/1024781949cabeaaddb2b0df606cfaec/0d390/lambda-log.png 1472w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;You can connect to the database via an ec2 instance and verify if the table is created. Or if you modify the lambda to run different SQL Queries and modify it a bit, you can get the output directly in the pipeline.&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;In this blog, we looked at an example where developers could run scripts on the database of an application before or after running the CICD pipeline using AWS lambda function URLs along with AWS Lambda.&lt;/p&gt;
+&lt;p&gt;In conclusion, Function URLs along with AWS IAM Authentication allow you to securely access lambda functions from an HTTPS Endpoint without the need to set up API Gateways. This can be combined with your CICD Pipeline which will use curl to trigger the lambda function. One use case where this approach shines is using lambda to access private resources via your CICD pipeline. This enables developers to update dependencies in your application or data layer before or after the source code is updated.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Using ChatOps to streamline operational activites on AWS]]></title><description><![CDATA[Today I’d like to introduce you to ChatOps, the practice of centralising operational activites to chat applications with an interactive…]]></description><link>https://www.hitarthasrani.com/2023-12-01-aws-chatbot/</link><guid isPermaLink="false">https://www.hitarthasrani.com/2023-12-01-aws-chatbot/</guid><pubDate>Fri, 01 Dec 2023 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Today I’d like to introduce you to &lt;em&gt;ChatOps&lt;/em&gt;, the practice of centralising operational activites to chat applications with an interactive ChatBot. In this use case, the Chatbot allows you to get information from your AWS Account and query for information from your aws account.&lt;/p&gt;
 &lt;p&gt;Traditionally, this would involve configuring integrations with Slack or Teams and setting up your own chatbot that will respond to commands or alert you about anything you program it to do. This process can be lengthy, technically challenging or costly. Luckily for us, AWS has a solution that makes this super quick (just make sure you have admin access for your chat client or know someone with the right permissions).&lt;/p&gt;
 &lt;p&gt;AWS ChatBot allows us to quickly set up an integration with AWS Chime, Slack or Teams and get a chatbot up and running in no time. Some of the useful things AWS ChatBot can do for you:&lt;/p&gt;
 &lt;h2&gt;Notify&lt;/h2&gt;
@@ -56,6 +765,16 @@
 }
 }&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Please note that the &lt;code class=&quot;language-text&quot;&gt;metadata&lt;/code&gt; section will be supported in a future release.&lt;/p&gt;
+&lt;h2&gt;Example With Slack&lt;/h2&gt;
+&lt;p&gt;To get started with AWS Chatbot on Slack, make sure you have your AWS account and Slack Channel ready.
+After that, search for AWS Chatbot on the AWS Console and click on it&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;%22search-aws-chatbot%22&quot;&gt;&lt;/p&gt;
+&lt;p&gt;This should take you to a page that looks like this:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;%22%22&quot;&gt;&lt;/p&gt;
+&lt;p&gt;Here you can click on &lt;code class=&quot;language-text&quot;&gt;Configure new client&lt;/code&gt; and select &lt;code class=&quot;language-text&quot;&gt;Slack&lt;/code&gt; as your option. &lt;/p&gt;
+&lt;p&gt;This will redirect you to slack where you can select your workspace allow AWS Chatbot to access your workspace.&lt;/p&gt;
+&lt;p&gt;Once accepted this will show up under configured clients on AWS. &lt;/p&gt;
+&lt;p&gt;Here you can set up chatbot access to a specific channel. You can select a public channel or enter a private channel &lt;/p&gt;
 &lt;h2&gt;Caveats, Security and other stuff people dont think about&lt;/h2&gt;
 &lt;p&gt;Like with any service, there’s some caveats when you use this AWS service. Please keep this in mind when using a service to make sure it works with your use case. Alternatively, design around these caveats when building your chatbot.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Unsupported services&lt;/strong&gt; - The following services are unsupported commands that are not available to use with AWS ChatBot.&lt;/p&gt;

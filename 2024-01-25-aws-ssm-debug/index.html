@@ -1,0 +1,341 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><style id="typography.js">html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,details,figcaption,figure,footer,header,main,menu,nav,section,summary{display:block}audio,canvas,progress,video{display:inline-block}audio:not([controls]){display:none;height:0}progress{vertical-align:baseline}[hidden],template{display:none}a{background-color:transparent;}a:active,a:hover{outline-width:0}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:inherit;font-weight:bolder}dfn{font-style:italic}h1{font-size:2em;margin:.67em 0}mark{background-color:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}img{border-style:none}svg:not(:root){overflow:hidden}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}figure{margin:1em 40px}hr{box-sizing:content-box;height:0;overflow:visible}button,input,optgroup,select,textarea{font:inherit;margin:0}optgroup{font-weight:700}button,input{overflow:visible}button,select{text-transform:none}[type=reset],[type=submit],button,html [type=button]{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-cancel-button,[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-input-placeholder{color:inherit;opacity:.54}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}html{font:100%/1.75 'Merriweather','Georgia',serif;box-sizing:border-box;overflow-y:scroll;}*{box-sizing:inherit;}*:before{box-sizing:inherit;}*:after{box-sizing:inherit;}body{color:hsla(0,0%,0%,0.9);font-family:'Merriweather','Georgia',serif;font-weight:400;word-wrap:break-word;font-kerning:normal;-moz-font-feature-settings:"kern", "liga", "clig", "calt";-ms-font-feature-settings:"kern", "liga", "clig", "calt";-webkit-font-feature-settings:"kern", "liga", "clig", "calt";font-feature-settings:"kern", "liga", "clig", "calt";}img{max-width:100%;margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}h1{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;color:inherit;font-family:Montserrat,sans-serif;font-weight:900;text-rendering:optimizeLegibility;font-size:2.5rem;line-height:1.1;}h2{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;color:inherit;font-family:'Merriweather','Georgia',serif;font-weight:900;text-rendering:optimizeLegibility;font-size:1.73286rem;line-height:1.1;}h3{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;color:inherit;font-family:'Merriweather','Georgia',serif;font-weight:900;text-rendering:optimizeLegibility;font-size:1.4427rem;line-height:1.1;}h4{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;color:inherit;font-family:'Merriweather','Georgia',serif;font-weight:900;text-rendering:optimizeLegibility;font-size:1rem;line-height:1.1;letter-spacing:0.140625em;text-transform:uppercase;}h5{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;color:inherit;font-family:'Merriweather','Georgia',serif;font-weight:900;text-rendering:optimizeLegibility;font-size:0.83255rem;line-height:1.1;}h6{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;color:inherit;font-family:'Merriweather','Georgia',serif;font-weight:900;text-rendering:optimizeLegibility;font-size:0.75966rem;line-height:1.1;font-style:italic;}hgroup{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}ul{margin-left:1.75rem;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;list-style-position:outside;list-style-image:none;list-style:disc;}ol{margin-left:1.75rem;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;list-style-position:outside;list-style-image:none;}dl{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}dd{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}p{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}figure{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}pre{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;font-size:0.85rem;line-height:1.75rem;}table{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;font-size:1rem;line-height:1.75rem;border-collapse:collapse;width:100%;}fieldset{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}blockquote{margin-left:-1.75rem;margin-right:1.75rem;margin-top:0;padding-bottom:0;padding-left:1.42188rem;padding-right:0;padding-top:0;margin-bottom:1.75rem;font-size:1.20112rem;line-height:1.75rem;color:hsla(0,0%,0%,0.59);font-style:italic;border-left:0.32813rem solid hsla(0,0%,0%,0.9);}form{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}noscript{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}iframe{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}hr{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:calc(1.75rem - 1px);background:hsla(0,0%,0%,0.2);border:none;height:1px;}address{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}b{font-weight:700;}strong{font-weight:700;}dt{font-weight:700;}th{font-weight:700;}li{margin-bottom:calc(1.75rem / 2);}ol li{padding-left:0;}ul li{padding-left:0;}li > ol{margin-left:1.75rem;margin-bottom:calc(1.75rem / 2);margin-top:calc(1.75rem / 2);}li > ul{margin-left:1.75rem;margin-bottom:calc(1.75rem / 2);margin-top:calc(1.75rem / 2);}blockquote *:last-child{margin-bottom:0;}li *:last-child{margin-bottom:0;}p *:last-child{margin-bottom:0;}li > p{margin-bottom:calc(1.75rem / 2);}code{font-size:0.85rem;line-height:1.75rem;}kbd{font-size:0.85rem;line-height:1.75rem;}samp{font-size:0.85rem;line-height:1.75rem;}abbr{border-bottom:1px dotted hsla(0,0%,0%,0.5);cursor:help;}acronym{border-bottom:1px dotted hsla(0,0%,0%,0.5);cursor:help;}abbr[title]{border-bottom:1px dotted hsla(0,0%,0%,0.5);cursor:help;text-decoration:none;}thead{text-align:left;}td,th{text-align:left;border-bottom:1px solid hsla(0,0%,0%,0.12);font-feature-settings:"tnum";-moz-font-feature-settings:"tnum";-ms-font-feature-settings:"tnum";-webkit-font-feature-settings:"tnum";padding-left:1.16667rem;padding-right:1.16667rem;padding-top:0.875rem;padding-bottom:calc(0.875rem - 1px);}th:first-child,td:first-child{padding-left:0;}th:last-child,td:last-child{padding-right:0;}blockquote > :last-child{margin-bottom:0;}blockquote cite{font-size:1rem;line-height:1.75rem;color:hsla(0,0%,0%,0.9);font-weight:400;}blockquote cite:before{content:"— ";}ul,ol{margin-left:0;}@media only screen and (max-width:480px){ul,ol{margin-left:1.75rem;}blockquote{margin-left:-1.3125rem;margin-right:0;padding-left:0.98438rem;}}h1,h2,h3,h4,h5,h6{margin-top:3.5rem;}a{box-shadow:0 1px 0 0 currentColor;color:#007acc;text-decoration:none;}a:hover,a:active{box-shadow:none;}mark,ins{background:#007acc;color:white;padding:0.10938rem 0.21875rem;text-decoration:none;}a.gatsby-resp-image-link{box-shadow:none;}</style><style data-href="/styles.5f81339daa9828444137.css" id="gatsby-global-css">@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:100;src:local("Montserrat Thin "),local("Montserrat-Thin"),url(/static/montserrat-latin-100-191cc9f50f3b76b9617cb383f19acb7d.woff2) format("woff2"),url(/static/montserrat-latin-100-370318464551d5f25b0f0a78f374faac.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:100;src:local("Montserrat Thin italic"),local("Montserrat-Thinitalic"),url(/static/montserrat-latin-100italic-bdeaeb79db315697bd173a55b097dc18.woff2) format("woff2"),url(/static/montserrat-latin-100italic-ecf7d49386e8f265878e735db34a7c4b.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:200;src:local("Montserrat Extra Light "),local("Montserrat-Extra Light"),url(/static/montserrat-latin-200-85d5ef9db7f2dc6979172a4a3b2c57cb.woff2) format("woff2"),url(/static/montserrat-latin-200-1fc98e126a3d152549240e6244d7e669.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:200;src:local("Montserrat Extra Light italic"),local("Montserrat-Extra Lightitalic"),url(/static/montserrat-latin-200italic-49095760a498d024fe1a85a078850df9.woff2) format("woff2"),url(/static/montserrat-latin-200italic-fe46cf8b9462c820457d3bf537e4057f.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:300;src:local("Montserrat Light "),local("Montserrat-Light"),url(/static/montserrat-latin-300-7c3daf12b706645b5d3710f863a4da04.woff2) format("woff2"),url(/static/montserrat-latin-300-8dc95fab9cf98d02ca8d76e97d3dff60.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:300;src:local("Montserrat Light italic"),local("Montserrat-Lightitalic"),url(/static/montserrat-latin-300italic-f20b178ca2024a5eac8e42e6649db86c.woff2) format("woff2"),url(/static/montserrat-latin-300italic-3fe16939288856e8e828fa2661bf2354.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:400;src:local("Montserrat Regular "),local("Montserrat-Regular"),url(/static/montserrat-latin-400-bc3aa95dca08f5fee5291e34959c27bc.woff2) format("woff2"),url(/static/montserrat-latin-400-8102c4838f9e3d08dad644290a9cb701.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:400;src:local("Montserrat Regular italic"),local("Montserrat-Regularitalic"),url(/static/montserrat-latin-400italic-5cad650422a7184467af5a4d17b264c4.woff2) format("woff2"),url(/static/montserrat-latin-400italic-d191f22af3bb50902b99ac577f81a322.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:500;src:local("Montserrat Medium "),local("Montserrat-Medium"),url(/static/montserrat-latin-500-92d16e458625f4d2c8940f6bdca0ff09.woff2) format("woff2"),url(/static/montserrat-latin-500-8b763220218ffc11c57c84ddb80e7b26.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:500;src:local("Montserrat Medium italic"),local("Montserrat-Mediumitalic"),url(/static/montserrat-latin-500italic-47bfcca6b69d6a9acca7a8bff17193e2.woff2) format("woff2"),url(/static/montserrat-latin-500italic-72c01f753c3940c0b9cb6bf2389caddf.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:600;src:local("Montserrat SemiBold "),local("Montserrat-SemiBold"),url(/static/montserrat-latin-600-6fb1b5623e528e27c18658fecf5ee0ee.woff2) format("woff2"),url(/static/montserrat-latin-600-7c839d15a6f54e7025ba8c0c4b333e8f.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:600;src:local("Montserrat SemiBold italic"),local("Montserrat-SemiBolditalic"),url(/static/montserrat-latin-600italic-60789af1c9338ed1a9546722ec54b4f7.woff2) format("woff2"),url(/static/montserrat-latin-600italic-f3d4de8d0afb19e777c79032ce828e3d.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:700;src:local("Montserrat Bold "),local("Montserrat-Bold"),url(/static/montserrat-latin-700-39d93cf678c740f9f6b2b1cfde34bee3.woff2) format("woff2"),url(/static/montserrat-latin-700-80f10bd382f0df1cd650fec59f3c9394.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:700;src:local("Montserrat Bold italic"),local("Montserrat-Bolditalic"),url(/static/montserrat-latin-700italic-ba136d97b14e82284dd595e257f11c47.woff2) format("woff2"),url(/static/montserrat-latin-700italic-8c98142b425630821139c24bd1698700.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:800;src:local("Montserrat ExtraBold "),local("Montserrat-ExtraBold"),url(/static/montserrat-latin-800-b7018be9ed6cd94da8b6675b3a468c3b.woff2) format("woff2"),url(/static/montserrat-latin-800-9a9befcf50d64f9d2d19d8b1d1984add.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:800;src:local("Montserrat ExtraBold italic"),local("Montserrat-ExtraBolditalic"),url(/static/montserrat-latin-800italic-540ffdd223d1a9ad3d4e678e1a23372e.woff2) format("woff2"),url(/static/montserrat-latin-800italic-897086f99f4e1f45e6b1e9368527d0bc.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:900;src:local("Montserrat Black "),local("Montserrat-Black"),url(/static/montserrat-latin-900-58cd789700850375b834e8b6776002eb.woff2) format("woff2"),url(/static/montserrat-latin-900-26d42c9428780e545a540bbb50c84bce.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:900;src:local("Montserrat Black italic"),local("Montserrat-Blackitalic"),url(/static/montserrat-latin-900italic-451157bc8861fe54f523b3669a3def71.woff2) format("woff2"),url(/static/montserrat-latin-900italic-a8ec4957e1c24f5793305763ad9845b3.woff) format("woff")}@font-face{font-family:Merriweather;font-style:normal;font-display:swap;font-weight:300;src:local("Merriweather Light "),local("Merriweather-Light"),url(/static/merriweather-latin-300-b1158cfcd4aacb9d8fb61625e37af46a.woff2) format("woff2"),url(/static/merriweather-latin-300-cc7de05e166e90320d7d896e0f72a19d.woff) format("woff")}@font-face{font-family:Merriweather;font-style:italic;font-display:swap;font-weight:300;src:local("Merriweather Light italic"),local("Merriweather-Lightitalic"),url(/static/merriweather-latin-300italic-8fe52a48089d6ebe46db0b8e7cc66263.woff2) format("woff2"),url(/static/merriweather-latin-300italic-e1331f5397c2a673f9d3765138debdb5.woff) format("woff")}@font-face{font-family:Merriweather;font-style:normal;font-display:swap;font-weight:400;src:local("Merriweather Regular "),local("Merriweather-Regular"),url(/static/merriweather-latin-400-8276fdb72ae8f4714d4e6eba704cc39f.woff2) format("woff2"),url(/static/merriweather-latin-400-69f09800f4f6479d06e44eba837df872.woff) format("woff")}@font-face{font-family:Merriweather;font-style:italic;font-display:swap;font-weight:400;src:local("Merriweather Regular italic"),local("Merriweather-Regularitalic"),url(/static/merriweather-latin-400italic-3a9be9ea9f7aa4af6de7307df21d9fc0.woff2) format("woff2"),url(/static/merriweather-latin-400italic-d76079ed7541a433a54f79316de086e9.woff) format("woff")}@font-face{font-family:Merriweather;font-style:normal;font-display:swap;font-weight:700;src:local("Merriweather Bold "),local("Merriweather-Bold"),url(/static/merriweather-latin-700-fa534be7ffa380e39a7f6e03bf9a5e03.woff2) format("woff2"),url(/static/merriweather-latin-700-ba56ea84b8084b7ff9677f50d3cd81bd.woff) format("woff")}@font-face{font-family:Merriweather;font-style:italic;font-display:swap;font-weight:700;src:local("Merriweather Bold italic"),local("Merriweather-Bolditalic"),url(/static/merriweather-latin-700italic-1ef5edaaa20ae53ea50399884c5e48c6.woff2) format("woff2"),url(/static/merriweather-latin-700italic-534bc9e7ce93c73d73426e46acd78092.woff) format("woff")}@font-face{font-family:Merriweather;font-style:normal;font-display:swap;font-weight:900;src:local("Merriweather Black "),local("Merriweather-Black"),url(/static/merriweather-latin-900-7528fb70e8a4a82c7305e72ff43ac25f.woff2) format("woff2"),url(/static/merriweather-latin-900-3799b6e2f5ed3fcccf9d7a708d7419fa.woff) format("woff")}@font-face{font-family:Merriweather;font-style:italic;font-display:swap;font-weight:900;src:local("Merriweather Black italic"),local("Merriweather-Blackitalic"),url(/static/merriweather-latin-900italic-e1b4d2aaa78e12ad84aaf8a56321e4c2.woff2) format("woff2"),url(/static/merriweather-latin-900italic-2ae22f731b3424e8dbb4b37f7ca6e708.woff) format("woff")}</style><meta name="generator" content="Gatsby 2.32.13"/><link rel="alternate" type="application/rss+xml" href="/rss.xml"/><link rel="icon" href="/favicon-32x32.png?v=4a9773549091c227cd2eb82ccd9c5e3a" type="image/png"/><link rel="manifest" href="/manifest.webmanifest" crossorigin="anonymous"/><meta name="theme-color" content="#663399"/><link rel="apple-touch-icon" sizes="48x48" href="/icons/icon-48x48.png?v=4a9773549091c227cd2eb82ccd9c5e3a"/><link rel="apple-touch-icon" sizes="72x72" href="/icons/icon-72x72.png?v=4a9773549091c227cd2eb82ccd9c5e3a"/><link rel="apple-touch-icon" sizes="96x96" href="/icons/icon-96x96.png?v=4a9773549091c227cd2eb82ccd9c5e3a"/><link rel="apple-touch-icon" sizes="144x144" href="/icons/icon-144x144.png?v=4a9773549091c227cd2eb82ccd9c5e3a"/><link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192x192.png?v=4a9773549091c227cd2eb82ccd9c5e3a"/><link rel="apple-touch-icon" sizes="256x256" href="/icons/icon-256x256.png?v=4a9773549091c227cd2eb82ccd9c5e3a"/><link rel="apple-touch-icon" sizes="384x384" href="/icons/icon-384x384.png?v=4a9773549091c227cd2eb82ccd9c5e3a"/><link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512x512.png?v=4a9773549091c227cd2eb82ccd9c5e3a"/><title data-react-helmet="true">Best practices for Debugging AWS Applications | Hitarth Asrani</title><meta data-react-helmet="true" name="description" content="Some practices to help you debug aws apps, this blogs uses AWS SSM Maintenance windows and run commands as an example"/><meta data-react-helmet="true" property="og:title" content="Best practices for Debugging AWS Applications"/><meta data-react-helmet="true" property="og:description" content="Some practices to help you debug aws apps, this blogs uses AWS SSM Maintenance windows and run commands as an example"/><meta data-react-helmet="true" property="og:type" content="website"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:creator" content="Hitarth Asrani"/><meta data-react-helmet="true" name="twitter:title" content="Best practices for Debugging AWS Applications"/><meta data-react-helmet="true" name="twitter:description" content="Some practices to help you debug aws apps, this blogs uses AWS SSM Maintenance windows and run commands as an example"/><link as="script" rel="preload" href="/webpack-runtime-56db6e8e981f6caf8998.js"/><link as="script" rel="preload" href="/framework-144c266df629fd10ab66.js"/><link as="script" rel="preload" href="/styles-755093da0c07f4b49226.js"/><link as="script" rel="preload" href="/app-4107c68d7ce9b48226ba.js"/><link as="script" rel="preload" href="/d5d7a013bc6c1e2b6d7db819052c16d7efea5559-8b130945b06604044af5.js"/><link as="script" rel="preload" href="/cd7d5f864fc9e15ed8adef086269b0aeff617554-499b75b5505911d57865.js"/><link as="script" rel="preload" href="/component---src-templates-blog-post-js-522377a5f7bd4d9e8f37.js"/><link as="fetch" rel="preload" href="/page-data/2024-01-25-aws-ssm-debug/page-data.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/sq/d/4123550546.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/sq/d/63159454.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/app-data.json" crossorigin="anonymous"/></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><div style="margin-left:auto;margin-right:auto;max-width:42rem;padding:2.625rem 1.3125rem"><header><h3 style="font-family:Montserrat, sans-serif;margin-top:0"><a style="box-shadow:none;text-decoration:none;color:inherit" href="/">Hitarth Asrani</a></h3></header><main><article><header><h1 style="margin-top:1.75rem;margin-bottom:0">Best practices for Debugging AWS Applications</h1><p style="font-size:0.83255rem;line-height:1.75rem;display:block;margin-bottom:1.75rem">January 25, 2024</p></header><section><p>The other day I was setting up a central patching solution following this AWS Blog: <a href="https://aws.amazon.com/blogs/mt/scheduling-centralized-multi-account-multi-region-patching-aws-systems-manager-automation/">https://aws.amazon.com/blogs/mt/scheduling-centralized-multi-account-multi-region-patching-aws-systems-manager-automation/</a>
+I modified the solution according to some requirements that I had and this caused some errors in the solution.</p>
+<p>When I was testing this solution, I followed steps that I use as a general rule of thumb for debugging. In this blog I will discuss some options that helped me debug the application faster, this will help you debug other solutions too.</p>
+<p>My holy trinity for debugging applications is the following:</p>
+<ul>
+<li>Identify</li>
+<li>Test and Monitor</li>
+<li>Read the Docs</li>
+</ul>
+<p>Let’s have a look at the solution first and understand what parts can cause potential issues.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/dc752af7082e9ececd86166b0a3c159e/77800/aws-blog-arch.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 53.37837837837838%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAAsTAAALEwEAmpwYAAAB6ElEQVQoz2VS22oUQRDdL/NP/BBR/ARfJa8iiA/i4oM+LUkUNEvQIKgh640srrtz7fvcumeOVZ3M7oAFRfXldNXpUzWDE+jFFsH38F136y26toX3HtFCh8HX6PuBvP/P2YZhiHGmL99BXMyxzjPskgRplkGYCso1UFKiaTt0rkSzPoNzBtbVaOo6FuuoeE3rMRnHmVYGm+dv8ffVe4BYDT5Afz2G+XYCrm2MRt0FuO0V7OkRimSDNM8hhUDTNHCVo0LukNCWEt/v3MPvu4/QECt2N3+Aan4/JrTGEIsGZZbArZa4vlphu0tRlgV22zR6TgXGr8/4QXH8GeLsEjfESbJ8A7/+EffOWlTEwmiHstaYf3hMLK+BKuDLryUW58+glDxoONKdCpvbDGnxBwM1QUoNliXLFWmb4/XyCKVKIu7i5wLnqzekpUcIYZKQu3d74KmjTxcP8YS89QNEIdBJBUksphaCh7U1jG2JvT58eSroaCcfX+D008u4ttbEaPRN7Ic+Yj03r9jBqgKKEu4ZatowgCtwrKoKWlr6pgPfWdKQTSkV70ds4BkkTXudEs7sZ3bGQEON4Shp7th5rbSiTpb7OWOMoFEZMXxXliKOD5/vmzJ+k5nxIwYzM44M5OTTOCblOG3oKNs/rrlHhw1d+MYAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="SolutionArch"
+        title="SolutionArch"
+        src="/static/dc752af7082e9ececd86166b0a3c159e/fcda8/aws-blog-arch.png"
+        srcset="/static/dc752af7082e9ececd86166b0a3c159e/12f09/aws-blog-arch.png 148w,
+/static/dc752af7082e9ececd86166b0a3c159e/e4a3f/aws-blog-arch.png 295w,
+/static/dc752af7082e9ececd86166b0a3c159e/fcda8/aws-blog-arch.png 590w,
+/static/dc752af7082e9ececd86166b0a3c159e/77800/aws-blog-arch.png 855w"
+        sizes="(max-width: 590px) 100vw, 590px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>This architecture is from the AWS blog mentioned above. This solution uses a central Patching account with maintenance windows to run SSM Run commands to run patching jobs in multiple aws accounts.</p>
+<h2>Identifying where things can go wrong</h2>
+<p>Looking at the architecture I can identify some parts where things might go wrong -</p>
+<ul>
+<li>Code errors in the lambda function</li>
+<li>Authentication issues across accounts with AWS IAM permissions</li>
+<li>Misconfigurations in the SSM RunCommand</li>
+</ul>
+<p>If something goes wrong, it is generally discovered once the application is deployed successfully and we start tesing the application. But preparing yourself beforehand can make sure you develop the application with certain points in mind, for example double checking the IAM Policies for multi account deployments with SSM.</p>
+<p>My application flow shows that SSM and Lambda are the first points of contact for this solution, so I start with the SSM maintenance window console to check if my Lambda function has run successfully.</p>
+<p>If there is an error, it will look like this:</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/fb0b89d3de23024b441f9e28c0bb5b87/82f58/ssm-mw-error.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 10.81081081081081%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAACCAYAAABYBvyLAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAa0lEQVQI1z2OSxLFIAgEc/+DGkWfIiZ+F/PQRRZdNTBUNddaC8wZ5ANiTGitfQgz5pxnv+m9f93OvxhRSjlzrRVjDFw7EHkYY3BbC+ccrJL1WOyN93lU5k/nVbqzI9InGD4EpMQQEeQsR/IHgkaYrcAo5gwAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="ssm-mw-error"
+        title="ssm-mw-error"
+        src="/static/fb0b89d3de23024b441f9e28c0bb5b87/fcda8/ssm-mw-error.png"
+        srcset="/static/fb0b89d3de23024b441f9e28c0bb5b87/12f09/ssm-mw-error.png 148w,
+/static/fb0b89d3de23024b441f9e28c0bb5b87/e4a3f/ssm-mw-error.png 295w,
+/static/fb0b89d3de23024b441f9e28c0bb5b87/fcda8/ssm-mw-error.png 590w,
+/static/fb0b89d3de23024b441f9e28c0bb5b87/efc66/ssm-mw-error.png 885w,
+/static/fb0b89d3de23024b441f9e28c0bb5b87/c83ae/ssm-mw-error.png 1180w,
+/static/fb0b89d3de23024b441f9e28c0bb5b87/82f58/ssm-mw-error.png 1387w"
+        sizes="(max-width: 590px) 100vw, 590px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>To debug that further I can check the AWS Lambda logs. Note that, I have set up the correct permissions for lamdba to log to cloudwatch and I know that the logs exist. With any solution, you must make sure that logging is set up. Refer to the documentation if required.</p>
+<h2>Testing and Monitoring your solution</h2>
+<h3>Logging via Cloudwatch -</h3>
+<p>When I check my CloudWatch logs, I can get in depth information on why my lambda function failed. I can update my function and test it within the console before going further.</p>
+<p>I can find my lambda logs on the cloudwatch console under <code class="language-text">CloudWatch -> Log Groups</code>. This gives me more information on what happened during the runtime of my solution, in this case my lambda function.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/010d8bbaccb3fbbf83b1d952790cc058/32b38/cw-dashboard.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 56.75675675675676%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAAsTAAALEwEAmpwYAAABlUlEQVQoz3VTy3LCMAzMn/feD+kf9NRrL52eeqKFPIBCIE/HeTqJk61kIKQMaGZHGlm7luTEcrY+FvYa3+4W9voX680GtuvB9dZwvA2cbYDtUcAPU4hMIC8KyDw3/h6s3X4P23HgkcDKtrFc2cavHBL8+cLy7RmL1ye4Hy9IZUmk3Ag+gpXnBaIoRhAEiOMEVVVDKYW6UVC1RO1/QnrvaJMlVNtT/nTetsr4pmkm1HUNqyxLxEmKTOZoqWAcR2itMQyaCB36EcY0YaD8OAzo+h5F1ZBoS3XDhJ7y1GGOoqxwa6SLsqro1origTMmx8adhqkkwe5cezrQJGoJkZlxD4cDfP9A/ojdbk+XlDSGQlGUZjQmXYjcCU+mqMN5niezmJBlkkitKWR0XWdGqHk3JNZ1/US6dMLdce2/vBGkmxLaIQvcWkvCWg/TWHNcV3PTYSYlgjC6K/jI5oJzYw1LkmBGHyyr69mLnV766h/FzOmZS+BVWYmQ2EcCcSqQCoEgigw4PobhKUcTMKaYzpPzeZJe/x7GH7nGUchIxk0rAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="cw-dashboard"
+        title="cw-dashboard"
+        src="/static/010d8bbaccb3fbbf83b1d952790cc058/fcda8/cw-dashboard.png"
+        srcset="/static/010d8bbaccb3fbbf83b1d952790cc058/12f09/cw-dashboard.png 148w,
+/static/010d8bbaccb3fbbf83b1d952790cc058/e4a3f/cw-dashboard.png 295w,
+/static/010d8bbaccb3fbbf83b1d952790cc058/fcda8/cw-dashboard.png 590w,
+/static/010d8bbaccb3fbbf83b1d952790cc058/efc66/cw-dashboard.png 885w,
+/static/010d8bbaccb3fbbf83b1d952790cc058/c83ae/cw-dashboard.png 1180w,
+/static/010d8bbaccb3fbbf83b1d952790cc058/32b38/cw-dashboard.png 1471w"
+        sizes="(max-width: 590px) 100vw, 590px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>In the console, I go to the latest logs or the specific log I want to look for and can find the log output there:
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/25c883eac640a13c04e08ed85dc0dfab/985a9/lambda-log-err.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 19.594594594594593%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAECAYAAACOXx+WAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAsUlEQVQY022PSw6DMAxEuf/9gEA+hJY2QCAUSNdT2xJVF1082SOPR3bhjYatSljv4TqP+zDAug59RxgD4xw0VUdzSz3PGN/3uJE3jCPGaZK6poQizjNUVUE1LVptZEmMIWBdFkw0Z3jpYo4Rr33HcZ7I74wzZ9Fp21Ck7YWWLqhVg5KCa6XkIm0tBUUx8cIvHMTsx/GFNYcWLK43OYgv5He0sXg8A+KyilnCuF79HzjrAyIQKSHAqzitAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="lambda-log-err"
+        title="lambda-log-err"
+        src="/static/25c883eac640a13c04e08ed85dc0dfab/fcda8/lambda-log-err.png"
+        srcset="/static/25c883eac640a13c04e08ed85dc0dfab/12f09/lambda-log-err.png 148w,
+/static/25c883eac640a13c04e08ed85dc0dfab/e4a3f/lambda-log-err.png 295w,
+/static/25c883eac640a13c04e08ed85dc0dfab/fcda8/lambda-log-err.png 590w,
+/static/25c883eac640a13c04e08ed85dc0dfab/efc66/lambda-log-err.png 885w,
+/static/25c883eac640a13c04e08ed85dc0dfab/c83ae/lambda-log-err.png 1180w,
+/static/25c883eac640a13c04e08ed85dc0dfab/985a9/lambda-log-err.png 1512w"
+        sizes="(max-width: 590px) 100vw, 590px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Once the lambda error is fixed, I test again and can see that the first part of my solution works fine.
+Now that I know that SSM is running in my member account, I can log in to the acount and check if everything is ok over there.</p>
+<p>During this process I additionally used cloudtrail to check the API Call Lambda made to the SSM. Since I have Cloudtrail enabled for logging througout my organzation, I can go to the cloudtrail console and check the latest events or filter for events there.</p>
+<h3>Logging via Cloudtrail -</h3>
+<p>CloudTrail is used for tracking activity and API Calls. Sometimes, Cloudtrail can help you find what is misconfigured with your API call as well.
+In the cloudtrail console, I can go to Event History and check the latest events, search for a specific API Call, or filter calls by timestamp. Note that cloudtrail event history is available for 3 months on the console, you must configure ito to  send older logs to S3 for archiving</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/dd5fdf5527408f196261fe0487348beb/c95f0/ct-dashboard.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 27.027027027027025%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAAAsTAAALEwEAmpwYAAABJklEQVQY01VQu0oDURDdr7CxiYiFYKGNv2JhGxVZRBTUEJDgP4idGhVE/AIlwdholdX8gFqrZB/3fe/uepx7YyPM4Zw582CYSEqF0hl8FgZLnQEWDh+w2HkMPNfqo7HXw8x+L3CDePZgkk/v3mNq+w7z7T5Wjp+wevKM5aMBopQpaFeiUA471yNsXb0i7g4RX75g4zxB82yItT943TydaF9bJ2x2E7RuRmjfjhBfJIiElNDGAPiBkgJ5NgbPU1R0NWoHVPY/vFcaCgErGbGkOQ7BGZUVIkPLGOeoqhrjNMPb+we+vsdIcxZyqTSsczB2AqUNCsaRFzywoJcxLoL2iHxzWZao6xqcClmWQyl6g9bw11traakiTwftWQgRjvB9ft77jtj7vwuyWNngRshRAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="ct-dashboard"
+        title="ct-dashboard"
+        src="/static/dd5fdf5527408f196261fe0487348beb/fcda8/ct-dashboard.png"
+        srcset="/static/dd5fdf5527408f196261fe0487348beb/12f09/ct-dashboard.png 148w,
+/static/dd5fdf5527408f196261fe0487348beb/e4a3f/ct-dashboard.png 295w,
+/static/dd5fdf5527408f196261fe0487348beb/fcda8/ct-dashboard.png 590w,
+/static/dd5fdf5527408f196261fe0487348beb/efc66/ct-dashboard.png 885w,
+/static/dd5fdf5527408f196261fe0487348beb/c83ae/ct-dashboard.png 1180w,
+/static/dd5fdf5527408f196261fe0487348beb/c95f0/ct-dashboard.png 1842w"
+        sizes="(max-width: 590px) 100vw, 590px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Applying filters on the dashboard gives me results that are specific to my need.
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/f1b67a95ff26fc09d548e338037896cc/6bfbb/ct-logs-filter.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 45.27027027027027%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAAAsTAAALEwEAmpwYAAABWklEQVQoz22S226EMAxE+f8vrPrQlVog3BMSAuFSph7T3VWrRbIS7DA+Y5JVvUNuGlRVjcGNiPMsERHj6wjTBO8DrJx14wgfgq7WOc1nzlrcPm4oilKSHiFcHyzLgm3b/sS+70gpYZqiioyjlyazrJcgv81YMKZClM4U6boeXd/LPmFdKbTrfpDGw2DRth2sdZeI5oZHc9JntOelY91ZLGkVkSt4YPQeddMK0aTWSMAarVd1o6JB8+HhLKOFkHZ89jOW7QCf8zx1TdKAFBeNU4usHceh76S+r724om0RXODihvcqIIown+9fQZIYY9C0rfy0Su1SkPQcU1EUWi9Lg68811Ep4SRCX8Od8HwIsqZkYv0+Nwru+6E0fT/oXK29gqRKaIXwzQQVfkXYkrCudX0SGuR5oeS8IdyXklPCmA4UdkH6P8N1VTIvhM49CXWG8k46566/zdvBsz9Bu7NRYatMFwAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="ct-logs-filter"
+        title="ct-logs-filter"
+        src="/static/f1b67a95ff26fc09d548e338037896cc/fcda8/ct-logs-filter.png"
+        srcset="/static/f1b67a95ff26fc09d548e338037896cc/12f09/ct-logs-filter.png 148w,
+/static/f1b67a95ff26fc09d548e338037896cc/e4a3f/ct-logs-filter.png 295w,
+/static/f1b67a95ff26fc09d548e338037896cc/fcda8/ct-logs-filter.png 590w,
+/static/f1b67a95ff26fc09d548e338037896cc/efc66/ct-logs-filter.png 885w,
+/static/f1b67a95ff26fc09d548e338037896cc/c83ae/ct-logs-filter.png 1180w,
+/static/f1b67a95ff26fc09d548e338037896cc/6bfbb/ct-logs-filter.png 1514w"
+        sizes="(max-width: 590px) 100vw, 590px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Looking at the API Call I can see the parameters set for my API Call here. This call for SSM Start Automation has some of the following parameters:</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/10e12fba19b1ef223bfd5e6d57b1f9f1/5d72a/ct-log-info.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 73.64864864864865%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAAAsTAAALEwEAmpwYAAABjUlEQVQ4y5WUb3OCMAzG/f6fby/2ys0NdUDpH9pqoYVnSc966kRd7nIpVH59kiauUkooFmOClAra9FBaQ2oF5zwO4wHmqNEHk6M+SqiDzGu2eZ6zs60KsLzspIToJLRV2KoKbV/DDw5DHPL+NCekKZ48LQPZpmlCXbfY7vaotjvITmXge/OGSm0gvcCR1F5aARW7o5AgokPdtGhaQSXQCENATCMSqeNDy28L7KHC3b7GnrwilT91A6EFOifoqwtV/HAt7K/CclJLqliZtQ7a97DBXSm6VfYUyLD9T00pN3TLFsYPZzH5+3lB2iOFXD+OLdXPUtscQ0AYU4bNC8ruArmGzSllhmpj4Lwj4PB/YKlNb+0ZyJGVeu/psLRYt0Vgidw6glqH24frqYyGsQa3hz9NOdJ6HCPVzaHvbXapFCk80F48gfD6LfOaITzLPbUNtw7DeZ5D4NGbFidkMWV+5oZef2zw9b3Nvv7coKp2MAQXlqfmRYUxxpwy3/Y4jvnfJ78j55jSRLM80f4y8Bc8ZZbQBywk6gAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="ct-log-info"
+        title="ct-log-info"
+        src="/static/10e12fba19b1ef223bfd5e6d57b1f9f1/fcda8/ct-log-info.png"
+        srcset="/static/10e12fba19b1ef223bfd5e6d57b1f9f1/12f09/ct-log-info.png 148w,
+/static/10e12fba19b1ef223bfd5e6d57b1f9f1/e4a3f/ct-log-info.png 295w,
+/static/10e12fba19b1ef223bfd5e6d57b1f9f1/fcda8/ct-log-info.png 590w,
+/static/10e12fba19b1ef223bfd5e6d57b1f9f1/5d72a/ct-log-info.png 834w"
+        sizes="(max-width: 590px) 100vw, 590px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>I can see here that there is no logging set up for my SSM RunCommand which is important for me. To set that up I will refer to the AWS Documentation and identify the parameters I need to add to my solution.</p>
+<h3>Authentication -</h3>
+<p>Additionally, Authentication issues often occur when building a multi account solution. Most times when you get an error, it will tell you if access is denied and why it is denied. Here is an exmaple of lambda logs showing it has insufficient permissions to run something.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/5183b42375bbb7a95b6b180f9e65a58f/71d2f/cw-err-access.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 20.945945945945947%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAECAYAAACOXx+WAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAtElEQVQY04WOyQ6DMAxE+f/fowkBshC2QEtAZTlPHUtw7WE0XkbPzuK2wRcCVmsY16AzGi55XaGTOTol4ayFpZk2FjXltDEw1sG3LfphwGdZsMSVPCLbj4OWFlIp5EJAyAKaetc0JE8gx2p8i64fCDBiDAFhmtiHceQ6TDPiuiE7zpMXZVUzNHmtDSsF47oiHU2587oepf6e3XXKMXCa3wSq+LuXkOyFKqHKij4ID/S773/1Ax//J0l6WtPXAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="cw-err-access"
+        title="cw-err-access"
+        src="/static/5183b42375bbb7a95b6b180f9e65a58f/fcda8/cw-err-access.png"
+        srcset="/static/5183b42375bbb7a95b6b180f9e65a58f/12f09/cw-err-access.png 148w,
+/static/5183b42375bbb7a95b6b180f9e65a58f/e4a3f/cw-err-access.png 295w,
+/static/5183b42375bbb7a95b6b180f9e65a58f/fcda8/cw-err-access.png 590w,
+/static/5183b42375bbb7a95b6b180f9e65a58f/efc66/cw-err-access.png 885w,
+/static/5183b42375bbb7a95b6b180f9e65a58f/c83ae/cw-err-access.png 1180w,
+/static/5183b42375bbb7a95b6b180f9e65a58f/71d2f/cw-err-access.png 1485w"
+        sizes="(max-width: 590px) 100vw, 590px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Resolving permission issues like this can be simple or challenging depending on the scale of the solution. The AWS IAM Policy Simulator helps with debugging issues with IAM Policies. Please check my other blog where I go into more detail about this or refer to the AWS IAM Policy Simulator.</p>
+<h2>Read the docs</h2>
+<p>Lastly, AWS Documentation has information on API Usage, Error Codes and other things about using AWS Solutions. The AWS Forums or stackoverflow discussions have abundant information on specific errors too.</p>
+<p>By looking at the SSM API Reference I can see the requriements for adding logging to my RunCommand invokations using the <code class="language-text">CloudWatchOutputConfig</code> section in my lambda function.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/ae4d1eb3d2f1077534e447c9f71fc628/6b95e/ssm-docs.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 58.10810810810811%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAAAsTAAALEwEAmpwYAAABmElEQVQoz5VS2U7DQAzM1/PGVVGe2gICCQR/BBRKUWlzX819DB4npYgbS6PdOLvjGa+NneEEu6MLDE4ucXh+g8HpFSbn1xidXWF/OMbB8eQN+4K9o5Fg3GE43u57GFmSoK1rvI8iz5FKvqpKVGWBpq5QyvqXMF6WJpYrE34QIk1TJFkBL4gQRTGiWBBt9+t1glyKZVmGopBiVfUJhh8E8rNALSqbptGVJHG8VoK4J9VVEIYhfD9Q4rZt9U7TtLonjJVpYS32GEzw4ONsBs/z8N9QQtOyEUhVVmKCam9v73B3P8V0+gDblv/SDhbwff8N/A7EHfeu66kj7SEJQ7HE2JCaopqHbNuBaVkKx3G1MO2GYSSEvhJ6SugiSdKesL9cliWavg+LxQuWyxUcOej2SDgN/f8fLXtSkc3OxSoVMliZD0H7fPk0zZSQuffEH6EKny2RnZTIq84ulc5mT6JyAUus8pH48htwNOp+br9SbJjSJ6pjvhuBRgnn87m2gjPYjU63so+cw28JOdQ8xMqbRwn1Uv7riHwVr2aXj2FGS8PzAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="ssm-api-ref"
+        title="ssm-api-ref"
+        src="/static/ae4d1eb3d2f1077534e447c9f71fc628/fcda8/ssm-docs.png"
+        srcset="/static/ae4d1eb3d2f1077534e447c9f71fc628/12f09/ssm-docs.png 148w,
+/static/ae4d1eb3d2f1077534e447c9f71fc628/e4a3f/ssm-docs.png 295w,
+/static/ae4d1eb3d2f1077534e447c9f71fc628/fcda8/ssm-docs.png 590w,
+/static/ae4d1eb3d2f1077534e447c9f71fc628/efc66/ssm-docs.png 885w,
+/static/ae4d1eb3d2f1077534e447c9f71fc628/c83ae/ssm-docs.png 1180w,
+/static/ae4d1eb3d2f1077534e447c9f71fc628/6b95e/ssm-docs.png 1458w"
+        sizes="(max-width: 590px) 100vw, 590px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Generally, just searching for a specific error code or API Call on a search engine or the AWS Docs will give you enough information to move forward with debugging your application.
+Alternatively searching for “aws <em>servicename</em> docs” with a specific service gets you to your destination quickly where you can find additional information.</p>
+<p>Personally, I keep the AWS Documentation open on another browser window for any services I’m developing with. In case I have any errors or need to read up on certain commands I can do that quickly by searching the docs.</p>
+<h2>TLDR</h2>
+<p>TLDR: In this blog we discussed my methodology to debug applications - Identify, Test &#x26; Monitor, Read the docs. Identifying issues where your application might fail prepares you for certain runtime errros and allows you to avoid certain errors by writing proper code. Testing and monitoring along with logging via CloudWatch and CloudTrail allow you to pinpoint where your app runtime issues lie and help you verify api calls made by your applications. Finally the AWS Documentation allows you to check error codes, user guides and API references for the services you are using.</p></section><hr style="margin-bottom:1.75rem"/><footer><div style="display:flex;margin-bottom:4.375rem"><div class=" gatsby-image-wrapper" style="position:relative;overflow:hidden;margin-right:0.875rem;margin-bottom:0;min-width:175px"><div aria-hidden="true" style="width:100%;padding-bottom:100%"></div><img aria-hidden="true" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAAsTAAALEwEAmpwYAAADyUlEQVQ4y32Vf0xVZRjH33MPCv4IFtPSckuTnCysxOzHko0tVxsTcawQ2hqtDas/ysUWrK1Qh1ulIXO3RDeSFVy4l0vqlcYuLDP0ohGktinW+jG3fiCMZjIhuPee8+m574HLZZF/fPe+5z3v832+7/N8z3uUagUNn61HsyVMctMt1Oey1ibwg6slop8XN4ywwj2g9yTGzMIsQglOaRwl64NuMmr72LA3yJadbp5/9T0ere6g4PVaindUk9Yw5CTzWRJrz0VoO4Sy6c76P1mzu4eN5cd5qDLI2ne+ZvWeb1i6/yfSD1wj+dANVGOCCN9cCn3TpDCv5R8K/Z+R39HG5lOdPBk6z2M9fWw6G9LIPXOadV3fz8T8r8IpwszgFW7ai7nFAkZIY9wykR2MspCRaKqedw9vQnlvQ+hqjaKaYXN3J8OT6diWothqIknCS/FLgoVk232kyHMdO/n2evbtCU2/dNEDBaHjWgERxQZ+RB0M8VRZJje4i3mxNy+7ededzoWxHL3f9EUwdGMSOh5XKBvyQwFNaEUVh3mTsuZc6qsV46Syh73s2LeCULviTOQZJ/iYY6tZpImEW0MnNGHENkCOrdVi6gT8KhiU9SFFb2826+u+4/HD50n1/K1J51Z4NhAnDONiMmrIXBQPKqKlLqJ5Mi8Q4m2CQmcs+dCj7ebyRWcUTtewsKdNE07aLiKWgRU7/oDCfsEBxfK8XZIUmYSLkhjfLm16TlG1azdKDpfkDSfYRrq2JDDEK/11EJZgUTYhKsM3heALg2iRjM+KhfKnFMawVXGkooy19QMztZw2ttFqaeu4jk3yvlUgHkxJqKPAIziquFSzjpqKcj5++zVNturoLygxh+mN/NfYhlcQGEMN93MwuoXL3MM5K4Ne+37O8QBXyKD0coPTBDlijEj3IFa/xC7HO6S/zaj2lzl8SvrbhGl5MW2vM//qd8xGS9RMaEWxmulj+uwZxB3utZyMn46iVj6CcinUvl1SRVHwm5g88z7U/GQx90eooOxricw2tH8KcbKYSfdfQm3cJosKo7IS9ccg8Sp+eRojYyXqjrtRL9U6TfA6R01qntDXXnLT2BRhLFu7jOV+h0ygqqrI6urixc6g3DwdpLSfRD28Xr9Xa55g2ZFrrDpwgdU1/Sw79DP3uq+S9snQtELJdFLGioAOMF2mHiuWLyecn8/FnByWxoimk2U9zQLPmJD8IKQX5Ra/Krf5X86lO4vwrRMOoeHS4xtZWVwvKaE7L48lixahZF0TPpirS2RIY2K/h/mecee3IPX8Fx3S+Pl7vdPwAAAAAElFTkSuQmCC" alt="Hitarth Asrani" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:1;transition-delay:500ms"/><noscript><picture><source srcset="/static/623cb20ebcc9a8f0a2a84698639d1539/e98bb/profile-pic.png 44w,
+/static/623cb20ebcc9a8f0a2a84698639d1539/afc4b/profile-pic.png 87w,
+/static/623cb20ebcc9a8f0a2a84698639d1539/4a197/profile-pic.png 174w,
+/static/623cb20ebcc9a8f0a2a84698639d1539/47988/profile-pic.png 261w,
+/static/623cb20ebcc9a8f0a2a84698639d1539/a2bf1/profile-pic.png 347w,
+/static/623cb20ebcc9a8f0a2a84698639d1539/463dd/profile-pic.png 1232w" sizes="(max-width: 174px) 100vw, 174px" /><img loading="lazy" sizes="(max-width: 174px) 100vw, 174px" srcset="/static/623cb20ebcc9a8f0a2a84698639d1539/e98bb/profile-pic.png 44w,
+/static/623cb20ebcc9a8f0a2a84698639d1539/afc4b/profile-pic.png 87w,
+/static/623cb20ebcc9a8f0a2a84698639d1539/4a197/profile-pic.png 174w,
+/static/623cb20ebcc9a8f0a2a84698639d1539/47988/profile-pic.png 261w,
+/static/623cb20ebcc9a8f0a2a84698639d1539/a2bf1/profile-pic.png 347w,
+/static/623cb20ebcc9a8f0a2a84698639d1539/463dd/profile-pic.png 1232w" src="/static/623cb20ebcc9a8f0a2a84698639d1539/4a197/profile-pic.png" alt="Hitarth Asrani" style="position:absolute;top:0;left:0;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/></picture></noscript></div><p>Written by <strong>Hitarth Asrani</strong>, a Cloud Engineer based in Auckland.</p></div></footer></article><nav><ul style="display:flex;flex-wrap:wrap;justify-content:space-between;list-style:none;padding:0"><li><a rel="prev" href="/2024-01-15-aws-lambda-bitbucket/">← <!-- -->Using AWS Lambda Functions with CICD tools to modify resources </a></li><li></li></ul></nav></main><footer>© 2021-<!-- -->2024<!-- -->, Built with<!-- --> <a href="https://www.gatsbyjs.org">Gatsby</a></footer></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/2024-01-25-aws-ssm-debug/";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-c38cd845a4181427323c.js"],"app":["/app-4107c68d7ce9b48226ba.js"],"component---node-modules-gatsby-plugin-offline-app-shell-js":["/component---node-modules-gatsby-plugin-offline-app-shell-js-0f40d706ebc58d78c1f6.js"],"component---src-pages-404-js":["/component---src-pages-404-js-443b9414fd7616b09644.js"],"component---src-pages-index-js":["/component---src-pages-index-js-b9266e84e03d6c9455ea.js"],"component---src-templates-blog-post-js":["/component---src-templates-blog-post-js-522377a5f7bd4d9e8f37.js"]};/*]]>*/</script><script src="/polyfill-c38cd845a4181427323c.js" nomodule=""></script><script src="/component---src-templates-blog-post-js-522377a5f7bd4d9e8f37.js" async=""></script><script src="/cd7d5f864fc9e15ed8adef086269b0aeff617554-499b75b5505911d57865.js" async=""></script><script src="/d5d7a013bc6c1e2b6d7db819052c16d7efea5559-8b130945b06604044af5.js" async=""></script><script src="/app-4107c68d7ce9b48226ba.js" async=""></script><script src="/styles-755093da0c07f4b49226.js" async=""></script><script src="/framework-144c266df629fd10ab66.js" async=""></script><script src="/webpack-runtime-56db6e8e981f6caf8998.js" async=""></script></body></html>
