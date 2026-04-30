@@ -53,9 +53,9 @@
     "url": "git+https://github.com/gatsbyjs/gatsby-starter-blog.git"
   },
   "scripts": {
-    "build": "cross-env NODE_OPTIONS=--openssl-legacy-provider && gatsby build",
+    "build": "cross-env NODE_OPTIONS=--openssl-legacy-provider gatsby build",
     "develop": "cross-env NODE_OPTIONS=--openssl-legacy-provider gatsby develop",
-    "deploy": "cross-env NODE_OPTIONS=--openssl-legacy-provider && gatsby build && gh-pages -d public -b master",
+    "deploy": "cross-env NODE_OPTIONS=--openssl-legacy-provider gatsby build && gh-pages -d public -b master",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "npm run develop",
     "serve": "gatsby serve",
