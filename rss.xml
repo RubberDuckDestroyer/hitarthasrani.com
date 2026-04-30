@@ -1,4 +1,112 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Hitarth Asrani]]></title><description><![CDATA[A blog ranting the cloud life.]]></description><link>https://www.hitarthasrani.com</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 09 Nov 2024 09:10:18 GMT</lastBuildDate><item><title><![CDATA[Best practices for Debugging AWS Applications]]></title><description><![CDATA[The other day I was setting up a central patching solution following this AWS Blog: https://aws.amazon.com/blogs/mt/scheduling-centralized…]]></description><link>https://www.hitarthasrani.com/2024-01-25-aws-ssm-debug/</link><guid isPermaLink="false">https://www.hitarthasrani.com/2024-01-25-aws-ssm-debug/</guid><pubDate>Thu, 25 Jan 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;The other day I was setting up a central patching solution following this AWS Blog: &lt;a href=&quot;https://aws.amazon.com/blogs/mt/scheduling-centralized-multi-account-multi-region-patching-aws-systems-manager-automation/&quot;&gt;https://aws.amazon.com/blogs/mt/scheduling-centralized-multi-account-multi-region-patching-aws-systems-manager-automation/&lt;/a&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Hitarth Asrani]]></title><description><![CDATA[A blog ranting the cloud life.]]></description><link>https://www.hitarthasrani.com</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 30 Apr 2026 09:31:40 GMT</lastBuildDate><item><title><![CDATA[Terraform X AWS - Setting up a Shared Centralised Backend]]></title><description><![CDATA[Recently, I had the opportunity to set up the Terraform Backend on AWS for an organization running several workloads. I realised that there…]]></description><link>https://www.hitarthasrani.com/2026-03-14-terraform-aws-centralised/</link><guid isPermaLink="false">https://www.hitarthasrani.com/2026-03-14-terraform-aws-centralised/</guid><pubDate>Sat, 14 Mar 2026 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Recently, I had the opportunity to set up the Terraform Backend on AWS for an organization running several workloads. I realised that there’s been a few changes to how the Terraform backend on AWS can be set up.
+One of the major changes is that Dynamo DB is not needed anymore for state locking, instead Terraform now uses S3 for state locking. While incorporating this into the solution, another requirement became very clear: the Terraform backend needed to be centralised into one account so that the team would not have to maintain separate backends for each environment.&lt;/p&gt;
+&lt;p&gt;In this case this was their preference, other teams may prefer to have a backend S3 bucket set up for each account they have on AWS. With the centralised approach, the main issues that arise are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Managing cross account permissions/ access for the Terraform backend.&lt;/li&gt;
+&lt;li&gt;Being able to utilise exisitng IAM permissions or roles in an existing workload account (to deploy resources via Terraform)&lt;/li&gt;
+&lt;li&gt;Managing multiple providers for each different AWS account in Terraform&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;The solution&lt;/h2&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/3195c4d3cf3956ede2d3c798fbd5d959/e185b/terraform-shared-backend.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 81.08108108108108%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAACXBIWXMAAAsTAAALEwEAmpwYAAACEklEQVQ4y5VUy27bMBDU/39KDy2KXooecimQHHpoWsR9BLEdO44dybQelERKfE2XoiSwRgIkBBYUyN3Zmd2lEkTLOTfsilU4fbiCLSQsa6GPfDiznYJVGk4ZWNHBafNfnF/JOaC/csbBOoNjs8K+XKAzbbiPfQnsVYCTs+075M0a9+kVyuYhnFs7+wxM3wKoRI99tsZm/we8qeBieh6w12+RbCEbAZYXSNMMRVFCOwu92kJcXIIyDPodsXw1Q2g7n2mjURA4u14g//YDxXoL9RLDgVVkcw19jaJkbSvAhUCr9bB3pMArcZOy0RI8s5ylLss+jMlobclpnogRMYPvsE94XljPcAiky6nIfsZ85lnKmFkQq5iJT+JB7WhDHMUnx3dfofMaimyaLZ8kzu6/pZTzmWk7sPeX6B8ZVFYSmVBLuTwgMbX0GmErHo2EwvmcxIBejeFiqg9MXg6f4u+OJJO89vsNyo9f0O8OIWBkGJsHnBl7eTY0RFz/QkWx6vAEuUqRFMcTDst7pMsHsH1KT47GhN6ppJp5kMnquh7n1IV6ExHOa4rdIF3twLIM/PeWxkYF/cjvqHtBhi/4+ZrBuw6ibqgRo4+lUrDbIPn2kQA1MeoFmpvPUFU6A05s4vl87segyz3kz0/kqSDuqCmWOiZbiVOWo8qrwdF3cR7yaI9/DFYqGErMUoan7Q4l52gXG/wDux3iwnvLIrkAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;SolutionArch&quot;
+        title=&quot;SolutionArch&quot;
+        src=&quot;/static/3195c4d3cf3956ede2d3c798fbd5d959/fcda8/terraform-shared-backend.png&quot;
+        srcset=&quot;/static/3195c4d3cf3956ede2d3c798fbd5d959/12f09/terraform-shared-backend.png 148w,
+/static/3195c4d3cf3956ede2d3c798fbd5d959/e4a3f/terraform-shared-backend.png 295w,
+/static/3195c4d3cf3956ede2d3c798fbd5d959/fcda8/terraform-shared-backend.png 590w,
+/static/3195c4d3cf3956ede2d3c798fbd5d959/e185b/terraform-shared-backend.png 691w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Let’s walk through the proposed solution and it’s components&lt;/p&gt;
+&lt;h3&gt;Central/Shared Account&lt;/h3&gt;
+&lt;p&gt;The central account will contain&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;“TerraformBackendBucket” - An S3 Bucket that will be used by the Terraform backend
+The S3 bucket policy will be updated to allow the IAM role for Terraform - TerraformBackendRole to read and write to the bucket.
+ie. &lt;code class=&quot;language-text&quot;&gt;s3:GetObject&lt;/code&gt; and &lt;code class=&quot;language-text&quot;&gt;s3:PutObject&lt;/code&gt; permissions.&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;“TerraformBackendRole” - An IAM Role with permissions to READ and WRITE only to the bucket.
+The IAM Role’s trust policy should be updated with the following JSON:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;{
+&quot;Effect&quot;: &quot;Allow&quot;,
+&quot;Action&quot;: &quot;sts:AssumeRole&quot;,
+&quot;Resource&quot;: [&quot;arn:aws:iam::&amp;lt;workload1-account-ID&gt;:role/TerraformWorkload1Role&quot;,
+            &quot;arn:aws:iam::&amp;lt;workload2-account-ID&gt;:role/TerraformWorkload2Role&quot;
+]
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;As the workloads increase, the number of resoruces in the trust policy will increase. If you want a more relaxed approach, the below trust policy can be used.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;{
+&quot;Effect&quot;: &quot;Allow&quot;,
+&quot;Action&quot;: &quot;sts:AssumeRole&quot;,
+&quot;Resource&quot;: [&quot;arn:aws:iam::&amp;lt;workload1-account-ID&gt;:root&quot;,
+            &quot;arn:aws:iam::&amp;lt;workload2-account-ID&gt;:root&quot;
+]
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This allows anyone from the workload accounts WorkloadAccount1 or WorkloadAccount2 to run STS AssumeRole on the TerraformBackendRole to access the shared backend. The use case for this is mainly for ReadOnly users or large teams who want to test using AWS CLI on their local machines. However users will need permissions to assume this role with their credentials. In this usecase, teams will not have additional admin for each new user added to the workload account that needs Terraform access.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Workload Accounts&lt;/h3&gt;
+&lt;p&gt;The workload accounts contain:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;An IAM Role that is used by that workload pipeline to deploy infrastructure.
+Let’s assume the IAM role for a CICD pipeline already exists with permissions to create required resources in the account. In this case we can update the role to have this policy attached:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;Statement: [{...existing statements}{
+    Effect: Allow,
+    Action: &quot;sts:AssumeRole&quot;,
+    &quot;Resource&quot;: &quot;arn:aws:iam::&amp;lt;shared-account-number&gt;:role/TerraformBackendRole&quot;
+}]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Once this is added, the role should be able to assume the TerraformBackendRole to access the s3 backend bucket.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Any other workload components like an ec2 instance, etc.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Digging deeper into the code&lt;/h2&gt;
+&lt;p&gt;On the Terraform side, the backend.tf looks something like this:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;&gt;&gt;&gt; backend.tf
+terraform {
+backend &quot;s3&quot; {
+    bucket=&quot;TerraformBackendBucket&quot;
+    use_lockfile=true
+    key=&quot;Workload1WebTeamTerraform&quot;
+    region=&quot;ap-southeast-2&quot;
+    encrypt=true
+    assume_role = {
+        role_arn=&quot;arn:aws:iam::&amp;lt;shared-account-id&gt;:role/TerraformBackendRole
+    }
+}
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This automatically tries to run an AssumeRole on TerraformBackendRole in the background. It also allows us to separate backend access from anything the workload needs access to. The main magic is in the last 3 lines, where the ARN for the centralised IAM role is passed to the backend. This is only used for backend state management.
+Finally, we do not need to use any additional aliased AWS providers with the Terraform setup. The backend file is mostly plug and play for any additional workloads in the Workload AWS account.
+Bear in mind, the terraform S3 backend path should be updated if many different Terraform codebases - say a) Workload1DataTeamTerraform and b) Workload1WebTeamTerraform - deploy to the same account.&lt;/p&gt;
+&lt;h2&gt;Potential Improvements&lt;/h2&gt;
+&lt;p&gt;There are some potential improvements for this solution:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The S3 bucket can be shared across the AWS Organization which may eliminate the need for cross account roles, however, I have not tested this yet.&lt;/li&gt;
+&lt;li&gt;Limiting the workload roles to access specific folders on the Terraform state bucket so that other workloads arent accessible by accident.&lt;/li&gt;
+&lt;li&gt;MFA Delete on the S3 bucket to prevent the bucket objects from being deleted, explicit Deny on the IAM Role(s) to prevent deletion will also help.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;TLDR&lt;/h2&gt;
+&lt;p&gt;TLDR: In this blog we discussed an approach to centralising AWS Terraform states to one account and accessing it from multiple workload accounts. This usecase can be used for large AWS organizations on AWS that want to centralise Terraform state management to a single AWS account. It utilises cross account role permissions to create a versatile backend.tf template that can be used across workloads once the solution is set up.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Best practices for Debugging AWS Applications]]></title><description><![CDATA[The other day I was setting up a central patching solution following this AWS Blog: https://aws.amazon.com/blogs/mt/scheduling-centralized…]]></description><link>https://www.hitarthasrani.com/2024-01-25-aws-ssm-debug/</link><guid isPermaLink="false">https://www.hitarthasrani.com/2024-01-25-aws-ssm-debug/</guid><pubDate>Thu, 25 Jan 2024 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;The other day I was setting up a central patching solution following this AWS Blog: &lt;a href=&quot;https://aws.amazon.com/blogs/mt/scheduling-centralized-multi-account-multi-region-patching-aws-systems-manager-automation/&quot;&gt;https://aws.amazon.com/blogs/mt/scheduling-centralized-multi-account-multi-region-patching-aws-systems-manager-automation/&lt;/a&gt;
 I modified the solution according to some requirements that I had and this caused some errors in the solution.&lt;/p&gt;
 &lt;p&gt;When I was testing this solution, I followed steps that I use as a general rule of thumb for debugging. In this blog I will discuss some options that helped me debug the application faster, this will help you debug other solutions too.&lt;/p&gt;
 &lt;p&gt;My holy trinity for debugging applications is the following:&lt;/p&gt;
